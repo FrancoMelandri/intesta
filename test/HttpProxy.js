@@ -1,5 +1,8 @@
+var request = require('request');
+var async = require('async');
 var sync = require('sync-request');
 var modules = require('./modulesLoader.js').Load();
+
 
 var HttpProxy = function() {
 

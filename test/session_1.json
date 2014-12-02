@@ -16,6 +16,19 @@
 					"value": 200
 				}
 			]
+		},
+		{
+			"name": "keepAlive_2",
+			"operation": "keepAlive",
+			"paramSources": {
+			},
+			"assertions": [
+				{
+					"field": "ErrorCode",
+					"comparison": "eq",
+					"value": 200
+				}
+			]
 		}
 	]
 }

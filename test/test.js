@@ -1,6 +1,7 @@
 var fs = require('fs');
 var apiTestModule = require('../apitest/ApiTestModule.js');
 var httpProxy = require('./HttpProxy');
+var async = require('async');
 
 var OperationsLoader = function() {
 	this.load = function(){
@@ -34,7 +35,8 @@ var apiTester = new apiTestModule.ApiTester(
 	new OperationsLoader(), 
 	new SessionLoader(),
 	new EnvironmentsLoader(),
-	new Logger());
+	new Logger(),
+	async);
 
 apiTester.load();
 apiTester.run();
