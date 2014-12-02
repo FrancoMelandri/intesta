@@ -12,4 +12,9 @@ var Do = function(sync, session, env, verb, url, params) {
 	return JSON.parse (res.getBody('utf8'));
 };
 
+var Url = function() {
+	return '/cart';
+}
+
 exports.Do = Do;
+exports.Url = Url;

@@ -10,5 +10,10 @@ var Do = function(sync, session, env, verb, url, params) {
 	};
 };
 
+var Url = function() {
+	return '/keepAlive';
+}
+
 exports.Do = Do;
+exports.Url = Url;
 

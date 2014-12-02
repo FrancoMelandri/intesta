@@ -19,4 +19,9 @@ var Do = function(sync, session, env, verb, url, params) {
 	};
 };
 
+var Url = function() {
+	return '/myoox/login';
+}
+
 exports.Do = Do;
+exports.Url = Url;
