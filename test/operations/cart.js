@@ -1,10 +1,10 @@
 
-var Do = function(sync, session, env, verb, url, params) {
+var GET = function(sync, session, env, params) {
 	var options = {
 		qs : params
 	};
-	var fullUrl =  env.https + session.settings.siteCode + url;
-	var res = sync(verb, fullUrl, options);
+	var fullUrl =  env.https + session.settings.siteCode + Url();
+	var res = sync('GET', fullUrl, options);
 	if (res.statusCode !== 200)
 		return {
 			ErrorCode : res.statusCode,
@@ -16,5 +16,5 @@ var Url = function() {
 	return '/cart';
 }
 
-exports.Do = Do;
+exports.GET = GET;
 exports.Url = Url;

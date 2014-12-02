@@ -7,11 +7,11 @@ var HttpProxy = function() {
 
 		logger.log('calling:' + url + ' params: ' + JSON.stringify(params));
 
-		var operation = modules[url];
+		var operation = modules[url][verb];		
 		if (operation) {
-			return operation.Do(sync, session, env, verb, url, params);
+			return operation(sync, session, env, params);
 		}
-		return {
+		return {			
 			ErrorCode : 500
 		};
 	};
