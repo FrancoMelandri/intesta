@@ -1,0 +1,44 @@
+{
+	"settings":{
+		"Environment" : "PROD",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "keepAlive_1",
+			"operation": "keepAlive",
+			"paramSources": {
+			}
+		},
+		{
+			"name": "DoLogin",
+			"operation": "login",
+			"paramSources": {
+				"email": {
+					"value" : "test.it@yoox.com"
+				},
+				"password": {
+					"value":"password"
+				}
+			}
+		},
+		{
+			"name": "GetAccount",
+			"operation": "account",
+			"paramSources": {
+				"userid" : {
+					"from" : "DoLogin"
+				},
+				"accessToken" : {
+					"from" : "DoLogin"
+				},
+				"cartid" : {
+					"from" : "DoLogin"
+				},
+				"carttoken" : {
+					"from" : "DoLogin"
+				}
+			}
+		}		
+	]
+}

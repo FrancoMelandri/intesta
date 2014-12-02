@@ -1,0 +1,15 @@
+.inspectorTable {
+  border-collapse: collapse;
+  background-color: #EEE;
+  width: 100%;
+}
+.inspectorTable td,
+.inspectorTable th {
+  border: 1px solid #777;
+}
+.inspectorTable td.propertyName {
+  padding-left: 1px;
+}
+.inspectorTable td.propertyValue {
+  padding-left: 1px;
+}

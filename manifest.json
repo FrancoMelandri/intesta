@@ -1,0 +1,14 @@
+{
+  	"name": "Yoox Api Tester",
+  	"version": "0.0.1",
+  	"app": {
+    	"background": {
+      		"scripts": ["background.js"]
+    	}
+	},
+  	"manifest_version": 2,
+	"permissions": [
+		"fileSystem"
+	],
+	"icons": { "16": "resource/icon-16.png", "128": "resource/icon-128.png" }
+}

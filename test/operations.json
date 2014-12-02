@@ -1,0 +1,22 @@
+{
+	"keepAlive": {		
+		"url": "/keepAlive",
+		"verb": "GET",
+		"params": []
+	},
+	"login": {
+		"url": "/myoox/login",
+		"verb": "POST",
+		"params": ["email", "password"]
+	},
+	"cart": {		
+		"url": "/cart",
+		"verb": "GET",		
+		"params": ["userid", "accessToken", "cartid", "carttoken"]
+	},
+	"account": {
+		"url": "/myoox/Account",
+		"verb": "GET",
+		"params": ["userid", "accessToken"]
+	}
+}

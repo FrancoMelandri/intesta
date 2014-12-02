@@ -1,0 +1,21 @@
+{
+	"settings":{
+		"Environment" : "DEV",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "keepAlive_1",
+			"operation": "keepAlive",
+			"paramSources": {
+			},
+			"assertions": [
+				{
+					"field": "ErrorCode",
+					"comparison": "eq",
+					"value": 200
+				}
+			]
+		}
+	]
+}

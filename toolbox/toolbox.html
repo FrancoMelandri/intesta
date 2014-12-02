@@ -1,0 +1,19 @@
+<div id="toolbox">
+    <div>
+        <div class="titleWrapper">
+            <span>Operations</span>
+        </div>
+        <div ng-repeat="op in operationSet">
+            <button class="btn operationBtn" ng-click="appendOperation(op)">{{op.name}}</button>
+        </div>
+    </div>
+
+    <div>
+        <div class="titleWrapper">
+            <span>Asserts</span>
+        </div>
+        <div ng-repeat="assert in assertSet">
+            <button class="btn assertBtn">{{assert.name}}</button>
+        </div>
+    </div>
+</div>

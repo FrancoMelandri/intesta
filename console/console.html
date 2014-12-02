@@ -1,0 +1,17 @@
+<div class="consoleContainer">
+    <button class="btn stepBtn">
+        <strong>Start</strong>
+        <br>
+        (environment: dev)
+    </button>
+    <br>
+    <div ng-repeat="op in operations">
+        <span class="glyphicon glyphicon-arrow-down arrowLink"></span>
+        <br>
+        <button class="btn stepBtn" ng-click="selectOperation(op)">
+            <strong>{{op.name}}</strong>
+            <br>
+            {{ op.info.params }}
+        </button>
+    </div>
+</div>
