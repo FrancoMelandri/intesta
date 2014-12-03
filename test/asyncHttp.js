@@ -31,15 +31,16 @@ series.push( function(callback) {
    	  console.log('<-- second');
     });
 
+
 var handler = function() {
   async.series( series,
   function(err, results) {
-    if(err) { console.log(err); return; }
-    console.log (results[0]);
-    console.log (results[1]);
   }
   );
 };
+
+
+
 
 
 

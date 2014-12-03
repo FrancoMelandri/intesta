@@ -43,24 +43,8 @@ ApiTester.prototype.load = function() {
 
 
 ApiTester.prototype.run = function() {
-/*
-	for(var op in this.session.operationsToRun) {
-		var operation = this.session.operationsToRun[op];
-		var check = operation.check(operation.execute());
-		if (check) {
-			this.logger.log ('TEST is RED [' + check + ']');
-			return;
-		}
-	}
-	this.logger.log ('TEST is GREEN');
-*/
-	console.log ('Async --> CREATE');
-	var series = this.getSeries();
 
-	console.log ('Async --> RUN');
-	console.log ('Async --> ' + series);
-
-	this.async.series(series,
+	this.async.series(this.getSeries(),
 		  function(err, results) {
 		    if(err) { 
 		    	console.log ('TEST is RED [' + err + ']'); 
@@ -71,30 +55,30 @@ ApiTester.prototype.run = function() {
 	  );
 };
 
+function createFunction (operation) {
+	return function(callback) { 
+		var parameters = {};
+		for(var p in operation.params) {
+			var parameter = operation.params[p];
+			if (parameter.from) {
+				var source = operation.context.results[parameter.from];
+				parameters[p] = source[p];
+			}
+			else {
+				parameters[p] = operation.params[p].value;
+			}			
+		}
+		operation.context.results[operation.name] = operation.httpProxy.get(operation.logger, operation.session, operation.env, operation.url, operation.verb, parameters, callback);
+		callback(false, operation.context.results[operation.name]);
+	};
+};
+
 ApiTester.prototype.getSeries = function() {
 
 	var series = [];
 	for(var op in this.session.operationsToRun) {
 		var operation = this.session.operationsToRun[op];
-		console.log ('Operation: ' + operation.name);
-		
-		series.push(function(callback) {
-			console.log ('Operation: ' + operation.name);
-			var parameters = {};
-			for(var p in operation.params) {
-				var parameter = operation.params[p];
-				if (parameter.from) {
-					var source = operation.context.results[parameter.from];
-					parameters[p] = source[p];
-				}
-				else {
-					parameters[p] = operation.params[p].value;
-				}			
-			}
-			operation.context.results[this.name] = operation.httpProxy.get(operation.logger, operation.session, operation.env, operation.url, operation.verb, parameters, callback);
-			callback(false, operation.context.results[this.name]);
-		});
-//		series.push(operation.execute());
+		series.push(createFunction(operation));
 	};
 	return series;
 };
@@ -112,7 +96,8 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 	this.assertions = assertions;
 
 };
-	
+
+/*	
 Operation.prototype.execute = function(callback) {
 
 	console.log ('Operation: ' + this.name);
@@ -129,8 +114,8 @@ Operation.prototype.execute = function(callback) {
 		}			
 	}
 	this.context.results[this.name] = this.httpProxy.get(this.logger, this.session, this.env, this.url, this.verb, parameters, callback);
-	//callback(false, this.context.results[this.name]);
 };
+*/
 
 Operation.prototype.check = function(result) {
 	if (this.assertions) {
