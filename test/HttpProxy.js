@@ -1,18 +1,16 @@
 var request = require('request');
 var async = require('async');
-var sync = require('sync-request');
 var modules = require('./modulesLoader.js').Load();
 
 
 var HttpProxy = function() {
 
-	this.get = function(logger, session, env, url, verb, params) {
+	this.get = function(op, params, callback) {
 
-		logger.log('calling:' + url + ' params: ' + JSON.stringify(params));
-
-		var operation = modules[url][verb];		
+		op.logger.log('calling:' + op.url + ' params: ' + JSON.stringify(params));
+		var operation = modules[op.url][op.verb];
 		if (operation) {
-			return operation(sync, session, env, params);
+			return operation(request, op, params, callback);
 		}
 		return {			
 			ErrorCode : 500

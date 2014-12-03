@@ -35,6 +35,7 @@ series.push( function(callback) {
 var handler = function() {
   async.series( series,
   function(err, results) {
+    console.log('passed');
   }
   );
 };

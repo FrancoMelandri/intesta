@@ -39,6 +39,24 @@
 					"from" : "DoLogin"
 				}
 			}
+		},
+		{
+			"name" : "cart_1",
+			"operation": "cart",
+			"paramSources": {
+				"userid" : {
+					"from" : "DoLogin"
+				},
+				"accessToken" : {
+					"from" : "DoLogin"
+				},
+				"cartid" : {
+					"from" : "DoLogin"
+				},
+				"carttoken" : {
+					"from" : "DoLogin"
+				}
+			}
 		}		
 	]
 }

@@ -1,7 +1,7 @@
 {
 	"settings":{
 		"Environment" : "PROD",
-		"SiteCode"  "YOOX_IT"
+		"SiteCode" : 	"YOOX_IT"
 	},
 	"operations" : [
 		{

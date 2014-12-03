@@ -1,16 +1,24 @@
 
-var GET = function(sync, session, env, params) {
+var GET = function(request, operation, params, callback) {
+	
+	var env = operation.env;
 	var options = {
-		qs : params
+		qs : params,
+		url : env.https + operation.session.settings.siteCode + Url(),
 	};
-	var fullUrl =  env.https + session.settings.siteCode + Url();
-	var res = sync('GET', fullUrl, options);
-	if (res.statusCode !== 200)
-		return {
-			ErrorCode : res.statusCode,
-		};
-	return JSON.parse (res.getBody('utf8'));
+	request(options, function(err, response, body) {
+        if(err) { 
+        	callback(true, {
+        		ErrorCode : err,
+				ErrorMessage : body,
+			}); 
+        	return; 
+        }
+        operation.context.results[operation.name] = body;
+        callback(false, body);
+      });
 };
+
 
 var Url = function() {
 	return '/cart';

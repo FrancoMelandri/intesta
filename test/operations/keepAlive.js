@@ -1,13 +1,23 @@
 
 
-var GET = function(sync, session, env, params) {
+var GET = function(request, operation, params, callback) {
 	
-	var fullUrl =  env.http + session.settings.siteCode + Url();
-	var res = sync('GET', fullUrl);
-	return {
-		ErrorCode : res.statusCode,
-		ErrorMessage : res.getBody('utf8'),
+	var env = operation.env;
+	var options = {
+		url : env.http + operation.session.settings.siteCode + Url(),
 	};
+	request(options, function(err, response, body) {
+        if(err) { 
+        	callback(true, {
+        		ErrorCode : res.statusCode,
+				ErrorMessage : res.getBody('utf8'),
+			}); 
+        	return; 
+        }
+        var result = {ErrorCode : 200};
+        operation.context.results[operation.name] = result;
+        callback(false, result);
+      });
 };
 
 var Url = function() {
@@ -16,4 +26,3 @@ var Url = function() {
 
 exports.GET = GET;
 exports.Url = Url;
-

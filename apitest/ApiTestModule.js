@@ -41,7 +41,6 @@ ApiTester.prototype.load = function() {
 	}
 };
 
-
 ApiTester.prototype.run = function() {
 
 	this.async.series(this.getSeries(),
@@ -49,7 +48,7 @@ ApiTester.prototype.run = function() {
 		    if(err) { 
 		    	console.log ('TEST is RED [' + err + ']'); 
 		    	return; 
-		    }
+		    }		    
 			console.log ('TEST is GREEN');
 		  }
 	  );
@@ -68,8 +67,7 @@ function createFunction (operation) {
 				parameters[p] = operation.params[p].value;
 			}			
 		}
-		operation.context.results[operation.name] = operation.httpProxy.get(operation.logger, operation.session, operation.env, operation.url, operation.verb, parameters, callback);
-		callback(false, operation.context.results[operation.name]);
+		operation.httpProxy.get(operation, parameters, callback);
 	};
 };
 
@@ -96,26 +94,6 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 	this.assertions = assertions;
 
 };
-
-/*	
-Operation.prototype.execute = function(callback) {
-
-	console.log ('Operation: ' + this.name);
-
-	var parameters = {};
-	for(var p in this.params) {
-		var parameter = this.params[p];
-		if (parameter.from) {
-			var source = this.context.results[parameter.from];
-			parameters[p] = source[p];
-		}
-		else {
-			parameters[p] = this.params[p].value;
-		}			
-	}
-	this.context.results[this.name] = this.httpProxy.get(this.logger, this.session, this.env, this.url, this.verb, parameters, callback);
-};
-*/
 
 Operation.prototype.check = function(result) {
 	if (this.assertions) {
