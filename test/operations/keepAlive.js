@@ -8,13 +8,18 @@ var GET = function(request, operation, params, callback) {
 	};
 	request(options, function(err, response, body) {
         if(err) { 
-        	callback(true, {
-        		ErrorCode : res.statusCode,
-				ErrorMessage : res.getBody('utf8'),
-			}); 
+        	callback(true, { 
+                            ErrorCode : res.statusCode,
+				            ErrorMessage : res.getBody('utf8'),
+			             }); 
         	return; 
         }
         var result = {ErrorCode : 200};
+        var check = operation.check(result);
+        if (check) {
+        	callback(true, check);
+        	return;
+        }
         operation.context.results[operation.name] = result;
         callback(false, result);
       });

@@ -14,6 +14,11 @@ var GET = function(request, operation, params, callback) {
 			}); 
         	return; 
         }
+        var check = operation.check(body);
+        if (check) {
+        	callback(true, check);
+        	return;
+        }
         operation.context.results[operation.name] = body;
         callback(false, body);
       });

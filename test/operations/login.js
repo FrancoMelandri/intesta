@@ -15,14 +15,19 @@ var POST = function(request, operation, params, callback) {
 				ErrorMessage : body,
 			}); 
         	return; 
-        }
+        } 
         var result = {
 			"ErrorCode" : body.ErrorCode,
 			"userid" : body.User.idUser,
 			"accessToken" : body.User.AccessToken,
 			"cartid" : body.CartInfo.CartId,
 			"carttoken" : body.CartInfo.CartToken
-		};
+		};		
+        var check = operation.check(result);
+        if (check) {
+        	callback(true, check);
+        	return;
+        }
         operation.context.results[operation.name] = result;
         callback(false, result);
       });

@@ -46,7 +46,7 @@ ApiTester.prototype.run = function() {
 	this.async.series(this.getSeries(),
 		  function(err, results) {
 		    if(err) { 
-		    	console.log ('TEST is RED [' + err + ']'); 
+		    	console.log ('TEST is RED [' + results + ']'); 
 		    	return; 
 		    }		    
 			console.log ('TEST is GREEN');
@@ -100,8 +100,9 @@ Operation.prototype.check = function(result) {
 		for (var assertion in this.assertions) {
 			var a = this.assertions[assertion];
 			var field = result[a.field];
-			if (field !== a.value)
+			if (field !== a.value){
 				return a.field + ' different from ' + a.value;
+			}				
 		}			
 	}
 };
