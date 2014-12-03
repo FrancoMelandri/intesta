@@ -9,35 +9,5 @@
 			"operation": "keepAlive",
 			"paramSources": {
 			}
-		},
-		{
-			"name" : "login_1",
-			"operation": "login",
-			"paramSources": {
-				"email": {
-					"value" : "test.it@yoox.com"
-				},
-				"password": {
-					"value":"password"
-				}
-			}
-		},
-		{
-			"name" : "cart_1",
-			"operation": "cart",
-			"paramSources": {
-				"userid" : {
-					"from" : "login_1"
-				},
-				"accessToken" : {
-					"from" : "login_1"
-				},
-				"cartid" : {
-					"from" : "login_1"
-				},
-				"carttoken" : {
-					"from" : "login_1"
-				}
-			}
 		}]
 }
