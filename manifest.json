@@ -8,7 +8,8 @@
 	},
   	"manifest_version": 2,
 	"permissions": [
-		"fileSystem"
+		"fileSystem",
+	  	"http://rc.api.yoox.net/YooxCore.API/1.0"
 	],
 	"icons": { "16": "resource/icon-16.png", "128": "resource/icon-128.png" }
 }

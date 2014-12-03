@@ -1,5 +1,9 @@
 angular.module('yate', [])
-    .config(['$provide', function ($provide) {
+    .config(['$httpProvider', '$provide', function ($httpProvider, $provide) {
+
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
         var ops ={
             "keepAlive": {
                 "url": "/keepAlive",
