@@ -14,9 +14,14 @@
 		"verb": "GET",		
 		"params": ["userid", "accessToken", "cartid", "carttoken"]
 	},
-	"account": {
+	"getAccount": {
 		"url": "/myoox/Account",
 		"verb": "GET",
+		"params": ["userid", "accessToken"]
+	},
+	"updateAccount": {
+		"url": "/myoox/Account",
+		"verb": "PUT",
 		"params": ["userid", "accessToken"]
 	}
 }

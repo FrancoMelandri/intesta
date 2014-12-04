@@ -1,10 +1,11 @@
 
+var KeepAliveOperation = function() {};
 
-var GET = function(request, operation, params, callback) {
+KeepAliveOperation.prototype.GET = function(request, operation, params, callback) {
 	
 	var env = operation.env;
 	var options = {
-		url : env.http + operation.session.settings.siteCode + Url(),
+		url : env.http + operation.session.settings.siteCode + operation.url,
 	};
 	request(options, function(err, response, body) {
         if(err) { 
@@ -25,9 +26,8 @@ var GET = function(request, operation, params, callback) {
       });
 };
 
-var Url = function() {
+KeepAliveOperation.prototype.Url = function() {
 	return '/keepAlive';
 }
 
-exports.GET = GET;
-exports.Url = Url;
+module.exports = new KeepAliveOperation();

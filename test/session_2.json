@@ -30,7 +30,7 @@
 		},
 		{
 			"name": "GetAccount",
-			"operation": "account",
+			"operation": "getAccount",
 			"paramSources": {
 				"userid" : {
 					"from" : "DoLogin"

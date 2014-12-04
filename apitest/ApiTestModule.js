@@ -1,4 +1,5 @@
 
+
 var ApiTester = function(httpProxy, operationsLoader, sessionLoader, environmentsLoader, logger, async) {
 	this.httpProxy = httpProxy;
 	this.operationsLoader = operationsLoader;
@@ -54,6 +55,16 @@ ApiTester.prototype.run = function() {
 	  );
 };
 
+ApiTester.prototype.getSeries = function() {
+
+	var series = [];
+	for(var op in this.session.operationsToRun) {
+		var operation = this.session.operationsToRun[op];
+		series.push(createFunction(operation));
+	};
+	return series;
+};
+
 function createFunction (operation) {
 	return function(callback) { 
 		var parameters = {};
@@ -69,16 +80,6 @@ function createFunction (operation) {
 		}
 		operation.httpProxy.get(operation, parameters, callback);
 	};
-};
-
-ApiTester.prototype.getSeries = function() {
-
-	var series = [];
-	for(var op in this.session.operationsToRun) {
-		var operation = this.session.operationsToRun[op];
-		series.push(createFunction(operation));
-	};
-	return series;
 };
 
 var Operation = function(session, env, apitester, name, url, verb, params, assertions) {

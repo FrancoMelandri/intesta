@@ -1,12 +1,14 @@
 
-var POST = function(request, operation, params, callback) {
+var LoginOperation = function() {};
+
+LoginOperation.prototype.POST = function(request, operation, params, callback) {
 	
 	var env = operation.env;
 	var options = {
 		json : true,
 		body: params,
 		method: 'POST',
-		url : env.https + operation.session.settings.siteCode + Url(),
+		url : env.https + operation.session.settings.siteCode + operation.url,
 	};
 	request(options, function(err, response, body) {
         if(err) { 
@@ -33,9 +35,8 @@ var POST = function(request, operation, params, callback) {
       });
 };
 
-var Url = function() {
+LoginOperation.prototype.Url = function() {
 	return '/myoox/login';
 }
 
-exports.POST = POST;
-exports.Url = Url;
+module.exports = new LoginOperation();

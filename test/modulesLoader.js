@@ -1,7 +1,9 @@
 
 var fs = require('fs');
 
-var Load = function() {
+var Loader = function() {};
+
+Loader.prototype.Load = function() {
 	var modules = {};
 	var files = fs.readdirSync('./operations/');
 	for(var file in files) {
@@ -11,4 +13,4 @@ var Load = function() {
 	return modules;
 };
 
-exports.Load = Load;
+module.exports = new Loader();
