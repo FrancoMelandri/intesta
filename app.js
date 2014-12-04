@@ -7,17 +7,17 @@ angular.module('yate', [])
         var ops ={
             "keepAlive": {
                 "url": "/keepAlive",
-                "verb" : "GET",
+                "verb" : "get",
                 "params": []
             },
             "login": {
                 "url": "/myoox/login",
-                "verb" : "POST",
+                "verb" : "post",
                 "params": ["email", "password"]
             },
             "cart": {
                 "url": "/cart",
-                "verb" : "GET",
+                "verb" : "get",
                 "params": ["userid", "accessToken", "cartid", "carttoken"]
             }
         };

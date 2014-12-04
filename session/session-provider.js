@@ -1,16 +1,18 @@
 angular.module('yate')
     .service('session', function() {
-        var currentSession = null;
+        var operationParams = [];
 
-        this.getCurrent = function() {
-            return currentSession;
+        this.getParamValues = function(operation) {
+            if(operationParams[operation.key] == null) {
+                operationParams[operation.key] = {};
+                for(var o in operation.params)
+                    operationParams[operation.key][operation.params[o]] = '';
+            }
+
+            return operationParams[operation.key];
         };
 
-        this.load = function(source) {
-            console.log('load is not yet implemented');
-        };
+        this.setParamValues = function(opId, paramValues) {
 
-        this.save = function() {
-            console.log('save is not yet implemented');
-        };
+        }
     });

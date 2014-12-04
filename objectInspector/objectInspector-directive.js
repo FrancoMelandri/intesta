@@ -6,32 +6,27 @@ angular.module('yate')
 			},
 			templateUrl: 'objectInspector/objectInspector.html',
 			link: function(scope, elem, attrs) {
-				scope.editing = {
-					object: null,
-					objectType: null,
-					property: null,
-					value: null
-				};
+				scope.editing = {};
 
 				scope.$on('operationSelected', function(event, operation) {
 					scope.endEdit();
 					scope.editing.object = operation;
-					scope.editing.objectType = 'operation';
-					scope.editing.property = null;
-					scope.editing.value = null;
+					//scope.editing.objectType = 'operation';
+					scope.editing.paramValues = session.getParamValues(operation);
+					console.log(scope.editing.paramValues);
+					//scope.editing.currentParam = null;
 				});
 
-				scope.startEdit = function(propName, propValue) {
+				scope.startEdit = function(paramName) {
 					scope.endEdit();
-					scope.editing.property = propName;
-					scope.editing.value = propValue;
+					scope.editing.currentParam = paramName;
 				};
 
 				scope.endEdit = function() {
-					if(scope.editing.object == null || scope.editing.property == null)
+					if(scope.editing.object == null || scope.editing.currentParam == null)
 						return;
 					// todo: salvare i dati dei parametri nella test session
-					session.save();
+					// session.save();
 				};
 			}
 		};

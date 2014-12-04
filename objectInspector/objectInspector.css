@@ -1,3 +1,13 @@
+.titleWrapper {
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #286090;
+  color: #EEE;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #337bb8;
+}
+
 .inspectorTable {
   border-collapse: collapse;
   background-color: #EEE;

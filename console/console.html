@@ -9,9 +9,9 @@
         <span class="glyphicon glyphicon-arrow-down arrowLink"></span>
         <br>
         <button class="btn stepBtn" ng-click="selectOperation(op)">
-            <strong>{{op.name}}</strong>
+            <strong>{{op.key}}. {{op.name}}</strong>
             <br>
-            {{ op.info.params }}
+            {{ op.params }}
         </button>
     </div>
 </div>

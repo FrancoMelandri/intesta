@@ -1,9 +1,9 @@
+<div class="titleWrapper">
+    {{editing.object.name}}
+</div>
 <table class="inspectorTable">
-    <tr ng-repeat="(propName, propValue) in editing.object.info">
+    <tr ng-repeat="(propName, propValues) in editing.paramValues">
         <td class="propertyName">{{propName}}</td>
-        <td class="propertyValue" ng-show="editing.property != propName" ng-click="startEdit(propName, propValue)">{{propValue}}</td>
-        <td class="propertyValue" ng-show="editing.property == propName">
-            <input type="text" ng-model="editing.value"/>
-        </td>
+        <td class="propertyValue" >{{propValue}}</td>
     </tr>
 </table>
