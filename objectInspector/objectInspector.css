@@ -19,7 +19,9 @@
 }
 .inspectorTable td.propertyName {
   padding-left: 1px;
+  width: 50%;
 }
 .inspectorTable td.propertyValue {
   padding-left: 1px;
+  width: 50%;
 }

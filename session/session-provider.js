@@ -1,7 +1,7 @@
 angular.module('yate')
     .service('session', function() {
-        var operationParams = [];
 
+        var operationParams = [];
         this.getParamValues = function(operation) {
             if(operationParams[operation.key] == null) {
                 operationParams[operation.key] = {};
@@ -13,6 +13,6 @@ angular.module('yate')
         };
 
         this.setParamValues = function(opId, paramValues) {
-
+            console.log('salvare...');
         }
     });

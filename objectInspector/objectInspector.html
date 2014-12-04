@@ -4,6 +4,9 @@
 <table class="inspectorTable">
     <tr ng-repeat="(propName, propValues) in editing.paramValues">
         <td class="propertyName">{{propName}}</td>
-        <td class="propertyValue" >{{propValue}}</td>
+        <td class="propertyValue" ng-click="startEdit(propName)" ng-hide="propName == editing.currentParam">{{propValue}}</td>
+        <td class="propertyValue" ng-show="propName == editing.currentParam">
+            <input type="text" ng-model="propValue"/>
+        </td>
     </tr>
 </table>
