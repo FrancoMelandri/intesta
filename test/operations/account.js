@@ -12,8 +12,7 @@ AccountOperation.prototype.GET = function(request, operation, params, callback) 
 	request(options, function(err, response, body) {
         if(err) { 
         	callback(true, {
-        		ErrorCode : err,
-				ErrorMessage : body,
+        		ErrorCode : 500,
 			}); 
         	return; 
         }
