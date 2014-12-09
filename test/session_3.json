@@ -1,0 +1,114 @@
+{
+	"settings":{
+		"Environment" : "LCL",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "keepAlive_1",
+			"operation": "keepAlive",
+			"paramSources": {
+			}
+		},
+		{
+			"name": "DoLogin",
+			"operation": "login",
+			"paramSources": {
+				"email": {
+					"value" : "franco.melandri@yoox.com"
+				},
+				"password": {
+					"value":"password"
+				}
+			}
+		},
+		{
+			"name": "GetCart",
+			"operation": "cart",
+			"paramSources": {
+				"userid" : {
+					"from" : "DoLogin",
+					"path": "User.idUser"
+				},
+				"accesstoken" : {
+					"from" : "DoLogin",
+					"path": "User.AccessToken"
+				},
+				"cartid" : {
+					"from" : "DoLogin",
+					"path": "CartInfo.CartId"
+				},
+				"carttoken" : {
+					"from" : "DoLogin",
+					"path": "CartInfo.CartToken"
+				}
+			},
+			"assertions":[
+				{
+					"field": "Checkout.Cart.Order.MaxItems",
+					"comparison": "eq",
+					"value": 10
+				}			
+			]
+		},
+		{
+			"name": "Search_1",
+			"operation": "searchresults",
+			"paramSources": {
+				"gender" : {
+					"value" : "D"
+				},
+				"dept" : {
+					"value": "women"
+				}
+			}
+		},
+		{
+			"name": "Item_1",
+			"operation": "items",
+			"paramSources": {
+				"code10" : {
+					"from" : "Search_1",
+					"path": "Items[0].Cod10"
+				}
+			},			
+			"assertions":[
+				{
+					"field": "Cod10",
+					"comparison": "neq",
+					"value": ""
+				}			
+			]
+		},
+		{
+			"name": "AddItem",
+			"operation": "additem",
+			"paramSources": {
+				"userid" : {
+					"from" : "DoLogin",
+					"path": "User.idUser"
+				},
+				"accesstoken" : {
+					"from" : "DoLogin",
+					"path": "User.AccessToken"
+				},
+				"cartid" : {
+					"from" : "DoLogin",
+					"path": "CartInfo.CartId"
+				},
+				"carttoken" : {
+					"from" : "DoLogin",
+					"path": "CartInfo.CartToken"
+				},
+				"code10" : {
+					"from" : "Item_1",
+					"path": "Cod10"
+				},
+				"size" : {
+					"from" : "Item_1",
+					"path": "Sizes[0].Id"
+				}
+			}
+		}
+	]
+}

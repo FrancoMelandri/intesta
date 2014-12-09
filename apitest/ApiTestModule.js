@@ -8,7 +8,7 @@ var ApiTester = function(httpProxy, operationsLoader, sessionLoader, environment
 	this.logger = logger;
 	this.operationDefinition = null;
 	this.context = null;
-	this.async = async;	
+	this.async = async;		
 	this.session = { 
 		stepDefinition: [], 
 		operationsToRun: [],
@@ -181,6 +181,15 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 	this.logger = apitester.logger;
 	this.assertions = assertions;
 
+	this.compares = {};
+	this.compares["eq"] = function(field, assertion) {
+									if (field !== assertion.value)	
+										return assertion.field + ' different from ' + assertion.value;
+								};;
+	this.compares["neq"] = function(field, assertion ) {
+									if (field === assertion.value)
+										return assertion.field + ' equal to ' + assertion.value;
+								};
 };
 
 Operation.prototype.check = function(statusCode, result) {
@@ -190,10 +199,11 @@ Operation.prototype.check = function(statusCode, result) {
 	}
 	if (this.assertions) {
 		for (var assertion in this.assertions) {
-			var a = this.assertions[assertion];
-			var field = getProperty (a.field, result);
-			if (field && field !== a.value){
-				return a.field + ' different from ' + a.value;
+			var ass = this.assertions[assertion];
+			var field = getProperty (ass.field, result);
+			var compare = this.compares[ass.comparison];
+			if (field && compare) {
+				return compare (field, ass);
 			}				
 		}			
 	}

@@ -17,7 +17,7 @@
 	"searchresults": {
 		"url": "/searchresults",
 		"verb": "GET",
-		"params": ["gender", "dept","sortId","noref","noitems","attributes"]
+		"params": ["gender", "dept","sortid","noref","noitems","attributes"]
 	},
 	"items": {
 		"url": "/items",
@@ -29,19 +29,24 @@
 		"verb": "GET",
 		"params": ["gender"]
 	},
-	"cart": {		
+	"cart": {
 		"url": "/cart",
 		"verb": "GET",		
-		"params": ["userid", "accessToken", "cartid", "carttoken"]
+		"params": ["userid", "accesstoken", "cartid", "carttoken"]
+	},
+	"additem": {
+		"url": "/cart/additem",
+		"verb": "POST",		
+		"params": ["userid","accesstoken","cartid","carttoken","code10","size"]
 	},
 	"getAccount": {
 		"url": "/myoox/Account",
 		"verb": "GET",
-		"params": ["userid", "accessToken"]
+		"params": ["userid", "accesstoken"]
 	},
 	"updateAccount": {
 		"url": "/myoox/Account",
 		"verb": "PUT",
-		"params": ["userid", "accessToken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
+		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
 	}
 }
