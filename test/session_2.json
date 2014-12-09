@@ -8,12 +8,16 @@
 			"name": "IsAlive",
 			"operation": "keepAlive",
 			"paramSources": {
-			},			
+			}
+		},
+		{
+			"name": "Countries",
+			"operation": "countries",
 			"assertions": [
 				{
-					"field": "ErrorCode",
+					"field": "Preselected",
 					"comparison": "eq",
-					"value": 200
+					"value": "IT"
 				}]
 		},
 		{

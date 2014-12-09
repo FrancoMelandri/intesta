@@ -9,6 +9,16 @@
 		"verb": "POST",
 		"params": ["email", "password"]
 	},
+	"countries": {
+		"url": "/countries",
+		"verb": "GET",
+		"params": []
+	},
+	"suggestions": {
+		"url": "/suggestions",
+		"verb": "GET",
+		"params": ["gender"]
+	},
 	"cart": {		
 		"url": "/cart",
 		"verb": "GET",		
@@ -22,6 +32,6 @@
 	"updateAccount": {
 		"url": "/myoox/Account",
 		"verb": "PUT",
-		"params": ["userid", "accessToken"]
+		"params": ["userid", "accessToken", "name", "surname"]
 	}
 }

@@ -96,16 +96,42 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 
 };
 
-Operation.prototype.check = function(result) {
+Operation.prototype.check = function(statusCode, result) {
+	if (statusCode) {
+		if (statusCode !== 0 && statusCode !== 200)
+			return 'StatusCode ' + statusCode + ' different from 200';
+	}
 	if (this.assertions) {
 		for (var assertion in this.assertions) {
 			var a = this.assertions[assertion];
 			var field = result[a.field];
-			if (field !== a.value){
+			if (field && field !== a.value){
 				return a.field + ' different from ' + a.value;
 			}				
 		}			
 	}
+};
+
+Operation.prototype.execute = function(request, options, callback, getResult) {
+	var operation = this;
+	request(options, function(err, response, body) {
+	    if(err) { 
+	        console.log(err);
+	    	callback(true, { 
+	                        ErrorCode : 500,
+				            ErrorMessage : err,
+			             }); 
+	    	return; 
+	    }
+	    var result = getResult(body);
+	    var validation = operation.check(response.statusCode, result);
+	    if (validation) {
+	        callback(true, validation);
+	        return;
+	    }
+	    operation.context.results[operation.name] = result;
+	    callback(false, result);
+	  });
 };
 
 exports.ApiTester = ApiTester;

@@ -9,47 +9,19 @@ AccountOperation.prototype.GET = function(request, operation, params, callback) 
 		method : "GET",
 		url : env.https + operation.session.settings.siteCode + operation.url,
 	};
-	request(options, function(err, response, body) {
-        if(err) { 
-        	callback(true, {
-        		ErrorCode : 500,
-			}); 
-        	return; 
-        }
-        var check = operation.check(body);
-        if (check) {
-        	callback(true, check);
-        	return;
-        }
-        operation.context.results[operation.name] = body;
-        callback(false, body);
-      });
+    operation.execute(request, options, callback, function(body){ return JSON.parse(body);} );
 };
 
 AccountOperation.prototype.PUT = function(request, operation, params, callback) {
     
     var env = operation.env;
     var options = {
-        qs : params,
+        json : true,
+        body: params,
         method : "PUT",
         url : env.https + operation.session.settings.siteCode + operation.url,
     };
-    request(options, function(err, response, body) {
-        if(err) { 
-            callback(true, {
-                ErrorCode : err,
-                ErrorMessage : body,
-            }); 
-            return; 
-        }
-        var check = operation.check(body);
-        if (check) {
-            callback(true, check);
-            return;
-        }
-        operation.context.results[operation.name] = body;
-        callback(false, body);
-      });
+    operation.execute(request, options, callback, function(body){ return JSON.parse(body);} );
 };
 
 
