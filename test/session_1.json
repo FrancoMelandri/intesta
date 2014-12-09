@@ -35,6 +35,23 @@
 					"value": "35229663XW"
 				}
 			]			
-		}		
+		},
+		{
+			"name": "Items_1",
+			"operation": "items",
+			"paramSources": {
+				"code10" : {
+					"from" : "Search_1",
+					"path": "Items[0].Cod10"
+				}
+			},			
+			"assertions": [
+				{
+					"field": "ImageUrls.Normal[1]",
+					"comparison": "eq",
+					"value": "http://cdn.yoox.biz/35/35229663-COLOR-_13_r.jpg"
+				}
+			]
+		}
 	]
 }
