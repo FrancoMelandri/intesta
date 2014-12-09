@@ -65,14 +65,27 @@ ApiTester.prototype.getSeries = function() {
 	return series;
 };
 
+function getProperty( propertyName, object ) {
+  var parts = propertyName.split( "." ),
+    length = parts.length,
+    i,
+    property = object || this;
+ 
+  for ( i = 0; i < length; i++ ) {
+    property = property[parts[i]];
+  }
+ 
+  return property;
+};
+
 function createFunction (operation) {
 	return function(callback) { 
 		var parameters = {};
 		for(var p in operation.params) {
 			var parameter = operation.params[p];
 			if (parameter.from) {
-				var source = operation.context.results[parameter.from];
-				parameters[p] = source[p];
+				var source = operation.context.results[parameter.from];				
+				parameters[p] = getProperty(parameter.path, source);
 			}
 			else {
 				parameters[p] = operation.params[p].value;
@@ -104,7 +117,7 @@ Operation.prototype.check = function(statusCode, result) {
 	if (this.assertions) {
 		for (var assertion in this.assertions) {
 			var a = this.assertions[assertion];
-			var field = result[a.field];
+			var field = getProperty (a.field, result);
 			if (field && field !== a.value){
 				return a.field + ' different from ' + a.value;
 			}				

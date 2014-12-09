@@ -10,13 +10,8 @@ LoginOperation.prototype.POST = function(request, operation, params, callback) {
 		method: 'POST',
 		url : env.https + operation.session.settings.siteCode + operation.url,
 	};
-    operation.execute(request, options, callback, function(body){ return {
-			"ErrorCode" : body.ErrorCode,
-			"userid" : body.User.idUser,
-			"accessToken" : body.User.AccessToken,
-			"cartid" : body.CartInfo.CartId,
-			"carttoken" : body.CartInfo.CartToken
-		};} );
+
+    operation.execute(request, options, callback, function(body){ return body;} );
 };
 
 LoginOperation.prototype.Url = function() {

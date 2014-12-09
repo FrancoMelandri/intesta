@@ -1,6 +1,6 @@
 {
 	"settings":{
-		"Environment" : "PROD",
+		"Environment" : "LCL",
 		"siteCode" : "YOOX_IT"
 	},
 	"operations" : [
@@ -9,16 +9,6 @@
 			"operation": "keepAlive",
 			"paramSources": {
 			}
-		},
-		{
-			"name": "Countries",
-			"operation": "countries",
-			"assertions": [
-				{
-					"field": "Preselected",
-					"comparison": "eq",
-					"value": "IT"
-				}]
 		},
 		{
 			"name": "DoLogin",
@@ -37,36 +27,87 @@
 			"operation": "getAccount",
 			"paramSources": {
 				"userid" : {
-					"from" : "DoLogin"
+					"from" : "DoLogin",
+					"path": "User.idUser"
 				},
 				"accessToken" : {
-					"from" : "DoLogin"
-				},
-				"cartid" : {
-					"from" : "DoLogin"
-				},
-				"carttoken" : {
-					"from" : "DoLogin"
+					"from" : "DoLogin",
+					"path": "User.AccessToken"
 				}
 			}
 		},
 		{
-			"name" : "GetCart",
-			"operation": "cart",
+			"name": "UpdateAccount",
+			"operation": "updateAccount",
 			"paramSources": {
 				"userid" : {
-					"from" : "DoLogin"
+					"from" : "DoLogin",
+					"path": "User.idUser"
+				},
+				"password": {
+					"value":"password"
 				},
 				"accessToken" : {
-					"from" : "DoLogin"
+					"from" : "DoLogin",
+					"path": "User.AccessToken"
 				},
-				"cartid" : {
-					"from" : "DoLogin"
+				"name" : {
+					"value":"pluto"
 				},
-				"carttoken" : {
-					"from" : "DoLogin"
+				"surname" : {
+					"from" : "DoLogin",
+					"path": "User.surname"
+				},
+				"birthday" : {
+					"from" : "DoLogin",
+					"path": "User.BirthDay"
+				},
+				"email" : {
+					"from" : "DoLogin",
+					"path": "User.email"
+				},
+				"gender" : {
+					"from" : "DoLogin",
+					"path": "User.gender"
+				},
+				"furigananame" : {
+					"from" : "DoLogin",
+					"path": "User.NameFur"
+				},
+				"furiganasurname" : {
+					"from" : "DoLogin",
+					"path": "User.SurnameFur"
+				},
+				"yooxletter" : {
+					"from" : "DoLogin",
+					"path": "User.YooxLetter"
+				},
+				"dataprofiling" : {
+					"from" : "DoLogin",
+					"path": "User.DataProfiling"
 				}
 			}
-		}		
+		},
+		{
+			"name": "GetAccountCheck",
+			"operation": "getAccount",
+			"paramSources": {
+				"userid" : {
+					"from" : "DoLogin",
+					"path": "User.idUser"
+				},
+				"accessToken" : {
+					"from" : "DoLogin",
+					"path": "User.AccessToken"
+				}				
+			},
+			"assertions":[
+				{
+					"field": "User.name",
+					"comparison": "eq",
+					"value": "pluto"
+				}			
+			]
+		}
 	]
 }

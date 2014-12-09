@@ -5,7 +5,7 @@
 	},
 	"DEV": {
 		"http": "http://rc.api.yoox.net/YooxCore.API/1.0/",
-		"https": "https://rc.secure.api.yoox.net/YooxCore.API/1.0/"
+		"https": "https://rc.api.yoox.net/YooxCore.API/1.0/"
 	},
 	"LCL": {
 		"http": "http://api.yoox.lcl/",

@@ -32,6 +32,6 @@
 	"updateAccount": {
 		"url": "/myoox/Account",
 		"verb": "PUT",
-		"params": ["userid", "accessToken", "name", "surname"]
+		"params": ["userid", "accessToken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
 	}
 }
