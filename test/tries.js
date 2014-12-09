@@ -29,6 +29,7 @@ function getProperty(propertyName, object ) {
 	for ( i = 0; i < length; i++ ) {
 		
 		var part = parts[i];
+
 		var openSquare = parts[i].indexOf('[');
 		var closeSquare = parts[i].indexOf(']');
 		if(openSquare !== -1 && closeSquare !== -1) {
@@ -37,10 +38,25 @@ function getProperty(propertyName, object ) {
 			property = property[list];
 			property = property[index];
 		}
-		else
-			property = property[part];
+		else {
+			var openRound = parts[i].indexOf('(');
+			var closeRound = parts[i].indexOf(')');
+			if(openRound !== -1 && closeRound !== -1) {
+				var fields = parts[i].substring(openRound + 1, closeRound).split('=');
+				var list = parts[i].substring(0, openRound);
+				property = property[list];
+				for ( var obj in property) {
+					var o = property[obj];
+					if (o[fields[0]] == fields[1]){						
+						property = o;
+						break;
+					}
+				}
+			}
+			else
+				property = property[part];
+		}
 	}
-
 	return property;
 };
 
@@ -48,8 +64,7 @@ function getProperty(propertyName, object ) {
 //var prop2 = getProperty("User.Address.Street", myobject);
 
 
-var prop3 = getProperty("Items[2].Code", myobject);
+var prop3 = getProperty("Items(Code=1)", myobject);
 console.log(prop3);
 
-console.log(myobject.Items);
 

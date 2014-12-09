@@ -30,7 +30,7 @@
 			},			
 			"assertions": [
 				{
-					"field": "Items[0].Cod10",
+					"field": "Items(Cod10=35229663XW).Cod10",
 					"comparison": "eq",
 					"value": "35229663XW"
 				}
