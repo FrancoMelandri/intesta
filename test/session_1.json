@@ -14,17 +14,27 @@
 					"field": "ErrorCode",
 					"comparison": "eq",
 					"value": 200
-				}]
+				}
+			]
 		},
 		{
-			"name": "Countries",
-			"operation": "countries",
+			"name": "Search_1",
+			"operation": "searchresults",
+			"paramSources": {
+				"gender" : {
+					"value" : "D"
+				},
+				"dept" : {
+					"value": "women"
+				}
+			},			
 			"assertions": [
 				{
-					"field": "Preselected",
+					"field": "Items[0].Cod10",
 					"comparison": "eq",
-					"value": "IT"
-				}]
-		}
+					"value": "35229663XW"
+				}
+			]			
+		}		
 	]
 }

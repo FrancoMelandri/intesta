@@ -14,6 +14,11 @@
 		"verb": "GET",
 		"params": []
 	},
+	"searchresults": {
+		"url": "/searchresults",
+		"verb": "GET",
+		"params": ["gender", "dept","sortId","noref","noitems","attributes"]
+	},
 	"suggestions": {
 		"url": "/suggestions",
 		"verb": "GET",
