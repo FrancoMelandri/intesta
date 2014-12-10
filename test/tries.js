@@ -1,6 +1,6 @@
 
 
-var myobject = {
+/*var myobject = {
 	"User": {
 		"name" : "pippo",
 		"Address":{
@@ -59,12 +59,44 @@ function getProperty(propertyName, object ) {
 	}
 	return property;
 };
+*/
+
+function split(propertyName) {
+
+	var openRound = propertyName.indexOf('(');
+	var closeRound = propertyName.indexOf(')');
+	if(openRound === -1 && closeRound === -1) {
+		return propertyName
+					.replace('{','')
+					.replace('}','')
+					.split( "." );
+	}
+	var left = propertyName.substring(0, openRound).replace('{','');
+	var right = propertyName.substring(closeRound+1).replace('}','');
+	var inner = propertyName.substring(openRound +1, closeRound );
+
+	var arrleft = left.split('.');
+	var arrRight = right.split('.');
+	var result = [];
+	var i;
+	for (i = 0; i < arrleft.length - 1; i++) {
+		if ( arrleft[i] !== '')
+			result.push(arrleft[i]);
+	};
+	result.push(arrleft[arrleft.length - 1] + '(' + inner + ')');
+	for (i = 0; i < arrRight.length; i++) {
+		if ( arrRight[i] !== '')
+			result.push(arrRight[i]);
+	};
+
+};
 
 //var prop1 = getProperty("User.name", myobject);
 //var prop2 = getProperty("User.Address.Street", myobject);
 
 
-var prop3 = getProperty("Items(Code=1)", myobject);
-console.log(prop3);
+//var prop3 = getProperty("Items(Code=1)", myobject);
 
-
+var prop3 = split('{GetCart.Checkout.Cart.Order.Items(Cod10=41475128JE).Cod10}');
+//var prop3 = split('{GetCart.Checkout.Cart.Order.Items[0].Cod10}');
+//console.log(prop3);

@@ -1,0 +1,43 @@
+{
+	"settings":{
+		"Environment" : "LCL",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "keepAlive_1",
+			"operation": "keepAlive"
+		},
+		{
+			"name": "Item_1",
+			"operation": "items",
+			"paramSources": {
+				"code10" :  "41475128JE"
+			},			
+			"assertions":[
+				{
+					"field": "{Item_1.Cod10}",
+					"comparison": "neq",
+					"value": ""
+				}			
+			]
+		},
+		{
+			"name": "GetCart",
+			"operation": "cart",
+			"paramSources": {
+				"userid" : "79072902",
+				"accesstoken" : "a581f8ac2d899dd84e61c0e144a093918d57c1b1",
+				"cartid" : "262130910",
+				"carttoken" : "53f3b429614888db0d1ee2c5ac2e0e28d51fb76f"
+			},
+			"assertions": [
+				{
+					"field": "{GetCart.Checkout.Cart.Order.Items(Cod10=41475128JE).Cod10}",
+					"comparison": "eq",
+					"value": 10
+				}			
+			]
+		}
+	]
+}

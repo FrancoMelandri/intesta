@@ -65,13 +65,45 @@ ApiTester.prototype.getSeries = function() {
 	return series;
 };
 
-function getProperty(propertyName, operation ) {
-	var parts = propertyName
+function split(propertyName) {
+
+	var openRound = propertyName.indexOf('(');
+	var closeRound = propertyName.indexOf(')');
+	if(openRound === -1 && closeRound === -1) {
+		return propertyName
 					.replace('{','')
 					.replace('}','')
 					.split( "." );
+	}
+	var left = propertyName.substring(0, openRound).replace('{','');
+	var right = propertyName.substring(closeRound+1).replace('}','');
+	var inner = propertyName.substring(openRound +1, closeRound );
+
+	var arrleft = left.split('.');
+	var arrRight = right.split('.');
+	var result = [];
+	var i;
+	for (i = 0; i < arrleft.length - 1; i++) {
+		if ( arrleft[i] !== '')
+			result.push(arrleft[i]);
+	};
+	result.push(arrleft[arrleft.length - 1] + '(' + inner + ')');
+	for (i = 0; i < arrRight.length; i++) {
+		if ( arrRight[i] !== '')
+			result.push(arrRight[i]);
+	};
+
+};
+
+
+function getProperty(propertyName, operation) {
+	
+	var parts = [];
 	var length = parts.length;
 	var i;
+
+
+	parts = split(propertyName);
 
 	var property = operation.context.results[parts[0]];
 	for ( i = 1; i < length; i++ ) {
@@ -93,16 +125,18 @@ function getProperty(propertyName, operation ) {
 				var fields = parts[i].substring(openRound + 1, closeRound).split('=');
 				var list = parts[i].substring(0, openRound);
 				property = property[list];
-				for ( var obj in property) {
+				for (var obj in property) {
 					var o = property[obj];
-					if (o[fields[0]] == fields[1]){						
+					var value = getProperty(fields[1], operation);
+					if (o[fields[0]] == value){						
 						property = o;
 						break;
 					}
 				}
 			}
-			else
+			else {
 				property = property[part];
+			}
 		}
 	}
 	return property;

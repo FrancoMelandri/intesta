@@ -21,14 +21,7 @@
 			"paramSources": {
 				"gender" : "D",
 				"dept" : "women"
-			},			
-			"assertions": [
-				{
-					"field": "{Search_1.Items(Cod10=35229663XW).Cod10}",
-					"comparison": "eq",
-					"value": "35229663XW"
-				}
-			]			
+			}			
 		},
 		{
 			"name": "Items_1",

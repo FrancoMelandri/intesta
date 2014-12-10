@@ -67,7 +67,14 @@
 				"carttoken" : "{DoLogin.CartInfo.CartToken}",
 				"code10" : "{Item_1.Cod10}",
 				"size" : "{Item_1.Sizes[0].Id}"
-			}
+			},
+			"assertions":[
+				{
+					"field": "{AddItem.Checkout.Cart.Order.Items(Cod10={Item_1.Cod10}).code10}",
+					"comparison": "eq",
+					"value": ""
+				}			
+			]
 		}
 	]
 }
