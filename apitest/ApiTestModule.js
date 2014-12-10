@@ -65,51 +65,6 @@ ApiTester.prototype.getSeries = function() {
 	return series;
 };
 
-/*
-function getProperty( propertyName, object ) {
-	var parts = propertyName.split( "." ), 
-				length = parts.length,
-				i,
-				property = object || this;
-
-	for ( i = 0; i < length; i++ ) {
-		var part = parts[i];
-		var openSquare = parts[i].indexOf('[');
-		if(openSquare)
-		property = property[parts[i]];
-	}
-
-	return property;
-};
-*/
-
-/*
-function getProperty(propertyName, object ) {
-	var parts = propertyName.split( "." ), 
-				length = parts.length,
-				i,
-				property = object || this;
-
-	for ( i = 0; i < length; i++ ) {
-		
-		var part = parts[i];
-		var openSquare = parts[i].indexOf('[');
-		var closeSquare = parts[i].indexOf(']');
-		if(openSquare !== -1 && closeSquare !== -1) {
-			var index = parts[i].substring(openSquare + 1, closeSquare);
-			var list = parts[i].substring(0, openSquare);
-			property = property[list];
-			property = property[index];
-		}
-		else
-			property = property[part];
-	}
-
-	return property;
-};
-
-*/
-
 function getProperty(propertyName, operation ) {
 	var parts = propertyName
 					.replace('{','')

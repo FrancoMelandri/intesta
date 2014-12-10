@@ -14,38 +14,22 @@
 			"name": "DoLogin",
 			"operation": "login",
 			"paramSources": {
-				"email": {
-					"value" : "franco.melandri@yoox.com"
-				},
-				"password": {
-					"value":"password"
-				}
+				"email": "franco.melandri@yoox.com",
+				"password": "password"
 			}
 		},
 		{
 			"name": "GetCart",
 			"operation": "cart",
 			"paramSources": {
-				"userid" : {
-					"from" : "DoLogin",
-					"path": "User.idUser"
-				},
-				"accesstoken" : {
-					"from" : "DoLogin",
-					"path": "User.AccessToken"
-				},
-				"cartid" : {
-					"from" : "DoLogin",
-					"path": "CartInfo.CartId"
-				},
-				"carttoken" : {
-					"from" : "DoLogin",
-					"path": "CartInfo.CartToken"
-				}
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}"
 			},
 			"assertions":[
 				{
-					"field": "Checkout.Cart.Order.MaxItems",
+					"field": "{GetCart.Checkout.Cart.Order.MaxItems}",
 					"comparison": "eq",
 					"value": 10
 				}			
@@ -55,26 +39,19 @@
 			"name": "Search_1",
 			"operation": "searchresults",
 			"paramSources": {
-				"gender" : {
-					"value" : "D"
-				},
-				"dept" : {
-					"value": "women"
-				}
+				"gender" :  "D",
+				"dept" :  "women"
 			}
 		},
 		{
 			"name": "Item_1",
 			"operation": "items",
 			"paramSources": {
-				"code10" : {
-					"from" : "Search_1",
-					"path": "Items[0].Cod10"
-				}
+				"code10" :  "{Search_1.Items[0].Cod10}"
 			},			
 			"assertions":[
 				{
-					"field": "Cod10",
+					"field": "{Item_1.Cod10}",
 					"comparison": "neq",
 					"value": ""
 				}			
@@ -84,30 +61,12 @@
 			"name": "AddItem",
 			"operation": "additem",
 			"paramSources": {
-				"userid" : {
-					"from" : "DoLogin",
-					"path": "User.idUser"
-				},
-				"accesstoken" : {
-					"from" : "DoLogin",
-					"path": "User.AccessToken"
-				},
-				"cartid" : {
-					"from" : "DoLogin",
-					"path": "CartInfo.CartId"
-				},
-				"carttoken" : {
-					"from" : "DoLogin",
-					"path": "CartInfo.CartToken"
-				},
-				"code10" : {
-					"from" : "Item_1",
-					"path": "Cod10"
-				},
-				"size" : {
-					"from" : "Item_1",
-					"path": "Sizes[0].Id"
-				}
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}",
+				"code10" : "{Item_1.Cod10}",
+				"size" : "{Item_1.Sizes[0].Id}"
 			}
 		}
 	]
