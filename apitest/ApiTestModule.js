@@ -110,13 +110,16 @@ function getProperty(propertyName, object ) {
 
 */
 
-function getProperty(propertyName, object ) {
-	var parts = propertyName.split( "." ), 
-				length = parts.length,
-				i,
-				property = object || this;
+function getProperty(propertyName, operation ) {
+	var parts = propertyName
+					.replace('{','')
+					.replace('}','')
+					.split( "." );
+	var length = parts.length;
+	var i;
 
-	for ( i = 0; i < length; i++ ) {
+	var property = operation.context.results[parts[0]];
+	for ( i = 1; i < length; i++ ) {
 		
 		var part = parts[i];
 
@@ -155,14 +158,11 @@ function createFunction (operation) {
 		var parameters = {};
 		for(var p in operation.params) {
 			var parameter = operation.params[p];
-			if (parameter){
-				if (parameter.from) {
-					var source = operation.context.results[parameter.from];				
-					parameters[p] = getProperty(parameter.path, source);
-				}
-				else {
-					parameters[p] = operation.params[p].value;
-				}			
+			if (parameter) {
+				if (parameter.indexOf('{') !== -1 )
+					parameters[p] = getProperty(parameter, operation);
+				else
+					parameters[p] = parameter;
 			}
 		}
 		operation.httpProxy.get(operation, parameters, callback);
@@ -200,7 +200,7 @@ Operation.prototype.check = function(statusCode, result) {
 	if (this.assertions) {
 		for (var assertion in this.assertions) {
 			var ass = this.assertions[assertion];
-			var field = getProperty (ass.field, result);
+			var field = getProperty (ass.field, this);
 			var compare = this.compares[ass.comparison];
 			if (field && compare) {
 				return compare (field, ass);
@@ -221,12 +221,13 @@ Operation.prototype.execute = function(request, options, callback, getResult) {
 	    	return; 
 	    }
 	    var result = getResult(body);
+	    operation.context.results[operation.name] = result;
+
 	    var validation = operation.check(response.statusCode, result);
 	    if (validation) {
 	        callback(true, validation);
 	        return;
 	    }
-	    operation.context.results[operation.name] = result;
 	    callback(false, result);
 	  });
 };

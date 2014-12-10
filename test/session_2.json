@@ -6,104 +6,52 @@
 	"operations" : [
 		{
 			"name": "IsAlive",
-			"operation": "keepAlive",
-			"paramSources": {
-			}
+			"operation": "keepAlive"
 		},
 		{
 			"name": "DoLogin",
 			"operation": "login",
 			"paramSources": {
-				"email": {
-					"value" : "test.it@yoox.com"
-				},
-				"password": {
-					"value":"password"
-				}
+				"email": "test.it@yoox.com",
+				"password": "password"
 			}
 		},
 		{
 			"name": "GetAccount",
 			"operation": "getAccount",
 			"paramSources": {
-				"userid" : {
-					"from" : "DoLogin",
-					"path": "User.idUser"
-				},
-				"accessToken" : {
-					"from" : "DoLogin",
-					"path": "User.AccessToken"
-				}
+				"userid" : "{DoLogin.User.idUser}",
+				"accessToken" : "{DoLogin.User.AccessToken}"
 			}
 		},
 		{
 			"name": "UpdateAccount",
 			"operation": "updateAccount",
 			"paramSources": {
-				"userid" : {
-					"from" : "DoLogin",
-					"path": "User.idUser"
-				},
-				"password": {
-					"value":"password"
-				},
-				"accessToken" : {
-					"from" : "DoLogin",
-					"path": "User.AccessToken"
-				},
-				"name" : {
-					"value":"pluto"
-				},
-				"surname" : {
-					"from" : "DoLogin",
-					"path": "User.surname"
-				},
-				"birthday" : {
-					"from" : "DoLogin",
-					"path": "User.BirthDay"
-				},
-				"email" : {
-					"from" : "DoLogin",
-					"path": "User.email"
-				},
-				"gender" : {
-					"from" : "DoLogin",
-					"path": "User.gender"
-				},
-				"furigananame" : {
-					"from" : "DoLogin",
-					"path": "User.NameFur"
-				},
-				"furiganasurname" : {
-					"from" : "DoLogin",
-					"path": "User.SurnameFur"
-				},
-				"yooxletter" : {
-					"from" : "DoLogin",
-					"path": "User.YooxLetter"
-				},
-				"dataprofiling" : {
-					"from" : "DoLogin",
-					"path": "User.DataProfiling"
-				}
+				"userid" : "{DoLogin.User.idUser}",
+				"password": "password",
+				"accessToken" : "{DoLogin.User.AccessToken}",
+				"name" : "pluto",
+				"surname" : "{DoLogin.User.surname}",
+				"birthday" : "{DoLogin.User.BirthDay}",
+				"email" : "{DoLogin.User.email}",
+				"gender" : "{DoLogin.User.gender}",
+				"furigananame" : "{DoLogin.User.NameFur}",
+				"furiganasurname" : "{DoLogin.User.SurnameFur}",
+				"yooxletter" : "{DoLogin.User.YooxLetter}",
+				"dataprofiling" : "{DoLogin.User.DataProfiling}"
 			}
 		},
 		{
 			"name": "GetAccountCheck",
 			"operation": "getAccount",
 			"paramSources": {
-				"userid" : {
-					"from" : "DoLogin",
-					"path": "User.idUser"
-				},
-				"accessToken" : {
-					"from" : "DoLogin",
-					"path": "User.AccessToken"
-				}				
+				"userid" : "{DoLogin.User.idUser}",
+				"accessToken" : "{DoLogin.User.AccessToken}"
 			},
 			"assertions":[
 				{
-					"field": "User.name",
+					"field": "{GetAccountCheck.User.name}",
 					"comparison": "eq",
 					"value": "pluto"
 				}			

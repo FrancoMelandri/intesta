@@ -1,0 +1,37 @@
+{
+	"settings":{
+		"Environment" : "LCL",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "keepAlive_1",
+			"operation": "keepAlive"
+		},
+		{
+			"name": "DoLogin",
+			"operation": "login",
+			"paramSources": {
+				"email": "franco.melandri@yoox.com",
+				"password" : "password"
+			}
+		},
+		{
+			"name": "GetCart",
+			"operation": "cart",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}"
+			},
+			"assertions":[
+				{
+					"field": "{GetCart.Checkout.Cart.Order.MaxItems}",
+					"comparison": "eq",
+					"value": 10
+				}			
+			]
+		}
+	]
+}

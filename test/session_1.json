@@ -7,8 +7,6 @@
 		{
 			"name": "keepAlive_1",
 			"operation": "keepAlive",
-			"paramSources": {
-			},			
 			"assertions": [
 				{
 					"field": "ErrorCode",
@@ -21,16 +19,12 @@
 			"name": "Search_1",
 			"operation": "searchresults",
 			"paramSources": {
-				"gender" : {
-					"value" : "D"
-				},
-				"dept" : {
-					"value": "women"
-				}
+				"gender" : "D",
+				"dept" : "women"
 			},			
 			"assertions": [
 				{
-					"field": "Items(Cod10=35229663XW).Cod10",
+					"field": "{Search_1.Items(Cod10=35229663XW).Cod10}",
 					"comparison": "eq",
 					"value": "35229663XW"
 				}
@@ -40,14 +34,11 @@
 			"name": "Items_1",
 			"operation": "items",
 			"paramSources": {
-				"code10" : {
-					"from" : "Search_1",
-					"path": "Items[0].Cod10"
-				}
+				"code10" : "{Search_1.Items[0].Cod10}"
 			},			
 			"assertions": [
 				{
-					"field": "ImageUrls.Normal[1]",
+					"field": "{Items_1.ImageUrls.Normal[1]}",
 					"comparison": "eq",
 					"value": "http://cdn.yoox.biz/35/35229663-COLOR-_13_r.jpg"
 				}
