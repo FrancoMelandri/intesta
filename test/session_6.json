@@ -45,6 +45,15 @@
 				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
 				"paymenttype" : "1"
 			}
+		},
+		{
+			"name": "SetShipping",
+			"operation": "setshippingmethod",
+			"paramSources": {
+				"cartid" : "2036736753",
+				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
+				"shippingid" : "1"
+			}
 		}
 	]
 }
