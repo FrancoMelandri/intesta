@@ -54,6 +54,15 @@
 				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
 				"shippingid" : "1"
 			}
+		},
+		{
+			"name": "ApplyCoupon",
+			"operation": "applycoupon",
+			"paramSources": {
+				"cartid" : "2036736753",
+				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
+				"couponid" : "XMAS-hvRHSRTD"
+			}
 		}
 	]
 }
