@@ -63,6 +63,22 @@
 				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
 				"couponid" : "XMAS-hvRHSRTD"
 			}
+		},
+		{
+			"name": "Proceed",
+			"operation": "proceed",
+			"paramSources": {
+				"cartid" : "2036736753",
+				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
+				"step" : "cart"
+			},
+			"assertions" : [
+				{
+					"field": "{Proceed.NextStep.Step}",
+					"comparison": "eq",
+					"value": "checkemail"
+				}			
+			]
 		}
 	]
 }

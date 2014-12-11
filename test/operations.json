@@ -59,6 +59,11 @@
 		"verb": "POST",		
 		"params": ["userid","accesstoken","cartid","carttoken","couponid","code10"]
 	},
+	"proceed": {
+		"url": "/cart/proceed",
+		"verb": "POST",		
+		"params": ["userid","accesstoken","cartid","carttoken","step","hash"]
+	},
 	"getAccount": {
 		"url": "/myoox/Account",
 		"verb": "GET",
