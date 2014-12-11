@@ -39,6 +39,11 @@
 		"verb": "POST",		
 		"params": ["userid","accesstoken","cartid","carttoken","code10","size"]
 	},
+	"removeitem": {
+		"url": "/cart/removeitem",
+		"verb": "POST",		
+		"params": ["userid","accesstoken","cartid","carttoken","code10","size"]
+	},
 	"getAccount": {
 		"url": "/myoox/Account",
 		"verb": "GET",

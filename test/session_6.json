@@ -38,19 +38,14 @@
 			]
 		},
 		{
-			"name": "GetCart1",
-			"operation": "cart",
+			"name": "RemoveItem",
+			"operation": "removeitem",
 			"paramSources": {
 				"cartid" : "2036736753",
-				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d"
-			},
-			"assertions": [
-				{
-					"field": "{GetCart1.Checkout.Cart.Order.Items(Cod10=44727208UI).Cod10}",
-					"comparison": "eq",
-					"value": "{Item_1.Cod10}"
-				}			
-			]
+				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
+				"code10" : "{Item_1.Cod10}",
+				"size" : "13"
+			}
 		}
 	]
 }
