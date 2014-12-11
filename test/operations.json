@@ -9,6 +9,11 @@
 		"verb": "POST",
 		"params": ["email", "password"]
 	},
+	"valuidatelogin": {
+		"url": "/myoox/login",
+		"verb": "GET",
+		"params": ["userid", "accesstoken", "hash"]
+	},
 	"countries": {
 		"url": "/countries",
 		"verb": "GET",

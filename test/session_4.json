@@ -17,6 +17,15 @@
 			}
 		},
 		{
+			"name": "ValidateLogin",
+			"operation": "valuidatelogin",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"hash" : "{DoLogin.Hash}"			
+			}
+		},
+		{
 			"name": "Additem",
 			"operation": "additem",
 			"paramSources": {
