@@ -86,6 +86,17 @@
 			}
 		},
 		{
+			"name": "SetPayment",
+			"operation": "setpaymenttype",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}",
+				"paymenttype" : 2
+			}
+		},
+		{
 			"name": "Proceed",
 			"operation": "proceed",
 			"paramSources": {
@@ -100,7 +111,24 @@
 				{
 					"field": "{Proceed.NextStep.Step}",
 					"comparison": "eq",
-					"value": "delivery"
+					"value": "confirmation"
+				}			
+			]
+		},
+		{
+			"name": "Confirm",
+			"operation": "confirmorder",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}"
+			},
+			"assertions":[
+				{
+					"field": "{Confirm.Finalize.OrderNumber}",
+					"comparison": "neq",
+					"value": ""
 				}			
 			]
 		}

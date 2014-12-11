@@ -99,8 +99,8 @@
 			"assertions" : [
 				{
 					"field": "{Proceed.NextStep.Step}",
-					"comparison": "eq",
-					"value": "checkemail"
+					"comparison": "neq",
+					"value": ""
 				}			
 			]
 		}

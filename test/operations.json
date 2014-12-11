@@ -84,6 +84,11 @@
 				   "contact.japanesename","contact.japanesesurname","contact.furigamaname","contact.furigamasurname",
 				   "myooxid"]
 	},
+	"confirmorder": {
+		"url": "/cart/confirmorder",
+		"verb": "POST",
+		"params": ["userid","accesstoken","cartid","carttoken","cvv"]
+	},
 	"getAccount": {
 		"url": "/myoox/Account",
 		"verb": "GET",
