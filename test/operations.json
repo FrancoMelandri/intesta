@@ -64,6 +64,15 @@
 		"verb": "POST",		
 		"params": ["userid","accesstoken","cartid","carttoken","step","hash"]
 	},
+	"setreceiver": {
+		"url": "/cart/setreceiver",
+		"verb": "POST",		
+		"params": ["userid","accesstoken","cartid","carttoken","contact.name",
+				   "contact.surname", "contact.phone","contact.careof","contact.email",
+				   "contact.mobile" ,"contact.vatnumber","contact.streetwithnumber",
+				   "contact.region", "contact.postalcode", "contact.city", "contact.countrycode", 
+				   "contact.japanesename","contact.japanesesurname","contact.furigamaname","contact.furigamasurname"]
+	},
 	"getAccount": {
 		"url": "/myoox/Account",
 		"verb": "GET",

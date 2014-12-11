@@ -65,6 +65,30 @@
 			}
 		},
 		{
+			"name": "SetReceiver",
+			"operation": "setreceiver",
+			"paramSources": {
+				"cartid" : "2036736753",
+				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
+				"contact.name" : "samnple",
+				"contact.surname" :  "sample",
+				"contact.phone": "121212121212",
+				"contact.careof": "careof",
+				"contact.email": "aa@aa.com",
+				"contact.mobile": "121212122121",
+				"contact.vatnumber": "1212121212121",
+				"contact.streetwithnumber": "streetwithnumber",
+				"contact.region": "region",
+				"contact.postalcode": "12345",
+				"contact.city": "city",
+				"contact.countrycode": "IT",
+				"contact.japanesename": "japanesename",
+				"contact.japanesesurname": "japanesesurname",
+				"contact.furigamaname": "fur name",
+				"contact.furigamasurname": "fur surname"
+			}
+		},
+		{
 			"name": "Proceed",
 			"operation": "proceed",
 			"paramSources": {

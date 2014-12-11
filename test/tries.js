@@ -59,7 +59,7 @@ function getProperty(propertyName, object ) {
 	}
 	return property;
 };
-*/
+
 
 function split(propertyName) {
 
@@ -92,15 +92,23 @@ function split(propertyName) {
 	return result;
 
 };
-
+*/
 //var prop1 = getProperty("User.name", myobject);
 //var prop2 = getProperty("User.Address.Street", myobject);
 
 
 //var prop3 = getProperty("Items(Code=1)", myobject);
 
-var prop3 = split('{GetCart.Checkout.Cart.Order.Items(Cod10=41475128JE).Cod10}');
-var prop4 = '{GetCart.Checkout.Cart.Order.Items(Cod10=41475128JE).Cod10}'.split('.');
+//var prop3 = split('{GetCart.Checkout.Cart.Order.Items(Cod10=41475128JE).Cod10}');
+//var prop4 = '{GetCart.Checkout.Cart.Order.Items(Cod10=41475128JE).Cod10}'.split('.');
 //var prop3 = split('{GetCart.Checkout.Cart.Order.Items[0].Cod10}');
-console.log(prop3);
-console.log(prop4);
+//console.log(prop3);
+//console.log(prop4);
+
+
+var obj = {};
+obj['par'] = {};
+obj['par']['pippo'] = 'pippo';
+obj['par'] = {};
+
+console.log(obj);

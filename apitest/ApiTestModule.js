@@ -103,6 +103,9 @@ function split(propertyName) {
 
 function getProperty(prop, operation) {
 	
+	if(typeof(prop) !== 'string')
+		return prop;
+	
 	if (prop.indexOf('{') === -1 )
 		return prop;
 
@@ -155,7 +158,20 @@ function createFunction (operation) {
 		for(var p in operation.params) {
 			var parameter = operation.params[p];
 			if (parameter) {
-				parameters[p] = getProperty(parameter, operation);
+				if (p.indexOf('.') === -1){
+					parameters[p] = getProperty(parameter, operation);
+				}
+				else {
+					var pars = p.split('.');
+					var i;
+					var par = parameters;
+					for (i = 0; i < pars.length - 1; i++) {
+						if (!parameters[pars[i]])
+							parameters[pars[i]] = {};
+						p = parameters[pars[i]];
+					}
+					p[pars[pars.length - 1]] = getProperty(parameter, operation);
+				}
 			}
 		}
 		operation.httpProxy.get(operation, parameters, callback);

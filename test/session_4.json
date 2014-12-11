@@ -32,6 +32,51 @@
 					"value": 10
 				}			
 			]
+		},
+		{
+			"name": "SetReceiver",
+			"operation": "setreceiver",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}",
+				"contact.name" : "samnple",
+				"contact.surname" :  "sample",
+				"contact.phone": "121212121212",
+				"contact.careof": "careof",
+				"contact.email": "aa@aa.com",
+				"contact.mobile": "121212122121",
+				"contact.vatnumber": "1212121212121",
+				"contact.streetwithnumber": "streetwithnumber",
+				"contact.region": "region",
+				"contact.postalcode": "12345",
+				"contact.city": "city",
+				"contact.countrycode": "IT",
+				"contact.japanesename": "japanesename",
+				"contact.japanesesurname": "japanesesurname",
+				"contact.furigamaname": "fur name",
+				"contact.furigamasurname": "fur surname"
+			}
+		},
+		{
+			"name": "Proceed",
+			"operation": "proceed",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}",
+				"step" : "cart",
+				"hash" : "{DoLogin.Hash}"			
+			},
+			"assertions":[
+				{
+					"field": "{Proceed.NextStep.Step}",
+					"comparison": "eq",
+					"value": "delivery"
+				}			
+			]
 		}
 	]
 }
