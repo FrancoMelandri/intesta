@@ -38,13 +38,12 @@
 			]
 		},
 		{
-			"name": "RemoveItem",
-			"operation": "removeitem",
+			"name": "SetPayment",
+			"operation": "setpaymenttype",
 			"paramSources": {
 				"cartid" : "2036736753",
 				"carttoken" : "f44d1c65658d4290c7481e577fc2327a8b20920d",
-				"code10" : "{Item_1.Cod10}",
-				"size" : "13"
+				"paymenttype" : "1"
 			}
 		}
 	]

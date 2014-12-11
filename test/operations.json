@@ -44,6 +44,11 @@
 		"verb": "POST",		
 		"params": ["userid","accesstoken","cartid","carttoken","code10","size"]
 	},
+	"setpaymenttype": {
+		"url": "/cart/setpaymenttype",
+		"verb": "POST",		
+		"params": ["userid","accesstoken","cartid","carttoken","paymenttype"]
+	},
 	"getAccount": {
 		"url": "/myoox/Account",
 		"verb": "GET",
