@@ -45,18 +45,21 @@ ApiTester.prototype.load = function() {
 ApiTester.prototype.run = function() {
 
 	this.async.series(this.getSeries(),
-		  function(err, results) {
-		    if(err) { 
-		    	console.log ('TEST is RED [' + results + ']'); 
-		    	return; 
-		    }		    
-			console.log ('TEST is GREEN');
-		  }
+		  	function(err, results) {
+				console.log ('');
+				console.log ('------------------');
+		    	if(err) { 
+		    		console.log ('TEST is RED [' + results + ']'); 
+					console.log ('------------------');
+		    		return; 
+		    	}		    
+				console.log ('TEST is GREEN');
+				console.log ('------------------');
+			}
 	  );
 };
 
 ApiTester.prototype.getSeries = function() {
-
 	var series = [];
 	for(var op in this.session.operationsToRun) {
 		var operation = this.session.operationsToRun[op];
@@ -82,6 +85,7 @@ function split(propertyName) {
 	var arrleft = left.split('.');
 	var arrRight = right.split('.');
 	var result = [];
+
 	var i;
 	for (i = 0; i < arrleft.length - 1; i++) {
 		if ( arrleft[i] !== '')
@@ -92,20 +96,21 @@ function split(propertyName) {
 		if ( arrRight[i] !== '')
 			result.push(arrRight[i]);
 	};
-
+	
+	return result;
 };
 
 
-function getProperty(propertyName, operation) {
+function getProperty(prop, operation) {
 	
-	var parts = [];
-	var length = parts.length;
+	if (prop.indexOf('{') === -1 )
+		return prop;
+
 	var i;
-
-
-	parts = split(propertyName);
-
+	var parts = split(prop);
+	var length = parts.length;
 	var property = operation.context.results[parts[0]];
+
 	for ( i = 1; i < length; i++ ) {
 		
 		var part = parts[i];
@@ -126,9 +131,11 @@ function getProperty(propertyName, operation) {
 				var list = parts[i].substring(0, openRound);
 				property = property[list];
 				for (var obj in property) {
+
 					var o = property[obj];
 					var value = getProperty(fields[1], operation);
-					if (o[fields[0]] == value){						
+
+					if (o[fields[0]] == value) {						
 						property = o;
 						break;
 					}
@@ -148,10 +155,7 @@ function createFunction (operation) {
 		for(var p in operation.params) {
 			var parameter = operation.params[p];
 			if (parameter) {
-				if (parameter.indexOf('{') !== -1 )
-					parameters[p] = getProperty(parameter, operation);
-				else
-					parameters[p] = parameter;
+				parameters[p] = getProperty(parameter, operation);
 			}
 		}
 		operation.httpProxy.get(operation, parameters, callback);
@@ -171,13 +175,17 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 	this.assertions = assertions;
 
 	this.compares = {};
-	this.compares["eq"] = function(field, assertion) {
-									if (field !== assertion.value)	
-										return assertion.field + ' different from ' + assertion.value;
+	this.compares["eq"] = function(field, assField, assValue) {
+									if (field !== assValue)	
+										return assField + 
+											   ' ' + field + ' different from ' + 
+											   assValue;
 								};;
-	this.compares["neq"] = function(field, assertion ) {
-									if (field === assertion.value)
-										return assertion.field + ' equal to ' + assertion.value;
+	this.compares["neq"] = function(field, assField, assValue) {
+									if (field === assValue)
+										return assField + 
+											   ' ' + field + ' equal to ' + 
+											   assValue;
 								};
 };
 
@@ -191,9 +199,11 @@ Operation.prototype.check = function(statusCode, result) {
 			var ass = this.assertions[assertion];
 			var field = getProperty (ass.field, this);
 			var compare = this.compares[ass.comparison];
+			var value = getProperty(ass.value, this);
 			if (field && compare) {
-				return compare (field, ass);
-			}				
+				return compare (field, ass.field, value);
+			}
+			return ass.field + ' is undefined';			
 		}			
 	}
 };
@@ -202,7 +212,6 @@ Operation.prototype.execute = function(request, options, callback, getResult) {
 	var operation = this;
 	request(options, function(err, response, body) {
 	    if(err) { 
-	        console.log(err);
 	    	callback(true, { 
 	                        ErrorCode : 500,
 				            ErrorMessage : err,
