@@ -84,6 +84,15 @@
 				   "contact.japanesename","contact.japanesesurname","contact.furigamaname","contact.furigamasurname",
 				   "myooxid"]
 	},
+	"setcreditcard": {
+		"url": "/cart/setcreditcard",
+		"verb": "POST",		
+		"params": ["userid","accesstoken","cartid","carttoken","creditcard.holdername",
+				   "creditcard.holdersurname", "creditcard.holderaddress","creditcard.holdercity","creditcard.holderzip",
+				   "creditcard.holderemail" ,"creditcard.cardnumber","creditcard.type",
+				   "creditcard.expirationmonth", "creditcard.expirationyear", "creditcard.cvv", "creditcard.last4", 
+				   "creditcard.holderisocountry","creditcard.holderprovince","creditcard.guid"]
+	},
 	"confirmorder": {
 		"url": "/cart/confirmorder",
 		"verb": "POST",

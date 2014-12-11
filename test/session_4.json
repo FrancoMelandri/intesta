@@ -17,6 +17,18 @@
 			}
 		},
 		{
+			"name": "Additem",
+			"operation": "additem",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}",
+				"code10": "44720632DO",
+				"size": 9
+			}
+		},
+		{
 			"name": "GetCart",
 			"operation": "cart",
 			"paramSources": {
@@ -93,7 +105,31 @@
 				"accesstoken" : "{DoLogin.User.AccessToken}",
 				"cartid" : "{DoLogin.CartInfo.CartId}",
 				"carttoken" : "{DoLogin.CartInfo.CartToken}",
-				"paymenttype" : 2
+				"paymenttype" : 1
+			}
+		},
+		{
+			"name": "SetCreditCard",
+			"operation": "setcreditcard",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"cartid" : "{DoLogin.CartInfo.CartId}",
+				"carttoken" : "{DoLogin.CartInfo.CartToken}",
+				"creditcard.holdername" :  "holdername",
+				"creditcard.holdersurname": "holdersurname",
+				"creditcard.holderaddress": "holderaddress",
+				"creditcard.holdercity": "holdercity",
+				"creditcard.holderzip": "12345",
+				"creditcard.holderemail": "aa@aa.com",
+				"creditcard.cardnumber": "4023402340234023",
+				"creditcard.type": "Visa",
+				"creditcard.expirationmonth": "12",
+				"creditcard.expirationyear": "18",
+				"creditcard.cvv": "123",
+				"creditcard.last4": "4023",
+				"creditcard.holderisocountry": "IT",
+				"creditcard.holderprovince": "BO"
 			}
 		},
 		{
