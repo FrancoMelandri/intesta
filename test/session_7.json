@@ -1,0 +1,38 @@
+{
+	"settings":{
+		"userAgent" : "native-mobile-yoox/2.0 v.4.2.1(build 3370) iPhone4,1 iPhone OS 7.1.2",
+		"Environment" : "LCL",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "keepAlive_1",
+			"operation": "keepAlive"
+		},
+		{
+			"name": "DoLogin",
+			"operation": "login",
+			"paramSources": {
+				"email": "franco.melandri@yoox.com",
+				"password" : "password"
+			}
+		},
+		{
+			"name": "ValidateLogin",
+			"operation": "valuidatelogin",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}",
+				"hash" : "{DoLogin.Hash}"			
+			}
+		},
+		{
+			"name": "GetDreamBox",
+			"operation": "dreambox",
+			"paramSources": {
+				"userid" : "{DoLogin.User.idUser}",
+				"accesstoken" : "{DoLogin.User.AccessToken}"
+			}
+		}
+	]
+}

@@ -1,5 +1,6 @@
 {
 	"settings":{
+		"userAgent" : "native-mobile-yoox/2.0 v.4.2.1(build 3370) iPhone4,1 iPhone OS 7.1.2",
 		"Environment" : "PROD",
 		"siteCode" : "YOOX_IT"
 	},

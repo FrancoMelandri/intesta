@@ -112,5 +112,10 @@
 		"url": "/myoox/Account",
 		"verb": "PUT",
 		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
+	},
+	"dreambox": {
+		"url": "/myoox/dreambox",
+		"verb": "GET",
+		"params": ["userid", "accesstoken"]
 	}
 }

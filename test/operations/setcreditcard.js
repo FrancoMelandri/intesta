@@ -5,6 +5,9 @@ SetCreditCardOperation.prototype.POST = function(request, operation, params, cal
 	
 	var env = operation.env;
 	var options = {
+        headers: {
+                'User-Agent': operation.session.settings.userAgent
+        },      
 		json : true,
 		body: params,
 		method: 'POST',

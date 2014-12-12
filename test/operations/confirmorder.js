@@ -5,13 +5,24 @@ ConfirmOrderOperation.prototype.POST = function(request, operation, params, call
 	
 	var env = operation.env;
 	var options = {
+        headers: {
+                'User-Agent': operation.session.settings.userAgent
+        },      
 		json : true,
 		body: params,
 		method: 'POST',
 		url : env.https + operation.session.settings.siteCode + operation.url,
 	};
 
-    operation.execute(request, options, callback, function(body){ return body;} );
+    operation.execute(request, options, callback, 
+    		function(body) { 
+				if (body.Finalize.OrderNumber){
+					console.log('');
+				    console.log('ORDER --> ' + body.Finalize.OrderNumber);    			
+				}
+				return body;
+			} );
+    
 };
 
 ConfirmOrderOperation.prototype.Url = function() {
