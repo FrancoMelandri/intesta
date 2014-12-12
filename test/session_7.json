@@ -19,7 +19,7 @@
 		},
 		{
 			"name": "ValidateLogin",
-			"operation": "valuidatelogin",
+			"operation": "validatelogin",
 			"paramSources": {
 				"userid" : "{DoLogin.User.idUser}",
 				"accesstoken" : "{DoLogin.User.AccessToken}",

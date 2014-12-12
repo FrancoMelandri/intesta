@@ -7,34 +7,19 @@
 	"operations" : [
 		{
 			"name": "keepAlive_1",
-			"operation": "keepAlive",
-			"assertions": [
-				{
-					"field": "ErrorCode",
-					"comparison": "eq",
-					"value": 200
-				}
-			]
+			"operation": "keepAlive"
 		},
 		{
-			"name": "Search_1",
-			"operation": "searchresults",
+			"name": "Menu",
+			"operation": "menu",
 			"paramSources": {
-				"gender" : "D",
-				"dept" : "women"
-			}			
-		},
-		{
-			"name": "Items_1",
-			"operation": "items",
-			"paramSources": {
-				"code10" : "{Search_1.Items[0].Cod10}"
+				"gender" : "D"
 			},			
 			"assertions": [
 				{
-					"field": "{Items_1.ImageUrls.Normal[1]}",
-					"comparison": "eq",
-					"value": "http://cdn.yoox.biz/35/35229663-COLOR-_13_r.jpg"
+					"field": "{Menu.Items[0].Label}",
+					"comparison": "neq",
+					"value": ""
 				}
 			]
 		}

@@ -1,0 +1,22 @@
+{
+	"settings":{
+		"Environment" : "DEV",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "Menu",
+			"operation": "menu",
+			"paramSources": {
+				"gender" :  "D"
+			},			
+			"assertions":[
+				{
+					"field": "{Menu.Items[0].Label}",
+					"comparison": "eq",
+					"value": "sh"
+				}			
+			]
+		}
+	]
+}

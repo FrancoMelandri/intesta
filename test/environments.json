@@ -10,5 +10,9 @@
 	"LCL": {
 		"http": "http://api.yoox.lcl/",
 		"https": "http://api.yoox.lcl/"
+	},
+	"INTEGRATION": {
+		"http": "http://integ.api.yoox.net/",
+		"https": "https://integ.api.yoox.net/"
 	}
 }

@@ -113,11 +113,6 @@
 		"verb": "PUT",
 		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
 	},
-	"menu": {
-		"url": "/menu",
-		"verb": "GET",
-		"params": ["gender"]
-	},
 	"dreambox": {
 		"url": "/myoox/dreambox",
 		"verb": "GET",
