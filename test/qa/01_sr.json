@@ -1,0 +1,23 @@
+{
+	"settings":{
+		"Environment" : "LCL",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "Search_Women",
+			"operation": "searchresults",
+			"paramSources": {
+				"gender": "D",
+				"dept" :  "women"
+			},			
+			"assertions":[
+				{
+					"field": "{Search_Women.Department}",
+					"comparison": "eq",
+					"value": "women"
+				}			
+			]
+		}
+	]
+}

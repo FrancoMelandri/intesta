@@ -1,20 +1,20 @@
 {
 	"settings":{
-		"Environment" : "DEV",
+		"Environment" : "LCL",
 		"siteCode" : "YOOX_IT"
 	},
 	"operations" : [
 		{
-			"name": "Menu",
-			"operation": "menu",
+			"name": "Item_1",
+			"operation": "items",
 			"paramSources": {
-				"gender" :  "D"
+				"code10" :  "36535177KT"
 			},			
 			"assertions":[
 				{
-					"field": "{Menu.Items[0].Label}",
+					"field": "{Item_1.Cod10}",
 					"comparison": "eq",
-					"value": "sh"
+					"value": "36535177KT"
 				}			
 			]
 		}

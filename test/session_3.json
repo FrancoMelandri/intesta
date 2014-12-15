@@ -15,7 +15,7 @@
 			"name": "DoLogin",
 			"operation": "login",
 			"paramSources": {
-				"email": "franco.melandri@yoox.com",
+				"email": "test.it@yoox.com",
 				"password": "password"
 			}
 		},
@@ -27,14 +27,7 @@
 				"accesstoken" : "{DoLogin.User.AccessToken}",
 				"cartid" : "{DoLogin.CartInfo.CartId}",
 				"carttoken" : "{DoLogin.CartInfo.CartToken}"
-			},
-			"assertions":[
-				{
-					"field": "{GetCart.Checkout.Cart.Order.MaxItems}",
-					"comparison": "eq",
-					"value": 10
-				}			
-			]
+			}
 		},
 		{
 			"name": "Search_1",

@@ -1,0 +1,30 @@
+{
+	"settings":{
+		"Environment" : "LCL",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "Search_Women",
+			"operation": "searchresults",
+			"paramSources": {
+				"gender": "D",
+				"dept" :  "women"
+			}
+		},
+		{
+			"name": "Item_1",
+			"operation": "items",
+			"paramSources": {
+				"code10" :  "{Search_Women.Items[0].Cod10}"
+			},			
+			"assertions":[
+				{
+					"field": "{Item_1.Cod10}",
+					"comparison": "eq",
+					"value": "{Search_Women.Items[0].Cod10}"
+				}			
+			]
+		}
+	]
+}
