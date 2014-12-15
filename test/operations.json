@@ -104,12 +104,12 @@
 		"params": ["userid","accesstoken","cartid","carttoken","cvv"]
 	},
 	"getAccount": {
-		"url": "/myoox/Account",
+		"url": "/myoox/account",
 		"verb": "GET",
 		"params": ["userid", "accesstoken"]
 	},
 	"updateAccount": {
-		"url": "/myoox/Account",
+		"url": "/myoox/account",
 		"verb": "PUT",
 		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
 	},

@@ -19,6 +19,9 @@ AccountOperation.prototype.PUT = function(request, operation, params, callback) 
     
     var env = operation.env;
     var options = {
+        headers: {
+                'User-Agent': operation.session.settings.userAgent
+        },      
         json : true,
         body: params,
         method : "PUT",
@@ -29,7 +32,7 @@ AccountOperation.prototype.PUT = function(request, operation, params, callback) 
 
 
 AccountOperation.prototype.Url = function() {
-	return '/myoox/Account';
+	return '/myoox/account';
 }
 
 module.exports = new AccountOperation();
