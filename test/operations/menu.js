@@ -9,7 +9,6 @@ MenuOperation.prototype.GET = function(request, operation, params, callback) {
 	};
     operation.execute(request, options, callback, function(body) { 
     	var result = JSON.parse(body);
-		console.log(result);
 		return result;
 		} );
 };

@@ -113,6 +113,16 @@
 		"verb": "PUT",
 		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
 	},
+	"orders": {
+		"url": "/myoox/orders",
+		"verb": "GET",
+		"params": ["userid", "accesstoken", "details"]
+	},
+	"orderdetails": {
+		"url": "/myoox/orders/{ordernum}",
+		"verb": "GET",
+		"params": ["userid", "accesstoken", "ordernum"]
+	},
 	"menu": {
 		"url": "/menu",
 		"verb": "GET",

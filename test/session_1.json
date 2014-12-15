@@ -17,7 +17,7 @@
 			},			
 			"assertions": [
 				{
-					"field": "{Menu.Items[0].Label}",
+					"field": "{Menu.Menu.Items[0].Label}",
 					"comparison": "neq",
 					"value": ""
 				}
