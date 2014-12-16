@@ -132,5 +132,20 @@
 		"url": "/myoox/dreambox",
 		"verb": "GET",
 		"params": ["userid", "accesstoken"]
+	},
+	"addtodreambox": {
+		"url": "/myoox/dreamboxitem",
+		"verb": "POST",
+		"params": ["userid", "accesstoken","code10","size"]
+	},
+	"updatedreambox": {
+		"url": "/myoox/dreamboxitem",
+		"verb": "PUT",
+		"params": ["userid", "accesstoken","code10","size","hasalert"]
+	},
+	"deletedreambox": {
+		"url": "/myoox/dreamboxitem",
+		"verb": "DELETE",
+		"params": ["userid", "accesstoken","code10","size"]
 	}
 }

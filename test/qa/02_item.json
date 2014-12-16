@@ -13,7 +13,7 @@
 			"assertions":[
 				{
 					"field": "{Item_1.Cod10}",
-					"comparison": "eq",
+					"comparison": "neq",
 					"value": "36535177KT"
 				}			
 			]

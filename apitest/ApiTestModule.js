@@ -47,7 +47,7 @@ ApiTester.prototype.run = function() {
 	this.async.series(this.getSeries(),
 		  	function(err, results) {
 				console.log ('');
-				console.log ('------------------');
+				//console.log ('------------------');
 		    	if(err) { 
 		    		console.log ('TEST is RED [' + results + ']'); 
 					console.log ('------------------');
