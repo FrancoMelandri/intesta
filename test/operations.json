@@ -147,5 +147,25 @@
 		"url": "/myoox/dreamboxitem",
 		"verb": "DELETE",
 		"params": ["userid", "accesstoken","code10","size"]
+	},
+	"premiere": {
+		"url": "/myoox/premiere",
+		"verb": "GET",
+		"params": ["userid", "accesstoken"]
+	},
+	"savepremiere": {
+		"url": "/myoox/premiere",
+		"verb": "POST",
+		"params": ["userid", "accesstoken", "gender", "dept", "name" ,"attributes"]
+	},
+	"deletepremiere": {
+		"url": "/myoox/premiere",
+		"verb": "DELETE",
+		"params": ["userid", "accesstoken", "id"]
+	},
+	"enablepremiere": {
+		"url": "/myoox/premiereenable",
+		"verb": "POST",
+		"params": ["userid", "accesstoken", "id", "enable"]
 	}
 }

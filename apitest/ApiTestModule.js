@@ -47,7 +47,6 @@ ApiTester.prototype.run = function() {
 	this.async.series(this.getSeries(),
 		  	function(err, results) {
 				console.log ('');
-				//console.log ('------------------');
 		    	if(err) { 
 		    		console.log ('TEST is RED [' + results + ']'); 
 					console.log ('------------------');
@@ -74,12 +73,12 @@ function split(propertyName) {
 	var closeRound = propertyName.indexOf(')');
 	if(openRound === -1 && closeRound === -1) {
 		return propertyName
-					.replace('{','')
-					.replace('}','')
+					.replace('%','')
+					.replace('%','')
 					.split( "." );
 	}
-	var left = propertyName.substring(0, openRound).replace('{','');
-	var right = propertyName.substring(closeRound+1).replace('}','');
+	var left = propertyName.substring(0, openRound).replace('%','');
+	var right = propertyName.substring(closeRound+1).replace('%','');
 	var inner = propertyName.substring(openRound +1, closeRound );
 
 	var arrleft = left.split('.');
@@ -106,7 +105,7 @@ function getProperty(prop, operation) {
 	if(typeof(prop) !== 'string')
 		return prop;
 	
-	if (prop.indexOf('{') === -1 )
+	if (prop.indexOf('%') === -1 )
 		return prop;
 
 	var i;
