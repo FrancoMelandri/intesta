@@ -1,0 +1,41 @@
+{
+	"settings":{
+		"userAgent" : "native-mobile-yoox/2.0 v.4.3.0(build 1) node.js testing machine",
+		"Environment" : "DEV",
+		"siteCode" : "YOOX_IT"
+	},
+	"operations" : [
+		{
+			"name": "keepAlive",
+			"operation": "keepAlive"
+		},
+		{
+			"name": "02_cart_must_be_defined_login",
+			"operation": "login",
+			"paramSources": {
+				"email": "test.it@yoox.com",
+				"password" :  "password"
+			}
+		},
+		{
+			"name": "02_cart_must_be_defined_cart",
+			"operation": "cart",
+			"paramSources": {
+				"cartid": "02_cart_must_be_defined_login.CartInfo.CartId",
+				"carttoken" :  "02_cart_must_be_defined_login.CartInfo.CartToken"
+			},			
+			"assertions":[
+				{
+					"field": "Checkout.CartInfo.CartToken",
+					"comparison": "eq",
+					"value": "02_cart_must_be_defined_login.CartInfo.CartToken"
+				},
+				{
+					"field": "Checkout.CartInfo.CartId",
+					"comparison": "eq",
+					"value": "02_cart_must_be_defined_login.CartInfo.CartId"
+				}
+			]
+		}
+	]
+}
