@@ -119,9 +119,9 @@
 		"params": ["userid", "accesstoken", "details"]
 	},
 	"orderdetails": {
-		"url": "/myoox/orders/{ordernum}",
+		"url": "/myoox/orders/{orderid}",
 		"verb": "GET",
-		"params": ["userid", "accesstoken", "ordernum"]
+		"params": ["userid", "accesstoken", "orderid", "isexchange"]
 	},
 	"menu": {
 		"url": "/menu",
@@ -167,5 +167,10 @@
 		"url": "/myoox/premiereenable",
 		"verb": "POST",
 		"params": ["userid", "accesstoken", "id", "enable"]
+	},
+	"credits": {
+		"url": "/myoox/credits",
+		"verb": "GET",
+		"params": ["userid", "accesstoken"]
 	}
 }

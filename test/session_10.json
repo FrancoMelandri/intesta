@@ -11,6 +11,21 @@
 				"email" : "franco.melandri@yoox.com",
 				"password" : "password"
 			}
+		},
+		{
+			"name": "Credits",
+			"operation": "credits",
+			"paramSources": {
+				"userid" : "%DoLogin.User.idUser%",
+				"accesstoken" : "%DoLogin.User.AccessToken%"
+			},
+			"assertions":[
+				{
+					"field" : "%Credits.HasCredit%",
+					"comparison": "eq",
+					"value": false
+				}
+			]
 		}
 	]
 }

@@ -206,17 +206,13 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 };
 
 Operation.prototype.check = function(statusCode, result) {
-	if (statusCode) {
-		if (statusCode !== 0 && statusCode !== 200)
-			return 'StatusCode ' + statusCode + ' different from 200';
-	}
 	if (this.assertions) {
 		for (var assertion in this.assertions) {
 			var ass = this.assertions[assertion];
 			var field = getProperty (ass.field, this);
 			var compare = this.compares[ass.comparison];
 			var value = getProperty(ass.value, this);
-			if (field && compare) {
+			if (typeof(field) !== 'undefined' && compare) {
 				return compare (field, ass.field, value);
 			}
 			return ass.field + ' is undefined';			
