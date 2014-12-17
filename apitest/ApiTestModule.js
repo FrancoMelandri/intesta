@@ -44,16 +44,17 @@ ApiTester.prototype.load = function() {
 
 ApiTester.prototype.run = function() {
 
+	var logger = this.logger;
 	this.async.series(this.getSeries(),
 		  	function(err, results) {
-				console.log ('');
+				logger.log ('');
 		    	if(err) { 
-		    		console.log ('TEST is RED [' + results + ']'); 
-					console.log ('------------------');
+		    		logger.log ('TEST is RED [' + results + ']'); 
+					logger.log ('------------------');
 		    		return; 
 		    	}		    
-				console.log ('TEST is GREEN');
-				console.log ('------------------');
+				logger.log ('TEST is GREEN');
+				logger.log ('------------------');
 			}
 	  );
 };

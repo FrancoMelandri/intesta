@@ -13,8 +13,22 @@ var SessionLoader = function() {
 	var sessionFileName = './savedSession.json'
 	if (process.argv[2])
 		sessionFileName = process.argv[2];
+
 	this.load = function() {
-		return JSON.parse(fs.readFileSync(sessionFileName, 'utf8'));	
+		var session = JSON.parse(fs.readFileSync(sessionFileName, 'utf8'));	
+		if (process.argv[3]) {
+			var sesttings = session['settings'] = {};
+			sesttings['Environment'] = process.argv[3];
+			if (process.argv[4])
+				sesttings['siteCode'] = process.argv[4];
+			else				
+				sesttings['siteCode'] = 'YOOX_IT';
+			if (process.argv[5])
+				sesttings['userAgent'] = process.argv[5];
+			else
+				sesttings['userAgent'] = 'native-mobile-yoox/2.0 v.4.2.1(build 3370) iPhone4,1 iPhone OS 7.1.2';
+		}
+		return session;
 	}
 };
 

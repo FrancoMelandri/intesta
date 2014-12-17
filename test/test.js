@@ -14,7 +14,15 @@ var intro = ""+
 var testSingleFile = function(filename){
 	console.log("test: "+fs.realpathSync(filename)+"\n");
 	console.log("------------------");	
-	exec(execCmd+fs.realpathSync(filename));
+	var command = execCmd;
+	command += fs.realpathSync(filename);
+	if (process.argv[3])
+		command += ' ' + process.argv[3];
+	if (process.argv[4])
+		command += ' ' + process.argv[4];
+	if (process.argv[5])
+		command += ' ' + process.argv[5];
+	exec(command);
 	console.log("\n\n");
 }
 var testFiles = function(currentPath){

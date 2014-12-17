@@ -1,0 +1,16 @@
+{
+	"operations" : [
+		{
+			"name": "keepAlive_1",
+			"operation": "keepAlive"
+		},
+		{
+			"name": "DoLogin",
+			"operation": "login",
+			"paramSources": {
+				"email" : "franco.melandri@yoox.com",
+				"password" : "password"
+			}
+		}
+	]
+}
