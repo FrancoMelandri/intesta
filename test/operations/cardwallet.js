@@ -14,7 +14,6 @@ CardWalletOperation.prototype.GET = function(request, operation, params, callbac
 	};
     operation.execute(request, options, callback, function(body) { 
         var result = JSON.parse(body);
-        console.log(result);
         return result;} );    
 };
 
