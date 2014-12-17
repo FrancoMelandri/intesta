@@ -201,5 +201,29 @@
 		"url": "/myoox/addressbook",
 		"verb": "DELETE",
 		"params": ["userid", "accesstoken", "id"]
+	},
+	"getCardWallet": {
+		"url": "/myoox/cardwallet",
+		"verb": "GET",
+		"params": ["userid", "accesstoken"]
+	},
+	"addCardWallet": {
+		"url": "/myoox/cardwallet",
+		"verb": "POST",
+		"params": ["userid", "accesstoken", "guid", "name", "surname", "address", "zipcode", 
+				   "city", "province", "type", "ispreferred",  "expirationmonth", "expirationyear", 
+				   "number", "holderisocountry"]
+	},
+	"updateCardWallet": {
+		"url": "/myoox/cardwallet",
+		"verb": "PUT",
+		"params": ["userid", "accesstoken", "guid", "name", "surname", "address", "zipcode", 
+				   "city", "province", "type", "ispreferred",  "expirationmonth", "expirationyear", 
+				   "number", "holderisocountry"]
+	},
+	"deleteCardWallet": {
+		"url": "/myoox/cardwallet",
+		"verb": "DELETE",
+		"params": ["userid", "accesstoken", "id"]
 	}
 }
