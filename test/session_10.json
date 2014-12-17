@@ -26,6 +26,23 @@
 					"value": false
 				}
 			]
+		},
+		{
+			"name": "GetAddressBook",
+			"operation": "getAddressBook",
+			"paramSources": {
+				"userid" : "%DoLogin.User.idUser%",
+				"accesstoken" : "%DoLogin.User.AccessToken%"
+			}
+		},
+		{
+			"name": "AddAddressBook",
+			"operation": "deleteAddressBook",
+			"paramSources": {
+				"userid" : "%DoLogin.User.idUser%",
+				"accesstoken" : "%DoLogin.User.AccessToken%",
+				"id" : "%GetAddressBook.Addresses[0].Id%"
+			}
 		}
 	]
 }

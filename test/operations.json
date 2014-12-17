@@ -113,6 +113,11 @@
 		"verb": "PUT",
 		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
 	},
+	"createAccount": {
+		"url": "/myoox/account",
+		"verb": "POST",
+		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
+	},
 	"orders": {
 		"url": "/myoox/orders",
 		"verb": "GET",
@@ -172,5 +177,29 @@
 		"url": "/myoox/credits",
 		"verb": "GET",
 		"params": ["userid", "accesstoken"]
+	},
+	"getAddressBook": {
+		"url": "/myoox/addressbook",
+		"verb": "GET",
+		"params": ["userid", "accesstoken"]
+	},
+	"addAddressBook": {
+		"url": "/myoox/addressbook",
+		"verb": "POST",
+		"params": ["userid", "accesstoken", "id", "name", "surname", "address", "isdefault", 
+				   "isbillingdefault", "isowner", "zipcode", "city", "province", "phone", "mobile",
+				   "mail", "namejp", "surnamejp", "isocde", "careof", "vatnumber", "addresstype"]
+	},
+	"updateAddressBook": {
+		"url": "/myoox/addressbook",
+		"verb": "PUT",
+		"params": ["userid", "accesstoken", "id", "name", "surname", "address", "isdefault", 
+				   "isbillingdefault", "isowner", "zipcode", "city", "province", "phone", "mobile",
+				   "mail", "namejp", "surnamejp", "isocde", "careof", "vatnumber", "addresstype"]
+	},
+	"deleteAddressBook": {
+		"url": "/myoox/addressbook",
+		"verb": "DELETE",
+		"params": ["userid", "accesstoken", "id"]
 	}
 }
