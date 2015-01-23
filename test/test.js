@@ -12,11 +12,10 @@ var tests = [];
 var filename = "";
 
 var intro = ""+
-"\t   \t                   \t   \t\n"+
-"\t###\t     ,        ,    \t###\t\n"+
-"\t###\t*._ -+- _  __-+- _.\t###\t\n"+
-"\t###\t|[ ) | (/,_)  | (_]\t###\t\n"+
-"\t   \t                   \t   \t\n";
+"\n\n\n"+
+"###\t     ,        ,    \t###\n"+
+"###\t*._ -+- _  __-+- _.\t###\n"+
+"###\t|[ ) | (/,_)  | (_]\t###\n";
 
 var verbose = false;
 
@@ -24,7 +23,6 @@ var currentPath = process.argv[2];
 var folderAbsPath = fs.realpathSync(currentPath);
 var filenames = fs.readdirSync(folderAbsPath);	
 var singleTestFunctionArray = [];
-
 
 function createSingleTestFunction(path){
 	return function(callback){ 
@@ -42,7 +40,7 @@ function createSingleTestFunction(path){
 			if (process.argv[2])
 				sessionFileName = path;
 			
-			console.log(chalk.bold("\n\n\n###\tTESTING FILE:"+sessionFileName));
+			console.log(chalk.gray(chalk.bold("\n\n\n####### TESTING: "+sessionFileName)));
 			
 			// TODO: manage verbose output
 				
@@ -78,7 +76,12 @@ function createSingleTestFunction(path){
 		};
 
 		var onOperationsCompletedCallback = function(err, results){
-			callback(null, path);
+			if(err){
+				console.log(chalk.gray(chalk.bold("#######")), chalk.red(chalk.bold("KO")), chalk.gray(chalk.bold("for: "+path)));
+				return;
+			}
+			console.log(chalk.gray(chalk.bold("#######")), chalk.green(chalk.bold("ALL OK")), chalk.gray(chalk.bold("for: "+path)));	
+			callback(err, path);		
 		}.bind(this);
 
 		var apiTester = new apiTestModule.ApiTester(
@@ -98,32 +101,33 @@ function createSingleTestFunction(path){
 };
 
 
-var testFiles = function(currentPath, testPaths){
+var populateArrayFromPath = function(currentPath, funArray){
 	if (path.extname(currentPath) === ".json"){
-		testPaths.push(createSingleTestFunction(currentPath));
+		funArray.push(createSingleTestFunction(currentPath));
 	} else {
 		var folderAbsPath = fs.realpathSync(currentPath);
 		var filenames = fs.readdirSync(folderAbsPath);	
 		for(var i = 0; i<filenames.length; i++){
 			var p = folderAbsPath+"\\"+filenames[i];
-			testFiles(currentPath+"\\"+filenames[i], testPaths);
+			populateArrayFromPath(p, funArray);
 		}
 	}
 }
 
-testFiles(currentPath, singleTestFunctionArray);
-
 var onOperationsCompletedCallback = function(err, results){
 	if(err) { 
-		console.log(chalk.red("\n\n###\tTEST is RED\n\n\n"));
+		console.log(chalk.gray('\n\n###\t'), chalk.red(chalk.bold("A TEST is RED\n\n\n")));
 		if(verbose){
-			console.log(chalk.bold('error: '+JSON.stringify(err)+'\nresult: '+JSON.stringify(results)+'\n')); 
+			console.log(chalk.red(chalk.bold('error: '+JSON.stringify(err)+'\nresult: '+JSON.stringify(results)+'\n')));
 		}
 		exit(0);
-	}		    
-	console.log(chalk.bold('\n###\tTEST is GREEN\n\n\n'));
+	}
+	console.log(chalk.bold(chalk.gray('\n\n###\t\n###\t'), chalk.green('ALL TESTS ARE GREEN')), chalk.bold(chalk.gray('\n###\n\n\n')));
 	exit(1);
-	
 }.bind(this); 
 
+
+
+console.log(chalk.gray(chalk.bold(intro)));
+populateArrayFromPath(currentPath, singleTestFunctionArray);
 async.series(singleTestFunctionArray, onOperationsCompletedCallback);

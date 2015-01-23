@@ -8,19 +8,11 @@
 	},
 	"operations" : [
 		{
-			"name": "login1",
-			"operation": "login",
-			"paramSources": {
-				"email": "test.it@yoox.com",
-				"password" :  "password"
-			}
-		},
-		{
-			"name": "keepAlive",
+			"name": "keepAlive_01",
 			"operation": "keepAlive"
 		},
 		{
-			"name": "login2",
+			"name": "login_01",
 			"operation": "login",
 			"paramSources": {
 				"email": "test.it@yoox.com",
@@ -28,36 +20,20 @@
 			}
 		},
 		{
-			"name": "login3",
-			"operation": "login",
+			"name": "cart_01",
+			"description": "is returned the correct CartId, CartToken value on calling cart?",
+			"operation": "cart",
 			"paramSources": {
-				"email": "test.it@yoox.com",
-				"password" :  "password"
-			}
-		},
-		{
-			"name": "login4",
-			"operation": "login",
-			"paramSources": {
-				"email": "test.it@yoox.com",
-				"password" :  "password"
-			}
-		},
-		{
-			"name": "login5",
-			"operation": "login",
-			"paramSources": {
-				"email": "test.it@yoox.com",
-				"password" :  "password"
-			}
-		},
-		{
-			"name": "login6",
-			"operation": "login",
-			"paramSources": {
-				"email": "test.it@yoox.com",
-				"password" :  "password"
-			}
+				"cartid": "1",
+				"carttoken" :  "1"
+			},			
+			"assertions":[
+				{
+					"field": "%cart_01.CartInfo.CartId%",
+					"comparison": "eq",
+					"value": "269078010"
+				}
+			]
 		}
 	]
 }

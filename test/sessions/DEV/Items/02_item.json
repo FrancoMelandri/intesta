@@ -1,6 +1,6 @@
 {
 	"settings":{
-		"Environment" : "LCL",
+		"Environment" : "DEV",
 		"siteCode" : "YOOX_IT"
 	},
 	"operations" : [
@@ -17,6 +17,14 @@
 					"value": "36535177KT"
 				}			
 			]
+		},
+		{
+			"name": "login2",
+			"operation": "login",
+			"paramSources": {
+				"email": "test.it@yoox.com",
+				"password" :  "password"
+			}
 		}
 	]
 }

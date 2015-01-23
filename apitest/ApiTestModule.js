@@ -135,6 +135,7 @@ function getProperty(prop, operation) {
 				}
 			}
 			else {
+				if(typeof(property[part]) === 'undefined') return undefined
 				property = property[part];
 			}
 		}
@@ -215,18 +216,20 @@ Operation.prototype.check = function(statusCode, result) {
 Operation.prototype.execute = function(request, options, callback, getResult) {
 	var operation = this;
 	var chalk = this.chalk;
+	var outputBold = "";
+	var output = "";
+
 	if(operation.session.settings.Environment === 'DEV'){
 		options.strictSSL = false;
 	}
-	var output = 	"\nrun "+operation.name+"\n";
-	output += 		".\t-> "+operation.verb+" "+operation.url+"\n"
-	output += 		".\t-> "+options.url+"\n";
-	output += 		".\t-> params: "+JSON.stringify(operation.params)+"\n";
+	outputBold = "> run "+operation.name+"\n";
+	output = "# "+operation.verb+" "+operation.url+"\n"
+	output += 		" # "+options.url+"\n";
+	output += 		" # params: "+JSON.stringify(operation.params)+"\n";
 	request(options, function(err, response, body) {
-
 	    if(err) { 
-			output += "KO\noperation name: '"+operation.name+"' failed and return error: ";
-			console.log(chalk.red(output));
+			output += " # KO\noperation name: '"+operation.name+"' failed and return error: ";
+			console.log(chalk.red(chalk.bold(outputBold)),chalk.red(output));
 			console.log(chalk.red(err));
 	    	callback(true, { 
 	                        ErrorCode : 500,
@@ -235,19 +238,21 @@ Operation.prototype.execute = function(request, options, callback, getResult) {
 	    	return; 
 	    }
 		if(this.verbose){
-			output += ".\t-> response status code: "+response.statusCode+"\n";
-			output += ".\t-> response body: "+response.body+"\n";
+			output += " #\t-> response status code: "+response.statusCode+"\n";
+			output += " #\t-> response body: "+response.body+"\n";
 		}
-		output += "OK\n";
-		console.log(chalk.green(output));
 	    var result = getResult(body);
 	    operation.context.results[operation.name] = result;
 
 	    var validation = operation.check(response.statusCode, result);
 	    if (validation) {
+			output += " # KO on validating assertion\noperation name: '"+operation.name+"' failed and return error: ";
+			console.log(chalk.red(chalk.bold(outputBold)),chalk.red(output), chalk.red(chalk.bold("\n"+validation)));
 	        callback(true, validation);
 	        return;
 	    }
+		output += " # OK";
+		console.log(chalk.green(chalk.bold(outputBold)),chalk.green(output));
 	    callback(false, result);
 	  });
 };
