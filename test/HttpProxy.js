@@ -28,8 +28,6 @@ var HttpProxy = function() {
 
 	this.get = function(op, params, callback) {		
 		var operation = modules[op.url][op.verb];
-
-		op.logger.log(op.verb + ' -> ' + op.url + ' params: ' + JSON.stringify(params));
 		op.url = fixUrl(op.url, params, fixUrl);
 		if (operation) {
 			return operation(request, op, params, callback);

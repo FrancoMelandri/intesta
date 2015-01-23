@@ -76,8 +76,8 @@
 				   "contact.surname", "contact.phone","contact.careof","contact.email",
 				   "contact.mobile" ,"contact.vatnumber","contact.streetwithnumber",
 				   "contact.region", "contact.postalcode", "contact.city", "contact.countrycode", 
-				   "contact.japanesename","contact.japanesesurname","contact.furigamaname","contact.furigamasurname",
-				   "myooxid", "isbilling"]
+				   "contact.japanesename","contact.japanesesurname","contact.furigamaname",
+				   "contact.furigamasurname", "myooxid", "isbilling"]
 	},
 	"setsender": {
 		"url": "/cart/setsender",
@@ -86,8 +86,8 @@
 				   "contact.surname", "contact.phone","contact.careof","contact.email",
 				   "contact.mobile" ,"contact.vatnumber","contact.streetwithnumber",
 				   "contact.region", "contact.postalcode", "contact.city", "contact.countrycode", 
-				   "contact.japanesename","contact.japanesesurname","contact.furigamaname","contact.furigamasurname",
-				   "myooxid"]
+				   "contact.japanesename","contact.japanesesurname","contact.furigamaname",
+				   "contact.furigamasurname", "myooxid"]
 	},
 	"setcreditcard": {
 		"url": "/cart/setcreditcard",
@@ -111,12 +111,14 @@
 	"updateAccount": {
 		"url": "/myoox/account",
 		"verb": "PUT",
-		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
+		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender",
+				   "birthday","email","furigananame","furiganasurname","password"]
 	},
 	"createAccount": {
 		"url": "/myoox/account",
 		"verb": "POST",
-		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender","birthday","email","furigananame","furiganasurname","password"]
+		"params": ["userid", "accesstoken", "name", "surname","yooxletter","dataprofiling","gender",
+		           "birthday","email","furigananame","furiganasurname","password"]
 	},
 	"orders": {
 		"url": "/myoox/orders",

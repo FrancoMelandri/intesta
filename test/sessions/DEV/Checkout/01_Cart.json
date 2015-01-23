@@ -1,4 +1,6 @@
 {
+	"id": "cart_0001",
+	"name": "Scenario 1 Fast checkout - Ipotesi (Carrello vuoto, non loggati, applicazione chiusa, login con account che ha già indirizzi e carte di credito salvati)(Test da effettuare nelle country con metodo di pagamento Cod)",
 	"settings":{
 		"userAgent" : "native-mobile-yoox/2.0 v.4.3.0(build 1) node.js testing machine",
 		"Environment" : "DEV",
@@ -6,11 +8,7 @@
 	},
 	"operations" : [
 		{
-			"name": "keepAlive",
-			"operation": "keepAlive"
-		},
-		{
-			"name": "02_cart_must_be_defined_login",
+			"name": "login1",
 			"operation": "login",
 			"paramSources": {
 				"email": "test.it@yoox.com",
@@ -18,24 +16,48 @@
 			}
 		},
 		{
-			"name": "02_cart_must_be_defined_cart",
-			"operation": "cart",
+			"name": "keepAlive",
+			"operation": "keepAlive"
+		},
+		{
+			"name": "login2",
+			"operation": "login",
 			"paramSources": {
-				"cartid": "02_cart_must_be_defined_login.CartInfo.CartId",
-				"carttoken" :  "02_cart_must_be_defined_login.CartInfo.CartToken"
-			},			
-			"assertions":[
-				{
-					"field": "Checkout.CartInfo.CartToken",
-					"comparison": "eq",
-					"value": "02_cart_must_be_defined_login.CartInfo.CartToken"
-				},
-				{
-					"field": "Checkout.CartInfo.CartId",
-					"comparison": "eq",
-					"value": "02_cart_must_be_defined_login.CartInfo.CartId"
-				}
-			]
+				"email": "test.it@yoox.com",
+				"password" :  "password"
+			}
+		},
+		{
+			"name": "login3",
+			"operation": "login",
+			"paramSources": {
+				"email": "test.it@yoox.com",
+				"password" :  "password"
+			}
+		},
+		{
+			"name": "login4",
+			"operation": "login",
+			"paramSources": {
+				"email": "test.it@yoox.com",
+				"password" :  "password"
+			}
+		},
+		{
+			"name": "login5",
+			"operation": "login",
+			"paramSources": {
+				"email": "test.it@yoox.com",
+				"password" :  "password"
+			}
+		},
+		{
+			"name": "login6",
+			"operation": "login",
+			"paramSources": {
+				"email": "test.it@yoox.com",
+				"password" :  "password"
+			}
 		}
 	]
 }

@@ -1,6 +1,4 @@
-
-
-var ApiTester = function(httpProxy, operationsLoader, sessionLoader, environmentsLoader, logger, async) {
+var ApiTester = function(httpProxy, operationsLoader, sessionLoader, environmentsLoader, logger, async, onOperationsCompletedCallback, chalk, verbose) {
 	this.httpProxy = httpProxy;
 	this.operationsLoader = operationsLoader;
 	this.sessionLoader = sessionLoader;
@@ -19,6 +17,11 @@ var ApiTester = function(httpProxy, operationsLoader, sessionLoader, environment
 		results: {}
 	};
 	this.operationDefinition = this.operationsLoader.load();
+	
+	this.onOperationsCompletedCallback = onOperationsCompletedCallback;
+	
+	this.chalk = chalk;
+	this.verbose = verbose;
 };
 
 ApiTester.prototype.load = function() {
@@ -43,20 +46,7 @@ ApiTester.prototype.load = function() {
 };
 
 ApiTester.prototype.run = function() {
-
-	var logger = this.logger;
-	this.async.series(this.getSeries(),
-		  	function(err, results) {
-				logger.log ('');
-		    	if(err) { 
-		    		logger.log ('TEST is RED [' + results + ']'); 
-					logger.log ('------------------');
-		    		return; 
-		    	}		    
-				logger.log ('TEST is GREEN');
-				logger.log ('------------------');
-			}
-	  );
+	this.async.series(this.getSeries(), this.onOperationsCompletedCallback);
 };
 
 ApiTester.prototype.getSeries = function() {
@@ -203,6 +193,8 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 											   ' ' + field + ' equal to ' + 
 											   assValue;
 								};
+	this.chalk = apitester.chalk;
+	this.verbose = apitester.verbose;
 };
 
 Operation.prototype.check = function(statusCode, result) {
@@ -222,14 +214,32 @@ Operation.prototype.check = function(statusCode, result) {
 
 Operation.prototype.execute = function(request, options, callback, getResult) {
 	var operation = this;
+	var chalk = this.chalk;
+	if(operation.session.settings.Environment === 'DEV'){
+		options.strictSSL = false;
+	}
+	var output = 	"\nrun "+operation.name+"\n";
+	output += 		".\t-> "+operation.verb+" "+operation.url+"\n"
+	output += 		".\t-> "+options.url+"\n";
+	output += 		".\t-> params: "+JSON.stringify(operation.params)+"\n";
 	request(options, function(err, response, body) {
+
 	    if(err) { 
+			output += "KO\noperation name: '"+operation.name+"' failed and return error: ";
+			console.log(chalk.red(output));
+			console.log(chalk.red(err));
 	    	callback(true, { 
 	                        ErrorCode : 500,
 				            ErrorMessage : err,
-			             }); 
+			             });
 	    	return; 
 	    }
+		if(this.verbose){
+			output += ".\t-> response status code: "+response.statusCode+"\n";
+			output += ".\t-> response body: "+response.body+"\n";
+		}
+		output += "OK\n";
+		console.log(chalk.green(output));
 	    var result = getResult(body);
 	    operation.context.results[operation.name] = result;
 

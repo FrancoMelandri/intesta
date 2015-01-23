@@ -1,7 +1,7 @@
 {
 	"settings":{
 		"userAgent" : "native-mobile-yoox/2.0 v.4.2.1(build 3370) iPhone4,1 iPhone OS 7.1.2",
-		"Environment" : "PROD",
+		"Environment" : "DEV",
 		"siteCode" : "YOOX_IT"
 	},
 	"operations" : [
@@ -10,18 +10,12 @@
 			"operation": "keepAlive"
 		},
 		{
-			"name": "Menu",
-			"operation": "menu",
+			"name": "Login",
+			"operation": "login",
 			"paramSources": {
-				"gender" : "D"
-			},			
-			"assertions": [
-				{
-					"field": "{Menu.Menu.Items[0].Label}",
-					"comparison": "neq",
-					"value": ""
-				}
-			]
+				"Email": "test.it@yoox.com",
+				"Password" :  "password"
+			}
 		}
 	]
 }
