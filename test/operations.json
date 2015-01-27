@@ -227,5 +227,15 @@
 		"url": "/myoox/cardwallet",
 		"verb": "DELETE",
 		"params": ["userid", "accesstoken", "id"]
-	}
+	},
+    "labels": {
+        "url": "/labels",
+        "verb" : "GET",
+        "params": ["gender"]
+    },
+    "update": {
+        "url": "/update",
+        "verb" : "GET",
+        "params": ["appversion", "device", "gender"]
+    }
 }

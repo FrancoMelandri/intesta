@@ -1,5 +1,5 @@
 {
-	"id": "cart_0001",
+	"id": "fastCheckout_001",
 	"name": "Scenario 1 Fast checkout - Ipotesi (Carrello vuoto, non loggati, applicazione chiusa, login con account che ha già indirizzi e carte di credito salvati)(Test da effettuare nelle country con metodo di pagamento Cod)",
 	"settings":{
 		"userAgent" : "native-mobile-yoox/2.0 v.4.3.0(build 1) node.js testing machine",
@@ -12,26 +12,17 @@
 			"operation": "keepAlive"
 		},
 		{
-			"name": "login_01",
-			"operation": "login",
+			"name": "labels",
+			"description": "exist the key 'Labels' in response and is not equal to empty string?",
+			"operation": "labels",
 			"paramSources": {
-				"email": "test.it@yoox.com",
-				"password" :  "password"
-			}
-		},
-		{
-			"name": "cart_01",
-			"description": "is returned the correct CartId, CartToken value on calling cart?",
-			"operation": "cart",
-			"paramSources": {
-				"cartid": "1",
-				"carttoken" :  "1"
+				"gender": "u"
 			},			
 			"assertions":[
 				{
-					"field": "%cart_01.CartInfo.CartId%",
-					"comparison": "eq",
-					"value": "269078010"
+					"field": "%labels.Labels%",
+					"comparison": "neq",
+					"value": ""
 				}
 			]
 		}

@@ -104,9 +104,15 @@ function getProperty(prop, operation) {
 	var length = parts.length;
 	var property = operation.context.results[parts[0]];
 
+	if(typeof(property) === 'undefined' ) 
+		return undefined
+
 	for ( i = 1; i < length; i++ ) {
 		
 		var part = parts[i];
+
+		if(typeof(property[part]) === 'undefined') 
+			return undefined
 
 		var openSquare = parts[i].indexOf('[');
 		var closeSquare = parts[i].indexOf(']');
@@ -135,7 +141,6 @@ function getProperty(prop, operation) {
 				}
 			}
 			else {
-				if(typeof(property[part]) === 'undefined') return undefined
 				property = property[part];
 			}
 		}
@@ -184,15 +189,15 @@ var Operation = function(session, env, apitester, name, url, verb, params, asser
 	this.compares = {};
 	this.compares["eq"] = function(field, assField, assValue) {
 									if (field !== assValue)	
-										return assField + 
-											   ' ' + field + ' different from ' + 
-											   assValue;
+										return "# " + assField + "\n" +
+											   "# " + field + ' is different from \n' + 
+											   "# " + assValue;
 								};;
 	this.compares["neq"] = function(field, assField, assValue) {
 									if (field === assValue)
-										return assField + 
-											   ' ' + field + ' equal to ' + 
-											   assValue;
+										return "# " + assField + "\n" +
+											   "# " + field + ' is equal to \n' + 
+											   "# " + assValue;
 								};
 	this.chalk = apitester.chalk;
 	this.verbose = apitester.verbose;
@@ -208,7 +213,7 @@ Operation.prototype.check = function(statusCode, result) {
 			if (typeof(field) !== 'undefined' && compare) {
 				return compare (field, ass.field, value);
 			}
-			return ass.field + ' is undefined';			
+			return "# " + ass.field + ' is undefined';			
 		}			
 	}
 };
@@ -216,21 +221,21 @@ Operation.prototype.check = function(statusCode, result) {
 Operation.prototype.execute = function(request, options, callback, getResult) {
 	var operation = this;
 	var chalk = this.chalk;
-	var outputBold = "";
-	var output = "";
+	var prefix = 
+	console.log(chalk.gray("# "), chalk.gray("run "), chalk.white(chalk.bold(operation.name)));
+	console.log(chalk.gray("# "), chalk.gray("op  "), chalk.gray(chalk.bold(operation.verb)), chalk.gray(chalk.bold((operation.url))));
+	console.log(chalk.gray("# "), chalk.gray("url "), chalk.gray(chalk.bold(options.url)));
+	console.log(chalk.gray("# "), chalk.gray("par "), chalk.gray(chalk.bold(JSON.stringify(operation.params))));
 
 	if(operation.session.settings.Environment === 'DEV'){
 		options.strictSSL = false;
 	}
-	outputBold = "> run "+operation.name+"\n";
-	output = "# "+operation.verb+" "+operation.url+"\n"
-	output += 		" # "+options.url+"\n";
-	output += 		" # params: "+JSON.stringify(operation.params)+"\n";
+
 	request(options, function(err, response, body) {
 	    if(err) { 
-			output += " # KO\noperation name: '"+operation.name+"' failed and return error: ";
-			console.log(chalk.red(chalk.bold(outputBold)),chalk.red(output));
-			console.log(chalk.red(err));
+			console.log(chalk.gray("# "), chalk.gray("res "), chalk.red(chalk.bold("KO")));
+			console.log(chalk.gray("# "), chalk.gray("description: "), chalk.red("fail on calling operation name: '"), chalk.red(operation.name), chalk.gray("', error:"));
+			console.log(chalk.gray("# "), chalk.red(err));
 	    	callback(true, { 
 	                        ErrorCode : 500,
 				            ErrorMessage : err,
@@ -238,21 +243,24 @@ Operation.prototype.execute = function(request, options, callback, getResult) {
 	    	return; 
 	    }
 		if(this.verbose){
-			output += " #\t-> response status code: "+response.statusCode+"\n";
-			output += " #\t-> response body: "+response.body+"\n";
+			console.log(chalk.gray("# "), chalk.gray("\t-> response status code: "+response.statusCode));
+			console.log(chalk.gray("# "), chalk.gray("\t-> response body: "+response.body));
 		}
 	    var result = getResult(body);
 	    operation.context.results[operation.name] = result;
 
 	    var validation = operation.check(response.statusCode, result);
 	    if (validation) {
-			output += " # KO on validating assertion\noperation name: '"+operation.name+"' failed and return error: ";
-			console.log(chalk.red(chalk.bold(outputBold)),chalk.red(output), chalk.red(chalk.bold("\n"+validation)));
+			console.log(chalk.gray("# "), chalk.gray("res "), chalk.red(chalk.bold("KO")));
+			console.log(chalk.gray("# "), chalk.gray("description: "), chalk.red("fail on validating assertion of operation name: '"+operation.name+"', error:"));
+			console.log(chalk.gray("# "));
+			console.log(chalk.gray(validation));
+			console.log(chalk.gray("# "));
 	        callback(true, validation);
 	        return;
 	    }
-		output += " # OK";
-		console.log(chalk.green(chalk.bold(outputBold)),chalk.green(output));
+		console.log(chalk.gray("# "), chalk.gray("res "), chalk.green(chalk.bold("OK")));
+		console.log(chalk.gray("# "));
 	    callback(false, result);
 	  });
 };

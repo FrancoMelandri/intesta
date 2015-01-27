@@ -11,11 +11,10 @@ var execCmd = "node singleTest.js ";
 var tests = [];
 var filename = "";
 
-var intro = ""+
-"\n\n\n"+
-"###\t     ,        ,    \t###\n"+
-"###\t*._ -+- _  __-+- _.\t###\n"+
-"###\t|[ ) | (/,_)  | (_]\t###\n";
+var intro = "\n\n\n"+
+"             ,        ,    \n"+
+"####### *._ -+- _  __-+- _.\n"+
+"####### |[ ) | (/,_)  | (_]\n";
 
 var verbose = false;
 
@@ -36,16 +35,13 @@ function createSingleTestFunction(path){
 			};
 		};
 		var SessionLoader = function() {
-			var sessionFileName = './savedSession.json'
-			if (process.argv[2])
-				sessionFileName = path;
 			
-			console.log(chalk.gray(chalk.bold("\n\n\n####### TESTING: "+sessionFileName)));
+			console.log(chalk.gray(chalk.bold("\n\n\n####### TESTING: "+path+"\n#")));
 			
 			// TODO: manage verbose output
 				
 			this.load = function() {
-				var session = JSON.parse(fs.readFileSync(sessionFileName, 'utf8'));	
+				var session = JSON.parse(fs.readFileSync(path, 'utf8'));	
 				// TODO: manage setting on call argv
 				/*if (process.argv[3]) {
 					var sesttings = session['settings'] = {};
@@ -78,9 +74,10 @@ function createSingleTestFunction(path){
 		var onOperationsCompletedCallback = function(err, results){
 			if(err){
 				console.log(chalk.gray(chalk.bold("#######")), chalk.red(chalk.bold("KO")), chalk.gray(chalk.bold("for: "+path)));
+				callback(err, path);		
 				return;
 			}
-			console.log(chalk.gray(chalk.bold("#######")), chalk.green(chalk.bold("ALL OK")), chalk.gray(chalk.bold("for: "+path)));	
+			console.log(chalk.gray(chalk.bold("#######")), chalk.green(chalk.bold("OK")), chalk.gray(chalk.bold("for: "+path)));	
 			callback(err, path);		
 		}.bind(this);
 
@@ -116,18 +113,18 @@ var populateArrayFromPath = function(currentPath, funArray){
 
 var onOperationsCompletedCallback = function(err, results){
 	if(err) { 
-		console.log(chalk.gray('\n\n###\t'), chalk.red(chalk.bold("A TEST is RED\n\n\n")));
+		console.log(chalk.white(chalk.bold('\n\n\n\n#######')), chalk.red(chalk.bold("A TEST is RED\n\n\n")));
 		if(verbose){
 			console.log(chalk.red(chalk.bold('error: '+JSON.stringify(err)+'\nresult: '+JSON.stringify(results)+'\n')));
 		}
 		exit(0);
 	}
-	console.log(chalk.bold(chalk.gray('\n\n###\t\n###\t'), chalk.green('ALL TESTS ARE GREEN')), chalk.bold(chalk.gray('\n###\n\n\n')));
+	console.log(chalk.bold(chalk.white('\n\n\n\n#######')), chalk.green('ALL TESTS ARE GREEN\n\n\n'));
 	exit(1);
 }.bind(this); 
 
 
 
-console.log(chalk.gray(chalk.bold(intro)));
+console.log(chalk.white(chalk.bold(intro)));
 populateArrayFromPath(currentPath, singleTestFunctionArray);
 async.series(singleTestFunctionArray, onOperationsCompletedCallback);
