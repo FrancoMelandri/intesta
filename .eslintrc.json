@@ -1,0 +1,70 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-trailing-spaces": "error",
+        "no-const-assign": "error",
+        "no-multi-spaces": "error",
+        "no-unexpected-multiline": "error",
+        "no-tabs": "error",
+        "no-duplicate-case": "error",
+        "space-infix-ops": "error",
+        "space-before-blocks": "error",
+        "camelcase": "error",
+        "keyword-spacing": ["error", {
+            "after": true
+        }],
+        "id-length": ["error", {
+            "min": 3
+        }],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 1,
+                "maxEOF": 0
+            }
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "object-property-newline": ["error",
+            {
+                "allowMultiplePropertiesPerLine": false
+            }
+        ],
+        "indent": [
+            "error",
+            4
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-useless-return": "error",
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "none",
+                "ignoreRestSiblings": true
+            }
+        ]
+    }
+}

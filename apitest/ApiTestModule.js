@@ -1,4 +1,13 @@
-var ApiTester = function(httpProxy, operationsLoader, sessionLoader, environmentsLoader, logger, async, onOperationsCompletedCallback, chalk, verbose) {
+
+var ApiTester = function(httpProxy,
+						 operationsLoader, 
+						 sessionLoader, 
+						 environmentsLoader, 
+						 logger, 
+						 async, 
+						 onOperationsCompletedCallback, 
+						 chalk, 
+						 verbose) {
 	this.httpProxy = httpProxy;
 	this.operationsLoader = operationsLoader;
 	this.sessionLoader = sessionLoader;
