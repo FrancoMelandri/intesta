@@ -1,0 +1,13 @@
+{
+	"settings":{
+		"environment" : "PROD"
+	},
+	"operations" : [
+		{
+			"name" : "keepAlive_1",
+			"operation": "keepAlive",
+			"paramSources": {
+			}
+        }
+    ]
+}
