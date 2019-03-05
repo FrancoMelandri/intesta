@@ -1,0 +1,19 @@
+{
+	"settings":{
+		"environment" : "PROD"
+	},
+	"operations" : [
+		{
+			"name" : "keepAlive_1",
+			"operation": "keepAlive",
+			"params": {
+                "param1": "value1",
+                "param2": "value2"
+			},
+			"headers": {
+                "header1": "value1",
+                "header2": "value2"
+			}
+        }
+    ]
+}
