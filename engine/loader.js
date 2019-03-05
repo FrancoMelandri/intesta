@@ -1,14 +1,10 @@
 
-var fs = require('fs');
 
-const loader = (rootDir) => {
-	var modules = {};
-	var files = fs.readdirSync(rootDir);
-	for(var file in files) {
-		var module = require(rootDir + '/' + files[file]);
-		modules[module.Url()] = module;
-	}		
-	return modules;
+const loader = (descriptorFile) => {
+	let resources = [];
+	let descriptor = require(descriptorFile)
+	descriptor.apis.map (api => resources.push (api))
+	return resources
 }
 
 module.exports = loader;

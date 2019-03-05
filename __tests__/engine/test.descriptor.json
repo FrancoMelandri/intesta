@@ -1,0 +1,10 @@
+{
+	"apis": [
+        {
+            "name": "keepAlive",
+            "path": "/keepAlive",
+            "verb": "GET",
+            "params": []
+        }
+    ]
+}
