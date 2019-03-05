@@ -4,7 +4,8 @@
             "name": "keepAlive",
             "path": "/keepAlive",
             "verb": "GET",
-            "params": []
+            "params": ["param1", "param2"],
+            "headers": ["header1", "header2"]
         }
     ]
 }
