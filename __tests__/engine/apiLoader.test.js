@@ -1,4 +1,4 @@
-const sut = require('../../engine/loader');
+const sut = require('../../engine/apiLoader');
 
 describe('Testing API loader', () => {
 

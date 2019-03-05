@@ -1,5 +1,4 @@
 
-
 const loader = (descriptorFile) => {
 	let resources = [];
 	let descriptor = require(descriptorFile)
