@@ -1,4 +1,3 @@
-require('shelljs/global');
 var fs = require('fs');
 //var path = require('path');
 //var prettyjson = require('prettyjson');

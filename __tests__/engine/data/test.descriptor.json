@@ -2,10 +2,16 @@
 	"apis": [
         {
             "name": "keepAlive",
-            "path": "/keepAlive",
+            "path": "/keepalive",
             "verb": "GET",
             "params": ["param1", "param2"],
             "headers": ["header1", "header2"]
+        },
+        {
+            "name": "whoAmI",
+            "path": "/whoami",
+            "verb": "GET",
+            "params": ["name", "surname"]
         }
     ]
 }

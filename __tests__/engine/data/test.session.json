@@ -1,6 +1,8 @@
 {
 	"settings":{
-		"environment" : "PROD"
+		"environment" : "PROD",
+		"url": "http://d7qkj.mocklab.io",
+		"userAgent": "Chrome"
 	},
 	"operations" : [
 		{
@@ -13,6 +15,14 @@
 			"headers": {
                 "header1": "value1",
                 "header2": "value2"
+			}
+        },
+		{
+			"name" : "WhoAmI_1",
+			"operation": "whoAmI",
+			"params": {
+                "name": "Franco",
+                "surname": "Melanri"
 			}
         }
     ]

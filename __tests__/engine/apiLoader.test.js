@@ -4,13 +4,13 @@ describe('Testing API loader', () => {
 
     test('Should load resources', () => {
         let resources = sut('../__tests__/engine/data/test.descriptor.json')
-        expect(resources.length).toBe(1);
+        expect(resources.length).toBe(2);
     });
 
     test('Should load resource as expected', () => {
         let resources = sut('../__tests__/engine/data/test.descriptor.json')
         let keepAlive = resources.find(item => item.name == 'keepAlive')
-        expect(keepAlive.path).toBe('/keepAlive');
+        expect(keepAlive.path).toBe('/keepalive');
         expect(keepAlive.verb).toBe('GET');
         expect(keepAlive.params.length).toBe(2);
         expect(keepAlive.headers.length).toBe(2);
