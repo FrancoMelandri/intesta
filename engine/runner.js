@@ -1,6 +1,7 @@
 
-const runner = (session) => {
 
+const runner = (session) => {
+    console.log(session)
 }
 
 module.exports = runner;

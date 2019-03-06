@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "eslint": "^5.15.1",
+    "jest": "^24.1.0"
+  },
   "devDependencies": {},
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./",
