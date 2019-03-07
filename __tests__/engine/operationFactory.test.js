@@ -1,8 +1,8 @@
 const sut = require('../../engine/operationFactory')
 
-jest.mock('request', () => ((options, callbac) => {
+jest.mock('request', () => ((options, callback) => {
     expect(options.method).toBe('GET')
-    callbac(null, null, '{ "status": "OK"}')
+    callback(null, null, '{"status": "OK"}')
 }))
 
 describe('Testing operation factory', () => {
@@ -29,8 +29,8 @@ describe('Testing operation factory', () => {
                 userAgent: "Chrome"
             }
         }
-        sut(operation, session, apis)(_ => { expect(false).toBe(true) }, 
-                                      _ => { expect(_.status).toBe("OK") })
+        sut(operation, session, apis)((op, res) => { expect(res.status).toBe("OK") },
+                                      _ => { expect(false).toBe(true) })
 
     });
 

@@ -1,10 +1,11 @@
-const factory = require('./operationFactory.js');
+const factory = require('./operationFactory.js'),
+  assertion = require('./assertions.js');
 
 const runner = (session, apis) => {
     session
         .operations
-        .map ( _ => factory(_, session, apis))
-        .forEach(_ => _( response =>{ 'DATA:' + console.log(response)}, 
+        .map (_ => factory(_, session, apis))
+        .forEach(_ => _( (operation, response) => assertion(operation, response), 
                          e => { 'ERROR:' + console.log(e)}));
 }
 
