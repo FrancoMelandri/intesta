@@ -23,7 +23,18 @@
 			"params": {
                 "name": "Franco",
                 "surname": "Melandri"
-			}
+			},
+			"headers": {
+                "header1": "value1",
+                "header2": "value2"
+			},
+			"assertions":[
+				{
+					"field": "{WhoAmI_1.message}",
+					"comparison": "eq",
+					"value": "Hello World"
+				}
+			]
         }
     ]
 }

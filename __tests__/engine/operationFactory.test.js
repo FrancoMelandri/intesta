@@ -7,7 +7,7 @@ jest.mock('request', () => ((options, callback) => {
 
 describe('Testing operation factory', () => {
 
-    test('Should load resources', () => {
+    test('Should create the right operation handler', () => {
 
         const operation = {
 			name: "keepAlive_1",
@@ -29,7 +29,7 @@ describe('Testing operation factory', () => {
                 userAgent: "Chrome"
             }
         }
-        sut(operation, session, apis)((op, res) => { expect(res.status).toBe("OK") },
+        sut(operation, session, apis)((_, res) => { expect(res.status).toBe("OK") },
                                       _ => { expect(false).toBe(true) })
 
     });

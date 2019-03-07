@@ -11,12 +11,15 @@ describe('Testing session loader', () => {
     test('Should initialize operations', () => {
         let session = sut('../__tests__/engine/data/test.session.json', resources)
         expect(session.operations.length).toBe(2);
-        expect(session.operations[0].name).toBe('keepAlive_1');
-        expect(session.operations[0].operation).toBe('keepAlive');
-        expect(session.operations[0].params['param1']).toBe('value1');
-        expect(session.operations[0].params['param2']).toBe('value2');
-        expect(session.operations[0].headers['header1']).toBe('value1');
-        expect(session.operations[0].headers['header2']).toBe('value2');
+        expect(session.operations[1].name).toBe('WhoAmI_1');
+        expect(session.operations[1].operation).toBe('whoAmI');
+        expect(session.operations[1].params['name']).toBe('Franco');
+        expect(session.operations[1].params['surname']).toBe('Melandri');
+        expect(session.operations[1].headers['header1']).toBe('value1');
+        expect(session.operations[1].headers['header2']).toBe('value2');
+        expect(session.operations[1].assertions[0].field).toBe('{WhoAmI_1.message}');
+        expect(session.operations[1].assertions[0].comparison).toBe('eq');
+        expect(session.operations[1].assertions[0].value).toBe('Hello World');
     });
 
     test('Should not initialize session if wrong api declaration', () => {
