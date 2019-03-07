@@ -14,4 +14,8 @@ describe('Testing context', () => {
         expect(sut.current()).toMatchObject(expected);
     });
 
+    test('Should get property value', () => {
+        sut.add ( "test", { status: { value: "OK" }})
+        expect(sut.getValue('test.status.value')).toBe('OK');
+    });
 });

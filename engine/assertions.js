@@ -1,5 +1,5 @@
 
-const assertion = (operation, response) => {
+const assertion = (context, operation, response) => {
     console.log('RESPONSE for ' + operation.name + ' is ' + JSON.stringify(response))
 }
 

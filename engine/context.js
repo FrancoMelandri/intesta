@@ -9,6 +9,12 @@ var context = () => {
             return this
         },
 
+        getValue: function(prop) {
+            return prop
+                    .split('.')
+                    .reduce((acc, item) => acc[item], _context)
+        },
+
         current: function () {
             return _context
         }
