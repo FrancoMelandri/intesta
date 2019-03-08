@@ -10,7 +10,12 @@ var context = () => {
         },
 
         getValue: function(prop) {
+            if (prop.indexOf('{{{') === -1 || prop.indexOf('}}}') === -1)
+                return prop
+
             return prop
+                    .replace('{{{', '')
+                    .replace('}}}', '')
                     .split('.')
                     .reduce((acc, item) => acc[item], _context)
         },

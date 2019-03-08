@@ -30,7 +30,7 @@
 			},
 			"assertions":[
 				{
-					"field": "WhoAmI_1.message",
+					"field": "{{{WhoAmI_1.message}}}",
 					"comparison": "eq",
 					"value": "Hello World"
 				}
