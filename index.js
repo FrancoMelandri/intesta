@@ -16,4 +16,3 @@ const onFail = (operation, assertion) => {
 }
 
 runner(session, apis, onSuccess, onFail)
-

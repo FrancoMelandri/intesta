@@ -3,11 +3,18 @@ const factory = require('./operationFactory.js'),
   context = require('./context.js')();
 
 const runner = (session, apis, onSuccess, onFail) => {
-    session
-        .operations
-        .map (_ => factory(_, session, apis))
-        .forEach(_ => _( (operation, response) => postprocess(context, operation, response, onSuccess, onFail), 
-                         e => { 'ERROR:' + console.log(e)}));
+
+  let success = (operation, response) => postprocess(context, operation, response, onSuccess, onFail)
+  let fail = e => { 'ERROR:' + console.log(e)}
+  
+  session
+      .operations
+      .map (_ => factory(context, _, session, apis))
+      .forEach(_ => {
+                      console.log('CALLING ' + JSON.stringify(context.current()))
+                      _(success, fail)
+                      console.log('CALLED ' + JSON.stringify(context.current()))
+                    });
 }
 
 module.exports = runner;

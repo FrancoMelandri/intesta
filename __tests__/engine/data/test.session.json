@@ -21,7 +21,7 @@
 			"name" : "WhoAmI_1",
 			"operation": "whoAmI",
 			"params": {
-                "name": "Franco",
+				"name": "Franco",
                 "surname": "Melandri"
 			},
 			"headers": {
