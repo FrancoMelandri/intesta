@@ -10,7 +10,7 @@ describe('Testing session loader', () => {
 
     test('Should initialize operations', () => {
         let session = sut('../__tests__/engine/data/test.session.json', resources)
-        expect(session.operations.length).toBe(2);
+        expect(session.operations.length).toBe(3);
         expect(session.operations[1].name).toBe('WhoAmI_1');
         expect(session.operations[1].operation).toBe('whoAmI');
         expect(session.operations[1].params['name']).toBe('{{{keepAlive_1.name}}}');

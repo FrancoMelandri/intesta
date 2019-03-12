@@ -12,6 +12,12 @@
             "path": "/whoami",
             "verb": "GET",
             "params": ["name", "surname"]
+        },
+        {
+            "name": "AreYou",
+            "path": "/areyou",
+            "verb": "POST",
+            "params": ["name", "surname"]
         }
     ]
 }

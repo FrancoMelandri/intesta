@@ -3,9 +3,7 @@ var context = () => {
 
     return {
         add: function (name, entry) {
-            const obj = {}
-            obj[name] = entry
-            _context = { ... obj}
+            _context[name] = entry
             return this
         },
 
@@ -13,11 +11,12 @@ var context = () => {
             if (prop.indexOf('{{{') === -1 || prop.indexOf('}}}') === -1)
                 return prop
 
-            return prop
+            let result = prop
                 .replace('{{{', '')
                 .replace('}}}', '')
                 .split('.')
                 .reduce((acc, item) => acc[item], _context)
+            return result
         },
 
         current: function () {

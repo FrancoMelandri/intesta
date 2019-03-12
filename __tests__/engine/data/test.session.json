@@ -1,7 +1,7 @@
 {
 	"settings":{
 		"environment" : "PROD",
-		"url": "http://d7qkj.mocklab.io",
+		"url": "http://q7vv6.mocklab.io",
 		"userAgent": "Chrome"
 	},
 	"operations" : [
@@ -33,6 +33,25 @@
 					"field": "{{{WhoAmI_1.message}}}",
 					"comparison": "eq",
 					"value": "Hello World"
+				}
+			]
+        },
+		{
+			"name" : "AreYou_1",
+			"operation": "AreYou",
+			"params": {
+				"name": "{{{keepAlive_1.name}}}",
+                "surname": "Melandri"
+			},
+			"headers": {
+                "header1": "value1",
+                "header2": "value2"
+			},
+			"assertions":[
+				{
+					"field": "{{{AreYou_1.message}}}",
+					"comparison": "eq",
+					"value": "Yes you are"
 				}
 			]
         }
