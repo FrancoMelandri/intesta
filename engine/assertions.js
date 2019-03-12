@@ -1,7 +1,7 @@
 
-const compares  = {
-  "eq": (left, right) => left === right,
-  "neq": (left, right) => left!== right
+const compares = {
+    'eq': (left, right) => left === right,
+    'neq': (left, right) => left !== right
 }
 
 const assertion = (context, operation, onSuccess, onFail) => {
@@ -13,7 +13,7 @@ const assertion = (context, operation, onSuccess, onFail) => {
 
     operation
         .assertions
-        .forEach(_ => {
+        .forEach (_ => {
             const left = context.getValue(_.field)
             const right = _.value
             compares[_.comparison](left, right) ?

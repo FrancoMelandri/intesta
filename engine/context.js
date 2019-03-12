@@ -6,7 +6,7 @@ var context = () => {
             console.log('add ' + name + ' ' + entry)
             const obj = {}
             obj[name] = entry
-            _context = {...obj}
+            _context = { ... obj}
             return this
         },
 
@@ -15,10 +15,10 @@ var context = () => {
                 return prop
 
             return prop
-                    .replace('{{{', '')
-                    .replace('}}}', '')
-                    .split('.')
-                    .reduce((acc, item) => acc[item], _context)
+                .replace('{{{', '')
+                .replace('}}}', '')
+                .split('.')
+                .reduce((acc, item) => acc[item], _context)
         },
 
         current: function () {

@@ -8,12 +8,17 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+          "experimentalObjectRestSpread": true
+        }
     },
     "rules": {
         "no-trailing-spaces": "error",
         "no-const-assign": "error",
         "no-multi-spaces": "error",
+        "no-console": "off",
         "no-unexpected-multiline": "error",
         "no-tabs": "error",
         "no-duplicate-case": "error",
@@ -22,9 +27,6 @@
         "camelcase": "error",
         "keyword-spacing": ["error", {
             "after": true
-        }],
-        "id-length": ["error", {
-            "min": 3
         }],
         "no-multiple-empty-lines": [
             "error",
@@ -52,10 +54,6 @@
         "quotes": [
             "error",
             "single"
-        ],
-        "semi": [
-            "error",
-            "always"
         ],
         "no-useless-return": "error",
         "no-unused-vars": [

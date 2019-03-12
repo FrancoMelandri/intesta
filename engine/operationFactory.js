@@ -10,8 +10,8 @@ const factory = (context, operation, session, apis) => {
             .forEach (_ => qs[_] = context.getValue(operation.params[_]))
         const options = {
             headers: {
-                    'User-Agent': session.settings.userAgent
-            },      
+                'User-Agent': session.settings.userAgent
+            },
             method : api.verb,
             qs: qs,
             url : session.settings.url + api.path,
