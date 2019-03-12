@@ -14,4 +14,4 @@ const runner = (session, apis, onSuccess, onFail) => {
     async.series(series, null)
 }
 
-module.exports = runner;
+module.exports = runner

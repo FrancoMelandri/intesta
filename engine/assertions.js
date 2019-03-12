@@ -22,4 +22,4 @@ const assertion = (context, operation, onSuccess, onFail) => {
         })
 }
 
-module.exports = assertion;
+module.exports = assertion

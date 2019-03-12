@@ -18,9 +18,9 @@ const factory = (context, operation, session, apis, success, fail) => {
                 callback(err, null)
                 return
             }
-            let json = resolver.getBody(body);
+            let json = resolver.getBody(body)
             success(operation, json)
-            callback(null, json);
+            callback(null, json)
         })
     }
 }

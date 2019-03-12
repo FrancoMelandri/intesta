@@ -5,4 +5,4 @@ const postprocess = (context, operation, response, onSuccess, onFail) => {
     assertion(context, operation, onSuccess, onFail)
 }
 
-module.exports = postprocess;
+module.exports = postprocess

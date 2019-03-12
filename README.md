@@ -1,6 +1,6 @@
 # intesta
 
-INTEgration teST Automation
+**INTE**gration te**ST** **A**utomation
 
 
 
@@ -14,7 +14,7 @@ Input parameters
 
 
 
-How to startt a session of test
+Command to start a test session:
 
 ```bash
 > node index --descriptor '../__tests__/engine/data/test.descriptor.json' --session '../__tests__/engine/data/test.session.json'

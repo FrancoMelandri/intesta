@@ -15,4 +15,4 @@ const sessionLoader = (sessionFile, apis) => {
     return session
 }
 
-module.exports = sessionLoader;
+module.exports = sessionLoader

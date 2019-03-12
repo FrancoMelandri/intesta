@@ -6,4 +6,4 @@ const apiLoader = (descriptorFile) => {
     return resources
 }
 
-module.exports = apiLoader;
+module.exports = apiLoader
