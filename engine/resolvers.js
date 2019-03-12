@@ -1,5 +1,5 @@
 const resolvers = {
-    'GET': {
+    GET: {
         options: (session, api, params) => {
             return {
                 headers: {
@@ -13,7 +13,7 @@ const resolvers = {
         },
         getBody: (body) => JSON.parse(body)
     },
-    'POST': {
+    POST: {
         options: (session, api, params) => {
             return {
                 headers: {

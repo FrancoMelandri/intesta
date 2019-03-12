@@ -1,8 +1,10 @@
 
 const apiLoader = (descriptorFile) => {
-    let resources = [];
-    let descriptor = require(descriptorFile)
-    descriptor.apis.map (api => resources.push (api))
+    const resources = [];
+    const descriptor = require(descriptorFile)
+    descriptor
+        .apis
+        .map (_ => resources.push(_))
     return resources
 }
 

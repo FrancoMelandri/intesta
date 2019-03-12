@@ -5,9 +5,9 @@ const factory = require('./operationFactory.js'),
 
 const runner = (session, apis, onSuccess, onFail) => {
 
-    let success = (operation, response) => postprocess(context, operation, response, onSuccess, onFail)
+    const success = (operation, response) => postprocess(context, operation, response, onSuccess, onFail)
 
-    let series = session
+    const series = session
         .operations
         .map (_ => factory(context, _, session, apis, success, onFail))
 

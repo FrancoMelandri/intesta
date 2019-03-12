@@ -12,13 +12,13 @@ const factory = (context, operation, session, apis, success, fail) => {
 
         let resolver = resolvers[api.verb]
 
-        request(resolver.options(session, api, qs), (err, res, body) => {
+        request(resolver.options(session, api, qs), (err, _, body) => {
             if (err) {
                 fail(err)
                 callback(err, null)
                 return
             }
-            let json = resolver.getBody(body)
+            const json = resolver.getBody(body)
             success(operation, json)
             callback(null, json)
         })
