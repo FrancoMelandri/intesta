@@ -1,8 +1,8 @@
 const request = require('request');
 
-const factory = (context, operation, session, apis) => {
+const factory = (context, operation, session, apis, success, fail) => {
 
-    return (onSucces, onFail) => {
+    return (callback) => {
         const api = apis.find (_ => _.name == operation.operation)
         const qs = {}
         api
@@ -18,11 +18,13 @@ const factory = (context, operation, session, apis) => {
         };
         request(options, (err, res, body) => {
             if (err) {
-                onFail(err)
+                fail(err)
+                callback(err, null)
                 return
             }
             let json = JSON.parse(body);
-            onSucces(operation, json);
+            success(operation, json)
+            callback(null, json);
         })
     }
 }

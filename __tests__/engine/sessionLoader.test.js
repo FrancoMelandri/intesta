@@ -13,7 +13,7 @@ describe('Testing session loader', () => {
         expect(session.operations.length).toBe(2);
         expect(session.operations[1].name).toBe('WhoAmI_1');
         expect(session.operations[1].operation).toBe('whoAmI');
-        expect(session.operations[1].params['name']).toBe('Franco');
+        expect(session.operations[1].params['name']).toBe('{{{keepAlive_1.name}}}');
         expect(session.operations[1].params['surname']).toBe('Melandri');
         expect(session.operations[1].headers['header1']).toBe('value1');
         expect(session.operations[1].headers['header2']).toBe('value2');

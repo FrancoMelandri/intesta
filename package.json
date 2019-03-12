@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "async": "^2.6.2",
     "eslint": "^5.15.1",
     "jest": "^24.1.0"
   },

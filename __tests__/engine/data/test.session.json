@@ -21,7 +21,7 @@
 			"name" : "WhoAmI_1",
 			"operation": "whoAmI",
 			"params": {
-				"name": "Franco",
+				"name": "{{{keepAlive_1.name}}}",
                 "surname": "Melandri"
 			},
 			"headers": {

@@ -3,7 +3,6 @@ var context = () => {
 
     return {
         add: function (name, entry) {
-            console.log('add ' + name + ' ' + entry)
             const obj = {}
             obj[name] = entry
             _context = { ... obj}
