@@ -7,7 +7,7 @@ const args = minimist(process.argv.slice(2));
 const apis = apiLoader(args.descriptor)
 const session = sessionLoader(args.session, apis)
 
-const onSuccess = operation => { 
+const onSuccess = operation => {
     console.log (operation.name + ' OK')
 }
 
