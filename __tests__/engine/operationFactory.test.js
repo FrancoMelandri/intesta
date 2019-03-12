@@ -14,28 +14,28 @@ describe('Testing operation factory', () => {
     test('Should create the right operation handler', () => {
 
         const operation = {
-			name: "keepAlive_1",
-			operation: "keepAlive",
-			params: {
-                param1: "{{{Test_1.value}}}",
-                param2: "value2"
-			}
+            name: 'keepAlive_1',
+            operation: 'keepAlive',
+            params: {
+                param1: '{{{Test_1.value}}}',
+                param2: 'value2'
+            }
         }
         const apis = [{
-            name: "keepAlive",
-            path: "/keepalive",
-            verb: "GET",
-            params: ["param1", "param2"]
+            name: 'keepAlive',
+            path: '/keepalive',
+            verb: 'GET',
+            params: ['param1', 'param2']
         }]
         const session = {
             settings: {
-                url: "URl",
-                userAgent: "Chrome"
+                url: 'URl',
+                userAgent: 'Chrome'
             }
         }
-        context.add("Test_1", {value: "test"})
+        context.add('Test_1', {value: 'test'})
         sut(context, operation, session, apis, 
-            (_, res) => { expect(res.status).toBe("OK") },
+            (_, res) => { expect(res.status).toBe('OK') },
             _ => { expect(false).toBe(true) })(() => {})
 
     });
