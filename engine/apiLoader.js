@@ -1,11 +1,9 @@
 
 const apiLoader = (descriptorFile) => {
-    const resources = [];
     const descriptor = require(descriptorFile)
-    descriptor
+    return descriptor
         .apis
-        .map (_ => resources.push(_))
-    return resources
+        .map (_ => _)
 }
 
 module.exports = apiLoader
