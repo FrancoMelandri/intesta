@@ -4,6 +4,7 @@ const request = require('request'),
 const factory = (context, operation, session, apis, success, fail) => {
     return (callback) => {
         const api = apis.find (_ => _.name == operation.operation)
+
         const qs = {}
         api
             .params

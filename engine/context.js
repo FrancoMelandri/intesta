@@ -11,12 +11,11 @@ var context = () => {
             if (prop.indexOf('{{{') === -1 || prop.indexOf('}}}') === -1)
                 return prop
 
-            let result = prop
+            return prop
                 .replace('{{{', '')
                 .replace('}}}', '')
                 .split('.')
                 .reduce((acc, item) => acc[item], _context)
-            return result
         },
 
         current: function () {

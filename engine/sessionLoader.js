@@ -1,6 +1,7 @@
 const sessionLoader = (sessionFile, apis) => {
     let session = {}
     let descriptor = require(sessionFile)
+
     session.settings = { ... descriptor.settings }
     session.operations = descriptor
         .operations
