@@ -19,13 +19,17 @@ describe('Testing operation factory', () => {
             params: {
                 param1: '{{{Test_1.value}}}',
                 param2: 'value2'
+            },
+            headers: {
+                'User-Agent': 'Chrome'
             }
         }
         const apis = [{
             name: 'keepAlive',
             path: '/keepalive',
             verb: 'GET',
-            params: ['param1', 'param2']
+            params: ['param1', 'param2'],
+            headers: ['User-Agent']
         }]
         const session = {
             settings: {
@@ -34,6 +38,7 @@ describe('Testing operation factory', () => {
             }
         }
         context.add('Test_1', {value: 'test'})
+        context.add('settings', session.settings)
         sut(context, operation, session, apis, 
             (_, res) => { expect(res.status).toBe('OK') },
             _ => { expect(false).toBe(true) })(() => {})

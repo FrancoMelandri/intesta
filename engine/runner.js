@@ -15,6 +15,8 @@ const runner = (session, apis, onSuccess, onFail) => {
         callback(err, null)
     }
 
+    context.add('settings', session.settings)
+
     const series = session
         .operations
         .map (_ => factory(context, _, session, apis, success, fail))

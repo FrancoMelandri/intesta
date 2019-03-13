@@ -5,14 +5,10 @@ const factory = (context, operation, session, apis, success, fail) => {
     return (callback) => {
         const api = apis.find (_ => _.name == operation.operation)
 
-        const qs = {}
-        api
-            .params
-            .forEach (_ => qs[_] = context.getValue(operation.params[_]))
+        const resolver = resolvers[api.verb]
+        const options = resolver.options(context, session, api, operation)
 
-        let resolver = resolvers[api.verb]
-
-        request(resolver.options(session, api, qs), (err, _, body) => {
+        request(options, (err, _, body) => {
             if (err) {
                 fail(err, callback)
                 return

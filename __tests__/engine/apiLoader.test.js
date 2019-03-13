@@ -16,7 +16,7 @@ describe('Testing API loader', () => {
         expect(keepAlive.headers.length).toBe(2);
         expect(keepAlive.params[0]).toBe('param1');
         expect(keepAlive.params[1]).toBe('param2');
-        expect(keepAlive.headers[0]).toBe('header1');
-        expect(keepAlive.headers[1]).toBe('header2');
+        expect(keepAlive.headers[0]).toBe('User-Agent');
+        expect(keepAlive.headers[1]).toBe('Accept');
     });
 });

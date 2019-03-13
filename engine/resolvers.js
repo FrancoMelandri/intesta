@@ -1,12 +1,25 @@
+const fillHeaders = (context, api, operation) => {
+    const headers = {}
+    api
+        .headers
+        .forEach (_ => headers[_] = context.getValue(operation.headers[_]))
+    return headers
+}
+
+const fillParams = (context, api, operation) => {
+    const params = {}
+    api
+        .params
+        .forEach (_ => params[_] = context.getValue(operation.params[_]))
+    return params
+}
+
 const resolvers = {
     GET: {
-        options: (session, api, params) => {
+        options: (context, session, api, operation) => {
             return {
-                headers: {
-                    'User-Agent': session.settings.userAgent,
-                    'Accept': 'application/json'
-                },
-                qs: params,
+                headers: fillHeaders(context, api, operation),
+                qs: fillParams(context, api, operation),
                 method : api.verb,
                 url : session.settings.url + api.path,
             }
@@ -14,15 +27,11 @@ const resolvers = {
         getBody: (body) => JSON.parse(body)
     },
     POST: {
-        options: (session, api, params) => {
+        options: (context, session, api, operation) => {
             return {
-                headers: {
-                    'User-Agent': session.settings.userAgent,
-                    'content-type': 'application/json',
-                    'Accept': 'application/json'
-                },
+                headers: fillHeaders(context, api, operation),
                 json: true,
-                body: params,
+                body: fillParams(context, api, operation),
                 method : api.verb,
                 url : session.settings.url + api.path,
             }

@@ -5,19 +5,21 @@
             "path": "/keepalive",
             "verb": "GET",
             "params": ["param1", "param2"],
-            "headers": ["header1", "header2"]
+            "headers": ["User-Agent", "Accept"]
         },
         {
             "name": "whoAmI",
             "path": "/whoami",
             "verb": "GET",
-            "params": ["name", "surname"]
+            "params": ["name", "surname"],
+            "headers": ["User-Agent", "Accept", "X-Auth"]
         },
         {
             "name": "AreYou",
             "path": "/areyou",
             "verb": "POST",
-            "params": ["name", "surname"]
+            "params": ["name", "surname"],
+            "headers": ["User-Agent", "Content-Type", "Accept", "X-Auth"]
         }
     ]
 }
