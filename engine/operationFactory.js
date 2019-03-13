@@ -14,13 +14,11 @@ const factory = (context, operation, session, apis, success, fail) => {
 
         request(resolver.options(session, api, qs), (err, _, body) => {
             if (err) {
-                fail(err)
-                callback(err, null)
+                fail(err, callback)
                 return
             }
             const json = resolver.getBody(body)
-            success(operation, json)
-            callback(null, json)
+            success(operation, json, callback)
         })
     }
 }
