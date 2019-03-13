@@ -27,9 +27,10 @@ describe('Testing resolvers', () => {
             path: '/api',
             verb: 'GET',
             params: ['param1', 'param2'],
-            headers: ["header1", "header2"]
+            headers: ['header1', 'header2']
         }
-        context.add('Test', {header: 'HEADER', param: 'PARAM'})
+        context.add('Test', {header: 'HEADER',
+            param: 'PARAM'})
         const options = sut['GET'].options(context, session, api, operation)
         const expected = {
             headers: {
@@ -70,9 +71,10 @@ describe('Testing resolvers', () => {
             path: '/api',
             verb: 'POST',
             params: ['param1', 'param2'],
-            headers: ["header1", "header2"]
+            headers: ['header1', 'header2']
         }
-        context.add('Test', {header: 'HEADER', param: 'PARAM'})
+        context.add('Test', {header: 'HEADER',
+            param: 'PARAM'})
         const options = sut['POST'].options(context, session, api, operation)
         const expected = {
             headers: {

@@ -1,11 +1,14 @@
 const runner = require('./engine/runner'),
     apiLoader = require('./engine/apiLoader'),
     sessionLoader = require('./engine/sessionLoader'),
-    minimist = require('minimist');
+    minimist = require('minimist'),
+    path = require('path')
 
-const args = minimist(process.argv.slice(2));
-const apis = apiLoader(args.descriptor)
-const session = sessionLoader(args.session, apis)
+const args = minimist(process.argv.slice(2))
+const descriptorFile = path.join(__dirname, args.descriptor)
+const sessionFile = path.join(__dirname, args.session)
+const apis = apiLoader(descriptorFile)
+const session = sessionLoader(sessionFile, apis)
 
 const onSuccess = operation => {
     console.log (operation.name + ' OK')
