@@ -1,6 +1,6 @@
 {
   "name": "@francomelandri/intesta",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "**INTE**gration te**ST** **A**utomation",
   "main": "index.js",
   "dependencies": {
