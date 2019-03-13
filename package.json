@@ -1,7 +1,7 @@
 {
-  "name": "intesta",
+  "name": "@francomelandri/intesta",
   "version": "1.0.0",
-  "description": "",
+  "description": "**INTE**gration te**ST** **A**utomation",
   "main": "index.js",
   "dependencies": {
     "async": "^2.6.2",
@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "lint": "./node_modules/.bin/eslint ./",
+    "lint": "eslint ./",
     "test": "jest ./__tests__"
   },
   "repository": {
@@ -19,5 +19,8 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://github.com/FrancoMelandri/intesta#readme"
+  "homepage": "https://github.com/FrancoMelandri/intesta#readme",
+  "bugs": {
+    "url": "https://github.com/FrancoMelandri/intesta/issues"
+  }
 }
