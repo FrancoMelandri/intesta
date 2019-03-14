@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/FrancoMelandri/intesta.svg?branch=master)](https://travis-ci.org/FrancoMelandri/intesta)
 
+[![NPM version](https://img.shields.io/npm/v/@francomelandri/intesta.svg?style=flat)](https://www.npmjs.com/package/@francomelandri/intesta)
+
 
 Input parameters
 
