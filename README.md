@@ -1,6 +1,6 @@
 # intesta
 
-**INTE**gration te**ST** **A**utomation
+**INTE**gration te**ST** **A**api
 
 
 
