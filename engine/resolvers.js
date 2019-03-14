@@ -12,7 +12,7 @@ const optionsBuilder = (context, session, api, operation) => {
             .forEach (_ => params[_] = context.getValue(values[_]))
         return params
     }
-    
+
     return {
         qs: function () {
             _result.qs = fill(_context, _api.params, _operation.params)
@@ -36,21 +36,15 @@ const optionsBuilder = (context, session, api, operation) => {
 
 const resolvers = {
     GET: {
-        options: (context, session, api, operation) => optionsBuilder(context, session, api, operation)
-                                                            .qs()
-                                                            .build(),
+        options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).qs().build(),
         getBody: (body) => JSON.parse(body)
     },
     POST: {
-        options: (context, session, api, operation) => optionsBuilder(context, session, api, operation)
-                                                            .body()
-                                                            .build(),
+        options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).body().build(),
         getBody: (body) => body
     },
     PUT: {
-        options: (context, session, api, operation) => optionsBuilder(context, session, api, operation)
-                                                            .body()
-                                                            .build(),
+        options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).body().build(),
         getBody: (body) => body
     }
 }
