@@ -57,6 +57,27 @@
 					"value": "Yes you are"
 				}
 			]
+        },
+		{
+			"name" : "AreYou_1",
+			"operation": "AreYou",
+			"params": {
+				"name": "{{{keepAlive_1.name}}}",
+                "surname": "Melandri"
+			},
+			"headers": {
+                "User-Agent": "{{{settings.userAgent}}}",
+				"Content-Type": "application/json",
+				"Accept": "application/json",
+				"X-Auth": "{{{keepAlive_1.Auth}}}"
+			},
+			"assertions":[
+				{
+					"field": "{{{AreYou_1.message}}}",
+					"comparison": "eq",
+					"value": "Yes you are"
+				}
+			]
         }
     ]
 }
