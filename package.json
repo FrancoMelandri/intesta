@@ -17,10 +17,17 @@
     "type": "git",
     "url": "git+https://github.com/FrancoMelandri/intesta.git"
   },
-  "author": "",
   "license": "ISC",
   "homepage": "https://github.com/FrancoMelandri/intesta#readme",
   "bugs": {
     "url": "https://github.com/FrancoMelandri/intesta/issues"
-  }
+  },
+  "keywords": [
+    "integration test",
+    "automation test",
+    "json",
+    "open",
+    "api"
+  ],
+  "author": "Franco Melandri <franco.melandri@gmail.com>"
 }
