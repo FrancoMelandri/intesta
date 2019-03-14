@@ -1,25 +1,17 @@
-const fillHeaders = (context, api, operation) => {
-    const headers = {}
-    api
-        .headers
-        .forEach (_ => headers[_] = context.getValue(operation.headers[_]))
-    return headers
-}
 
-const fillParams = (context, api, operation) => {
-    const params = {}
-    api
-        .params
-        .forEach (_ => params[_] = context.getValue(operation.params[_]))
-    return params
+const fill = (context, descriptors, values) => {
+    const headers = {}
+    descriptors
+        .forEach (_ => headers[_] = context.getValue(values[_]))
+    return headers
 }
 
 const resolvers = {
     GET: {
         options: (context, session, api, operation) => {
             return {
-                headers: fillHeaders(context, api, operation),
-                qs: fillParams(context, api, operation),
+                headers: fill(context, api.headers, operation.headers),
+                qs: fill(context, api.params, operation.params),
                 method : api.verb,
                 url : session.settings.url + api.path,
             }
@@ -29,9 +21,9 @@ const resolvers = {
     POST: {
         options: (context, session, api, operation) => {
             return {
-                headers: fillHeaders(context, api, operation),
+                headers: fill(context, api.headers, operation.headers),
                 json: true,
-                body: fillParams(context, api, operation),
+                body: fill(context, api.params, operation.params),
                 method : api.verb,
                 url : session.settings.url + api.path,
             }
