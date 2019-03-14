@@ -2,6 +2,7 @@
 
 **INTE**gration te**ST** **A**pi
 
+[![Build Status](https://travis-ci.org/FrancoMelandri/intesta.svg?branch=master)](https://travis-ci.org/FrancoMelandri/intesta)
 
 
 Input parameters
