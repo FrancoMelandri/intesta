@@ -2,18 +2,17 @@
 
 **INTE**gration te**ST** **A**pi
 
-[![Build Status](https://travis-ci.org/FrancoMelandri/intesta.svg?branch=master)](https://travis-ci.org/FrancoMelandri/intesta)
-
-[![NPM version](https://img.shields.io/npm/v/@francomelandri/intesta.svg?style=flat)](https://www.npmjs.com/package/@francomelandri/intesta)
+[![Build Status](https://travis-ci.org/FrancoMelandri/intesta.svg?branch=master)](https://travis-ci.org/FrancoMelandri/intesta) [![NPM version](https://img.shields.io/npm/v/@francomelandri/intesta.svg?style=flat)](https://www.npmjs.com/package/@francomelandri/intesta) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 Input parameters
 
 | Parameter        | Description                                 |
 | :--------------- | :------------------------------------------ |
-| **--descriptor** | file descriptor of the api resources schema |
-| **--session**    | file containing the session of the test     |
-
+| **descriptorFile** | file descriptor of the api resources schema |
+| **sessionFile**    | file containing the session of the test     |
+| **onSuccess** | callback function in case of assertions are right |
+| **onFail** | callback function in case of failed assertion |
 
 
 
@@ -137,3 +136,4 @@ This file contains the description of the flow for the test **intesta** should p
     ]
 }
 ```
+

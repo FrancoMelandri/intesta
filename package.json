@@ -1,6 +1,6 @@
 {
   "name": "@francomelandri/intesta",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "INTEgration tetST Api",
   "main": "index.js",
   "dependencies": {
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/FrancoMelandri/intesta.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/FrancoMelandri/intesta#readme",
   "bugs": {
     "url": "https://github.com/FrancoMelandri/intesta/issues"
