@@ -1,11 +1,14 @@
 # intesta
 
+------
+
+
+
 **INTE**gration te**ST** **A**pi
 
 [![Build Status](https://travis-ci.org/FrancoMelandri/intesta.svg?branch=master)](https://travis-ci.org/FrancoMelandri/intesta) [![NPM version](https://img.shields.io/npm/v/@francomelandri/intesta.svg?style=flat)](https://www.npmjs.com/package/@francomelandri/intesta) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
-Input parameters
+### Input parameters
 
 | Parameter        | Description                                 |
 | :--------------- | :------------------------------------------ |
@@ -16,7 +19,15 @@ Input parameters
 
 
 
-Example about using intesta:
+
+
+---
+
+
+
+### How to
+
+Example about using **intesta**
 
 
 ```javascript
@@ -67,6 +78,17 @@ Example of API descriptor file. This file define the schema of the resource API 
     ]
 }
 ```
+
+
+
+| field   | description                                                  |
+| ------- | ------------------------------------------------------------ |
+| name    | a unique name of the api resource used by session operation  |
+| path    | the relative path of the resource                            |
+| verb    | the HTTP verb for the resource; at the moment the allowable verbs are: GET, POST, PUT, DELETE in order to let you bale to test a CRUD api |
+| params  | list of possible parameters for the resource; query string or body |
+| headers | list of headers needed to use the resource                   |
+
 
 
 Example of API session file. 
@@ -137,3 +159,41 @@ This file contains the description of the flow for the test **intesta** should p
 }
 ```
 
+
+
+| field      | description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| name       | a unique name for the operation. It can be used by other operation to retrieve field value using the mustache notation |
+| operation  | link to api resource description to validate the operation itself |
+| params     | list of parameters values; you can use mustache notation for dynamic values |
+| headers    | list of headers values; you can use mustache notation for dynamic values |
+| assertions | list of assertions description in order to check if the api resource response is valid or not. |
+|            | field: the response field value to check                     |
+|            | comparison: could be **eq** or **neq**                       |
+|            | value: the expected value                                    |
+
+
+
+### Mustache
+
+You can refer to operation output in each session field value using the mustache annotation
+
+In the previous session example you can see 
+
+```json
+...
+		"assertions":[
+				{
+					"field": "{{{AreYou_1.message}}}",
+					"comparison": "eq",
+					"value": "Yes you are"
+				}
+			]
+...
+```
+
+
+
+that means the field is the evaluation of the response field message of the AreYou_1 operation.
+
+In this way you can link output values of some operations to input value of another; it is very useful to concatenate a list of operations creating a flow.

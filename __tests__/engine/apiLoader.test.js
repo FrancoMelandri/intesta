@@ -4,7 +4,7 @@ describe('Testing API loader', () => {
 
     test('Should load resources', () => {
         let resources = sut('../__tests__/engine/data/test.descriptor.json')
-        expect(resources.length).toBe(4);
+        expect(resources.length).toBe(5);
     });
 
     test('Should load resource as expected', () => {

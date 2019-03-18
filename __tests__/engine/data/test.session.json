@@ -78,6 +78,26 @@
 					"value": "Yes you are"
 				}
 			]
+        },
+		{
+			"name" : "Die_1",
+			"operation": "Die",
+			"params": {
+				"name": "{{{keepAlive_1.name}}}"
+			},
+			"headers": {
+                "User-Agent": "{{{settings.userAgent}}}",
+				"Content-Type": "application/json",
+				"Accept": "application/json",
+				"X-Auth": "{{{keepAlive_1.Auth}}}"
+			},
+			"assertions":[
+				{
+					"field": "{{{AreYou_1.message}}}",
+					"comparison": "eq",
+					"value": "You cannot die"
+				}
+			]
         }
     ]
 }

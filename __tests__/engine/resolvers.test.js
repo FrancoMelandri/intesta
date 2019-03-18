@@ -119,7 +119,7 @@ describe('Testing resolvers', () => {
         }
         context.add('Test', {header: 'HEADER',
             param: 'PARAM'})
-        const options = sut['POST'].options(context, session, api, operation)
+        const options = sut['PUT'].options(context, session, api, operation)
         const expected = {
             headers: {
                 header1: 'HEADER',
@@ -135,4 +135,47 @@ describe('Testing resolvers', () => {
         expect(options).toMatchObject(expected)
     });
 
+    test('Should create options for DELETE verb', () => {
+
+        const operation = {
+            name: 'operations',
+            operation: 'api',
+            params: {
+                param1: '{{{Test.param}}}',
+                param2: 'value2'
+            },
+            headers: {
+                header1: '{{{Test.header}}}',
+                header2: 'value2'
+            }
+        }
+        const session = {
+            settings: {
+                url: 'https://example.com'
+            }
+        }
+        const api = {
+            name: 'api',
+            path: '/api',
+            verb: 'POST',
+            params: ['param1', 'param2'],
+            headers: ['header1', 'header2']
+        }
+        context.add('Test', {header: 'HEADER',
+            param: 'PARAM'})
+        const options = sut['DELETE'].options(context, session, api, operation)
+        const expected = {
+            headers: {
+                header1: 'HEADER',
+                header2: 'value2'
+            },
+            body: {
+                param1: 'PARAM',
+                param2: 'value2'
+            },
+            method: 'POST',
+            url: 'https://example.com/api'
+        }
+        expect(options).toMatchObject(expected)
+    });
 });

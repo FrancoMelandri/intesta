@@ -27,6 +27,13 @@
             "verb": "PUT",
             "params": ["name", "surname"],
             "headers": ["User-Agent", "Content-Type", "Accept", "X-Auth"]
+        },
+        {
+            "name": "Die",
+            "path": "/die",
+            "verb": "DELETE",
+            "params": ["name"],
+            "headers": ["User-Agent", "Content-Type", "Accept", "X-Auth"]
         }
     ]
 }

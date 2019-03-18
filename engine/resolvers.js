@@ -46,6 +46,10 @@ const resolvers = {
     PUT: {
         options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).body().build(),
         getBody: (body) => body
+    },
+    DELETE: {
+        options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).body().build(),
+        getBody: (body) => body
     }
 }
 
