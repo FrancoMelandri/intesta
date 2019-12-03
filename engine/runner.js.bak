@@ -4,8 +4,7 @@ const factory = require('./operationFactory.js'),
     async = require('async');
 
 const runner = (session, apis, onSuccess, onFail) => {
-    const SETTINGS = 'settings'
-    
+
     const success = (operation, response, callback) => {
         postprocess(context, operation, response, onSuccess, onFail)
         callback(null, callback)
@@ -16,7 +15,7 @@ const runner = (session, apis, onSuccess, onFail) => {
         callback(err, null)
     }
 
-    context.add(SETTINGS, session.settings)
+    context.add('settings', session.settings)
 
     const series = session
         .operations
