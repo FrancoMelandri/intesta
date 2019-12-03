@@ -8,7 +8,7 @@ var context = () => {
             return this
         },
 
-        getValue: function(prop) {
+        getValue: function (prop) {
             if (prop.indexOf('{{{') === -1 || prop.indexOf('}}}') === -1)
                 return prop
 

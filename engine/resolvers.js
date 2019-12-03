@@ -13,15 +13,25 @@ const optionsBuilder = (context, session, api, operation) => {
         return params
     }
 
+    const fillForm = (context, descriptors, values) => 
+        descriptors
+            .map (_ => _ + '=' + context.getValue(values[_]))
+            .join("&")
+
+    const fillBody = _operation['Content-Type'] == 'application/x-www-form-urlencoded' ? 
+            fill :
+            fillForm
+
     return {
         qs: function () {
-            _result.qs = fill(_context, _api.params, _operation.params)
+            _result.qs = fill(_context, _api.params.query, _operation.params.query)
             return this
         },
 
         body: function () {
             _result.json = true
-            _result.body = fill(_context, _api.params, _operation.params)
+            _result.qs = fill(_context, _api.params.query, _operation.params.query)
+            _result.body = fillBody(_context, _api.params.body, _operation.params.body)
             return this
         },
 
@@ -37,19 +47,19 @@ const optionsBuilder = (context, session, api, operation) => {
 const resolvers = {
     GET: {
         options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).qs().build(),
-        getBody: (body) => JSON.parse(body)
+        getBody: body => JSON.parse(body)
     },
     POST: {
         options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).body().build(),
-        getBody: (body) => body
+        getBody: body => body
     },
     PUT: {
         options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).body().build(),
-        getBody: (body) => body
+        getBody: body => body
     },
     DELETE: {
         options: (context, session, api, operation) => optionsBuilder(context, session, api, operation).body().build(),
-        getBody: (body) => body
+        getBody: body => body
     }
 }
 
