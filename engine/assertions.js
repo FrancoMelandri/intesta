@@ -18,7 +18,7 @@ const assertion = (context, operation, onSuccess, onFail) => {
             const right = _.value
             compares[_.comparison](left, right) ?
                 onSuccess(operation, left) :
-                onFail (operation, _)
+                onFail (operation, _, left)
         })
 }
 
