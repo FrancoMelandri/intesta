@@ -4,8 +4,8 @@ const factory = require('./operationFactory.js'),
     constants = require('./constants.js'),
     async = require('async');
 
-const runner = (session, apis, onSuccess, onFail, onLog) => {    
-    
+const runner = (session, apis, onSuccess, onFail, onLog) => {
+
     const success = (operation, response, callback) => {
         postprocess(context, operation, response, onSuccess, onFail)
         callback(null, callback)
