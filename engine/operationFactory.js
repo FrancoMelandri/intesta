@@ -6,7 +6,7 @@ const factory = (context, operation, session, apis, success, fail, log) => {
     return (callback) => {
         log(constants.STEP, operation.operation)
 
-        const api = apis.find (_ => _.name == operation.operation)        
+        const api = apis.find (_ => _.name == operation.operation)
         const resolver = resolvers[api.verb]
         const options = resolver.options(context, session, api, operation)
 

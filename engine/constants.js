@@ -1,5 +1,5 @@
 module.exports = {
     SETTINGS: 'settings',
-    STEP: "step",
-    RESPONSE: "response"
+    STEP: 'step',
+    RESPONSE: 'response'
 }
