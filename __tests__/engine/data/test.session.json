@@ -1,16 +1,21 @@
 {
 	"settings":{
 		"environment" : "PROD",
-		"url": "http://q7vv6.mocklab.io",
+		"urls": {
+			"test": "http://q7vv6.mocklab.io"
+		},
 		"userAgent": "Chrome"
 	},
 	"operations" : [
 		{
 			"name" : "keepAlive_1",
 			"operation": "keepAlive",
+			"url": "test",
 			"params": {
-                "param1": "value1",
-                "param2": "value2"
+				"query": {
+	                "param1": "value1",
+	                "param2": "value2"
+				}
 			},
 			"headers": {
 				"User-Agent": "{{{settings.userAgent}}}",
@@ -20,9 +25,12 @@
 		{
 			"name" : "WhoAmI_1",
 			"operation": "whoAmI",
+			"url": "test",
 			"params": {
-				"name": "{{{keepAlive_1.name}}}",
-                "surname": "Melandri"
+				"query": {
+					"name": "{{{keepAlive_1.name}}}",
+					"surname": "Melandri"
+				}
 			},
 			"headers": {
                 "User-Agent": "{{{settings.userAgent}}}",
@@ -40,9 +48,12 @@
 		{
 			"name" : "AreYou_1",
 			"operation": "AreYou",
+			"url": "test",
 			"params": {
-				"name": "{{{keepAlive_1.name}}}",
-                "surname": "Melandri"
+				"body": {
+					"name": "{{{keepAlive_1.name}}}",
+					"surname": "Melandri"
+				}
 			},
 			"headers": {
                 "User-Agent": "{{{settings.userAgent}}}",
@@ -61,9 +72,12 @@
 		{
 			"name" : "AreYou_1",
 			"operation": "AreYou",
+			"url": "test",
 			"params": {
-				"name": "{{{keepAlive_1.name}}}",
-                "surname": "Melandri"
+				"body": {
+					"name": "{{{keepAlive_1.name}}}",
+					"surname": "Melandri"
+				}
 			},
 			"headers": {
                 "User-Agent": "{{{settings.userAgent}}}",
@@ -82,8 +96,11 @@
 		{
 			"name" : "Die_1",
 			"operation": "Die",
+			"url": "test",
 			"params": {
-				"name": "{{{keepAlive_1.name}}}"
+				"body": {
+					"name": "{{{keepAlive_1.name}}}"
+				}
 			},
 			"headers": {
                 "User-Agent": "{{{settings.userAgent}}}",
