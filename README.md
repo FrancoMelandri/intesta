@@ -110,78 +110,78 @@ Example of API session file.
 This file contains the description of the flow for the test **intesta** should perform
 
 ```json
-{
-	"settings":{
-		"environment" : "PROD",
-		"urls": {
-      "test": "http://q7vv6.mocklab.io"
-    },
-		"userAgent": "Chrome"
-	},
-	"operations" : [
-		{
-			"name" : "keepAlive_1",
-			"operation": "keepAlive",
-      "url": "test",
-			"params": {
-        "query": {
-          "param1": "value1",
-          "param2": "value2"
-        }
-			},
-			"headers": {
-				"User-Agent": "{{{settings.userAgent}}}",
-				"Accept": "application/json"
-			}
-    },
-		{
-			"name" : "WhoAmI_1",
-			"operation": "whoAmI",
-      "url": "test",
-			"params": {
-        "query": {
-					"name": "{{{keepAlive_1.name}}}",
-          "surname": "Melandri"
-        }
-			},
-			"headers": {
-				"User-Agent": "{{{settings.userAgent}}}",
-				"Accept": "application/json",
-				"X-Auth": "{{{keepAlive_1.Auth}}}"
-			},
-			"assertions": [
-				{
-					"field": "{{{WhoAmI_1.message}}}",
-					"comparison": "eq",
-					"value": "Hello World"
-				}
-			]
-		},
-		{
-			"name" : "AreYou_1",
-			"operation": "AreYou",
-      "url": "test",
-			"params": {
-        "body": {
-  				"name": "{{{keepAlive_1.name}}}",
-          "surname": "Melandri"          
-        }
-			},
-			"headers": {
-        "User-Agent": "{{{settings.userAgent}}}",
-				"Content-Type": "application/json",
-				"Accept": "application/json",
-				"X-Auth": "{{{keepAlive_1.Auth}}}"
-			},
-			"assertions": [
-				{
-					"field": "{{{AreYou_1.message}}}",
-					"comparison": "eq",
-					"value": "Yes you are"
-				}
-			]
-    }
-  ]
+{ 
+   "settings":{ 
+      "environment":"PROD",
+      "urls":{ 
+         "test":"http://q7vv6.mocklab.io"
+      },
+      "userAgent":"Chrome"
+   },
+   "operations":[ 
+      { 
+         "name":"keepAlive_1",
+         "operation":"keepAlive",
+         "url":"test",
+         "params":{ 
+            "query":{ 
+               "param1":"value1",
+               "param2":"value2"
+            }
+         },
+         "headers":{ 
+            "User-Agent":"{{{settings.userAgent}}}",
+            "Accept":"application/json"
+         }
+      },
+      { 
+         "name":"WhoAmI_1",
+         "operation":"whoAmI",
+         "url":"test",
+         "params":{ 
+            "query":{ 
+               "name":"{{{keepAlive_1.name}}}",
+               "surname":"Melandri"
+            }
+         },
+         "headers":{ 
+            "User-Agent":"{{{settings.userAgent}}}",
+            "Accept":"application/json",
+            "X-Auth":"{{{keepAlive_1.Auth}}}"
+         },
+         "assertions":[ 
+            { 
+               "field":"{{{WhoAmI_1.message}}}",
+               "comparison":"eq",
+               "value":"Hello World"
+            }
+         ]
+      },
+      { 
+         "name":"AreYou_1",
+         "operation":"AreYou",
+         "url":"test",
+         "params":{ 
+            "body":{ 
+               "name":"{{{keepAlive_1.name}}}",
+               "surname":"Melandri"
+            }
+         },
+         "headers":{ 
+            "User-Agent":"{{{settings.userAgent}}}",
+            "Content-Type":"application/json",
+            "Accept":"application/json",
+            "X-Auth":"{{{keepAlive_1.Auth}}}"
+         },
+         "assertions":[ 
+            { 
+               "field":"{{{AreYou_1.message}}}",
+               "comparison":"eq",
+               "value":"Yes you are"
+            }
+         ]
+      }
+   ]
 }
 ```
 
