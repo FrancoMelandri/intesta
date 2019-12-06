@@ -1,7 +1,7 @@
 
 const optionsBuilder = (context, session, api, operation) => {
     const CONTENT_TYPE = 'Content-Type'
-    const WWW_URL_ENCODED = 'application/x-www-form-urlencoded'
+    const WWW_URL_FORM = 'application/x-www-form-urlencoded'
 
     const _context = context
     const _session = session
@@ -11,22 +11,20 @@ const optionsBuilder = (context, session, api, operation) => {
 
     const fill = (context, descriptors, values) => {
         const params = {}
-        if(!descriptors)
-            return params
-
-        descriptors
-            .forEach (_ => params[_] = context.getValue(values[_]))
+        if (descriptors)
+            descriptors
+                .forEach (_ => params[_] = context.getValue(values[_]))
         return params
     }
 
-    const fillForm = (context, descriptors, values) => 
+    const fillForm = (context, descriptors, values) =>
         descriptors
             .map (_ => _ + '=' + context.getValue(values[_]))
-            .join("&")
+            .join('&')
 
-    const fillBody = _operation[CONTENT_TYPE] == WWW_URL_ENCODED ? 
-            fill :
-            fillForm
+    const fillBody = _operation[CONTENT_TYPE] == WWW_URL_FORM ?
+        fillForm :
+        fill
 
     return {
         qs: function () {

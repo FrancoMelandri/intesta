@@ -16,9 +16,12 @@ describe('Testing operation factory', () => {
         const operation = {
             name: 'keepAlive_1',
             operation: 'keepAlive',
+            url: 'theUrl',
             params: {
-                param1: '{{{Test_1.value}}}',
-                param2: 'value2'
+                query: {
+                    param1: '{{{Test_1.value}}}',
+                    param2: 'value2'
+                }
             },
             headers: {
                 'User-Agent': 'Chrome'
@@ -28,12 +31,16 @@ describe('Testing operation factory', () => {
             name: 'keepAlive',
             path: '/keepalive',
             verb: 'GET',
-            params: ['param1', 'param2'],
+            params: {
+                query: ['param1', 'param2']
+            },
             headers: ['User-Agent']
         }]
         const session = {
             settings: {
-                url: 'URl',
+                urls: {
+                    theUrl: 'URl'
+                },
                 userAgent: 'Chrome'
             }
         }
