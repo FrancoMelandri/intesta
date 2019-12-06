@@ -1,9 +1,6 @@
 {
 	"settings":{
-		"environment" : "PROD",
-		"urls": {
-			"test": "http://url.com"
-		}
+		"environment" : "PROD"
 	},
 	"operations" : [
 		{

@@ -30,4 +30,31 @@ describe('Testing session loader', () => {
             expect(e).toBe('No api defined for keepAlive1');
         }
     });
+
+    test('Should not initialize session settings is not defined', () => {
+        try {
+            sut('../__tests__/engine/data/test.sessionWrong1.json', resources)
+            expect(false).toBe(true);
+        } catch (e) {
+            expect(e).toBe('No settings defined in descriptor file');
+        }
+    });
+
+    test('Should not initialize if session settings is not defined', () => {
+        try {
+            sut('../__tests__/engine/data/test.sessionWrong2.json', resources)
+            expect(false).toBe(true);
+        } catch (e) {
+            expect(e).toBe('No urls defined for settings in descriptor file');
+        }
+    });
+
+    test('Should not initialize if operation has wrong url', () => {
+        try {
+            sut('../__tests__/engine/data/test.sessionWrong3.json', resources)
+            expect(false).toBe(true);
+        } catch (e) {
+            expect(e).toBe('Wrong url defined for keepAlive');
+        }
+    });
 });
