@@ -95,6 +95,8 @@ describe('Testing resolvers', () => {
                 header1: 'HEADER',
                 header2: 'value2'
             },
+            qs: {},
+            json: true,
             body: {
                 param1: 'PARAM',
                 param2: 'value2'
@@ -145,12 +147,15 @@ describe('Testing resolvers', () => {
         const expected = {
             headers: {
                 header1: 'HEADER',
-                header2: 'value2'
+                header2: 'value2',
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: {
                 param1: 'PARAM',
-                param2: 'value2 '
+                param2: 'value2'
             },
+            qs: {},
+            json: true,
             method: 'POST',
             url: 'https://example.com/api'
         }

@@ -12,10 +12,10 @@ describe('Testing API loader', () => {
         let keepAlive = resources.find(item => item.name == 'keepAlive')
         expect(keepAlive.path).toBe('/keepalive');
         expect(keepAlive.verb).toBe('GET');
-        expect(keepAlive.params.length).toBe(2);
+        expect(keepAlive.params['query'].length).toBe(2);
         expect(keepAlive.headers.length).toBe(2);
-        expect(keepAlive.params[0]).toBe('param1');
-        expect(keepAlive.params[1]).toBe('param2');
+        expect(keepAlive.params['query'][0]).toBe('param1');
+        expect(keepAlive.params['query'][1]).toBe('param2');
         expect(keepAlive.headers[0]).toBe('User-Agent');
         expect(keepAlive.headers[1]).toBe('Accept');
     });

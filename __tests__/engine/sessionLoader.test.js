@@ -13,8 +13,8 @@ describe('Testing session loader', () => {
         expect(session.operations.length).toBe(5);
         expect(session.operations[1].name).toBe('WhoAmI_1');
         expect(session.operations[1].operation).toBe('whoAmI');
-        expect(session.operations[1].params['name']).toBe('{{{keepAlive_1.name}}}');
-        expect(session.operations[1].params['surname']).toBe('Melandri');
+        expect(session.operations[1].params.query['name']).toBe('{{{keepAlive_1.name}}}');
+        expect(session.operations[1].params['query']['surname']).toBe('Melandri');
         expect(session.operations[1].headers['User-Agent']).toBe('{{{settings.userAgent}}}');
         expect(session.operations[1].headers['Accept']).toBe('application/json');
         expect(session.operations[1].assertions[0].field).toBe('{{{WhoAmI_1.message}}}');

@@ -48,8 +48,8 @@ describe('Testing operation factory', () => {
         context.add('settings', session.settings)
         sut(context, operation, session, apis,
             (_, res) => { expect(res.status).toBe('OK') },
-            _ => { expect(false).toBe(true) })(() => {})
+            _ => { expect(false).toBe(true) },
+            (_, __) => { })(() => {})
 
     });
-
 });
