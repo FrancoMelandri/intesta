@@ -8,15 +8,22 @@ var context = () => {
             return this
         },
 
-        getValue: function(prop) {
-            if (prop.indexOf('{{{') === -1 || prop.indexOf('}}}') === -1)
-                return prop
-
+        getValue: function (prop) {
             return prop
-                .replace('{{{', '')
-                .replace('}}}', '')
-                .split('.')
-                .reduce((acc, item) => acc[item], _context)
+                .split(' ')
+                .map(_ =>
+                {
+                    const startIndex = _.indexOf('{{{')
+                    const endIndex = _.indexOf('}}}')
+                    if (startIndex === -1 || endIndex === -1)
+                        return _
+                    return _
+                        .replace('{{{', '')
+                        .replace('}}}', '')
+                        .split('.')
+                        .reduce((acc, item) => acc[item], _context)
+                })
+                .join(' ')
         },
 
         current: function () {

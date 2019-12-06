@@ -7,7 +7,7 @@ const compares = {
 const assertion = (context, operation, onSuccess, onFail) => {
 
     if (!operation.assertions) {
-        onSuccess(operation)
+        onSuccess(operation, context.current()[operation.name])
         return
     }
 
@@ -17,8 +17,8 @@ const assertion = (context, operation, onSuccess, onFail) => {
             const left = context.getValue(_.field)
             const right = _.value
             compares[_.comparison](left, right) ?
-                onSuccess(operation) :
-                onFail (operation, _)
+                onSuccess(operation, left) :
+                onFail (operation, _, left)
         })
 }
 

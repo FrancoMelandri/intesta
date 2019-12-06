@@ -8,7 +8,7 @@
 	"operations" : [
 		{
 			"name" : "keepAlive_1",
-			"operation": "keepAlive1",
+			"operation": "keepAlive",
 			"params": {
                 "param1": "value1",
                 "param2": "value2"

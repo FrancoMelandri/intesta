@@ -4,35 +4,45 @@
             "name": "keepAlive",
             "path": "/keepalive",
             "verb": "GET",
-            "params": ["param1", "param2"],
+            "params": {
+                "query": ["param1", "param2"]
+            },
             "headers": ["User-Agent", "Accept"]
         },
         {
             "name": "whoAmI",
             "path": "/whoami",
             "verb": "GET",
-            "params": ["name", "surname"],
+            "params": {
+                "query": ["name", "surname"]
+            },
             "headers": ["User-Agent", "Accept", "X-Auth"]
         },
         {
             "name": "AreYou",
             "path": "/areyou",
             "verb": "POST",
-            "params": ["name", "surname"],
+            "params": {
+                "body": ["name", "surname"]
+            },
             "headers": ["User-Agent", "Content-Type", "Accept", "X-Auth"]
         },
         {
             "name": "Sure",
             "path": "/sure",
             "verb": "PUT",
-            "params": ["name", "surname"],
+            "params": {
+                "body": ["name", "surname"]
+            },
             "headers": ["User-Agent", "Content-Type", "Accept", "X-Auth"]
         },
         {
             "name": "Die",
             "path": "/die",
             "verb": "DELETE",
-            "params": ["name"],
+            "params": {
+                "body": ["name"]
+            },
             "headers": ["User-Agent", "Content-Type", "Accept", "X-Auth"]
         }
     ]

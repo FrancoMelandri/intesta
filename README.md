@@ -16,6 +16,7 @@
 | **sessionFile**    | file containing the session of the test     |
 | **onSuccess** | callback function in case of assertions are right |
 | **onFail** | callback function in case of failed assertion |
+| **onFail** | callback function called by intesta in some particular cases. Allows you to add you custom log to the application |
 
 
 
@@ -27,6 +28,8 @@
 
 ### How to
 
+
+
 Example about using **intesta**
 
 
@@ -35,18 +38,23 @@ const intesta = require('@francomelandri/intesta'),
     path = require('path')
 
 const onSuccess = operation => {
-    console.log (operation.name + ' OK')
+    console.log(operation.name + ' OK')
 }
 
 const onFail = (operation, assertion) => {
-    console.log (operation.name + ' FAIL')
+    console.log(operation.name + ' FAIL')
+}
+
+const onLog = (type, message) => {
+    console.log(type + ' ' + JSON.stringify(message))
 }
 
 const descriptorFile = path.join(__dirname, './descriptor.json')
 const sessionFile = path.join(__dirname, './session.json')
 
-intesta(descriptorFile, sessionFile, onSuccess, onFail)
+intesta(descriptorFile, sessionFile, onSuccess, onFail, onLog)
 ```
+
 
 
 Example of API descriptor file. This file define the schema of the resource API **intesta** is able to know.
@@ -58,21 +66,27 @@ Example of API descriptor file. This file define the schema of the resource API 
             "name": "keepAlive",
             "path": "/keepalive",
             "verb": "GET",
-            "params": ["param1", "param2"],
+            "params": {
+              "query": ["param1", "param2"]
+            },
             "headers": ["User-Agent", "Accept"]
         },
         {
             "name": "whoAmI",
             "path": "/whoami",
             "verb": "GET",
-            "params": ["name", "surname"],
+            "params": {
+              "query": ["name", "surname"]
+            },
             "headers": ["User-Agent", "Accept", "X-Auth"]
         },
         {
             "name": "AreYou",
             "path": "/areyou",
             "verb": "POST",
-            "params": ["name", "surname"],
+            "params": {
+              "body": ["name", "surname"]
+            },
             "headers": ["User-Agent", "Content-Type", "Accept", "X-Auth"]
         }
     ]
@@ -81,13 +95,14 @@ Example of API descriptor file. This file define the schema of the resource API 
 
 
 
-| field   | description                                                  |
-| ------- | ------------------------------------------------------------ |
-| name    | a unique name of the api resource used by session operation  |
-| path    | the relative path of the resource                            |
-| verb    | the HTTP verb for the resource; at the moment the allowable verbs are: GET, POST, PUT, DELETE in order to let you bale to test a CRUD api |
-| params  | list of possible parameters for the resource; query string or body |
-| headers | list of headers needed to use the resource                   |
+| field            | description                                                  |
+| ---------------- | ------------------------------------------------------------ |
+| name             | a unique name of the api resource used by session operation  |
+| path             | the relative path of the resource                            |
+| verb             | the HTTP verb for the resource; at the moment the allowable verbs are: GET, POST, PUT, DELETE in order to let you bale to test a CRUD api |
+| params **query** | contain the list of all possible parameter for query string  |
+| params **body**  | contain the list of all possible parameter for body          |
+| headers          | list of headers needed to use the resource                   |
 
 
 
@@ -95,67 +110,78 @@ Example of API session file.
 This file contains the description of the flow for the test **intesta** should perform
 
 ```json
-{
-	"settings":{
-		"environment" : "PROD",
-		"url": "http://q7vv6.mocklab.io",
-		"userAgent": "Chrome"
-	},
-	"operations" : [
-		{
-			"name" : "keepAlive_1",
-			"operation": "keepAlive",
-			"params": {
-                "param1": "value1",
-                "param2": "value2"
-			},
-			"headers": {
-				"User-Agent": "{{{settings.userAgent}}}",
-				"Accept": "application/json"
-			}
-        },
-		{
-			"name" : "WhoAmI_1",
-			"operation": "whoAmI",
-			"params": {
-				"name": "{{{keepAlive_1.name}}}",
-                "surname": "Melandri"
-			},
-			"headers": {
-                "User-Agent": "{{{settings.userAgent}}}",
-				"Accept": "application/json",
-				"X-Auth": "{{{keepAlive_1.Auth}}}"
-			},
-			"assertions":[
-				{
-					"field": "{{{WhoAmI_1.message}}}",
-					"comparison": "eq",
-					"value": "Hello World"
-				}
-			]
-        },
-		{
-			"name" : "AreYou_1",
-			"operation": "AreYou",
-			"params": {
-				"name": "{{{keepAlive_1.name}}}",
-                "surname": "Melandri"
-			},
-			"headers": {
-                "User-Agent": "{{{settings.userAgent}}}",
-				"Content-Type": "application/json",
-				"Accept": "application/json",
-				"X-Auth": "{{{keepAlive_1.Auth}}}"
-			},
-			"assertions":[
-				{
-					"field": "{{{AreYou_1.message}}}",
-					"comparison": "eq",
-					"value": "Yes you are"
-				}
-			]
-        }
-    ]
+{ 
+   "settings":{ 
+      "environment":"PROD",
+      "urls":{ 
+         "test":"http://q7vv6.mocklab.io"
+      },
+      "userAgent":"Chrome"
+   },
+   "operations":[ 
+      { 
+         "name":"keepAlive_1",
+         "operation":"keepAlive",
+         "url":"test",
+         "params":{ 
+            "query":{ 
+               "param1":"value1",
+               "param2":"value2"
+            }
+         },
+         "headers":{ 
+            "User-Agent":"{{{settings.userAgent}}}",
+            "Accept":"application/json"
+         }
+      },
+      { 
+         "name":"WhoAmI_1",
+         "operation":"whoAmI",
+         "url":"test",
+         "params":{ 
+            "query":{ 
+               "name":"{{{keepAlive_1.name}}}",
+               "surname":"Melandri"
+            }
+         },
+         "headers":{ 
+            "User-Agent":"{{{settings.userAgent}}}",
+            "Accept":"application/json",
+            "X-Auth":"{{{keepAlive_1.Auth}}}"
+         },
+         "assertions":[ 
+            { 
+               "field":"{{{WhoAmI_1.message}}}",
+               "comparison":"eq",
+               "value":"Hello World"
+            }
+         ]
+      },
+      { 
+         "name":"AreYou_1",
+         "operation":"AreYou",
+         "url":"test",
+         "params":{ 
+            "body":{ 
+               "name":"{{{keepAlive_1.name}}}",
+               "surname":"Melandri"
+            }
+         },
+         "headers":{ 
+            "User-Agent":"{{{settings.userAgent}}}",
+            "Content-Type":"application/json",
+            "Accept":"application/json",
+            "X-Auth":"{{{keepAlive_1.Auth}}}"
+         },
+         "assertions":[ 
+            { 
+               "field":"{{{AreYou_1.message}}}",
+               "comparison":"eq",
+               "value":"Yes you are"
+            }
+         ]
+      }
+   ]
 }
 ```
 
@@ -165,7 +191,8 @@ This file contains the description of the flow for the test **intesta** should p
 | ---------- | ------------------------------------------------------------ |
 | name       | a unique name for the operation. It can be used by other operation to retrieve field value using the mustache notation |
 | operation  | link to api resource description to validate the operation itself |
-| params     | list of parameters values; you can use mustache notation for dynamic values |
+| url        | the url the operation should use to issue the request. The list of url should be defined into the settings object. |
+| params     | list of parameters values for both **query** and **body** as you defined in the descriptor file; you can use mustache notation for dynamic values |
 | headers    | list of headers values; you can use mustache notation for dynamic values |
 | assertions | list of assertions description in order to check if the api resource response is valid or not. |
 |            | field: the response field value to check                     |

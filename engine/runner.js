@@ -1,9 +1,10 @@
 const factory = require('./operationFactory.js'),
     postprocess = require('./postprocess.js'),
     context = require('./context.js')(),
+    constants = require('./constants.js'),
     async = require('async');
 
-const runner = (session, apis, onSuccess, onFail) => {
+const runner = (session, apis, onSuccess, onFail, onLog) => {
 
     const success = (operation, response, callback) => {
         postprocess(context, operation, response, onSuccess, onFail)
@@ -15,11 +16,11 @@ const runner = (session, apis, onSuccess, onFail) => {
         callback(err, null)
     }
 
-    context.add('settings', session.settings)
+    context.add(constants.SETTINGS, session.settings)
 
     const series = session
         .operations
-        .map (_ => factory(context, _, session, apis, success, fail))
+        .map (_ => factory(context, _, session, apis, success, fail, onLog))
 
     async.series(series, null)
 }

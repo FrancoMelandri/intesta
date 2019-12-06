@@ -1,10 +1,4 @@
 {
-	"settings":{
-		"environment" : "PROD",
-		"urls": {
-			"test": "http://url.com"
-		}
-	},
 	"operations" : [
 		{
 			"name" : "keepAlive_1",
